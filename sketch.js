@@ -1,24 +1,25 @@
 let cameraWidth = 480;
 let cameraHeight = 480;
 let captureScale = 1;
-let capture;
+let capture = null;
 let captureConstraints;
-let throttle = 3;
+let throttle = 4;
 let frameRateTarget = 60;
 let frameCount = 0;
 let redClusters = [];
 let greenClusters = [];
-let largestRedCluster;
-let largestGreenCluster;
-let redBoundingBox;
-let oldRedBoundingBox;
-let greenBoundingBox;
-let oldGreenBoundingBox;
-let lerpSpeed = 0.1;
+let largestRedCluster = null;
+let largestGreenCluster = null;
+let redBoundingBox = null;
+let oldRedBoundingBox = null;
+let greenBoundingBox = null;
+let oldGreenBoundingBox = null;
+let lerpSpeed = 0.25;
 
 function setup() {  
-  pixelDensity(1);
-  createCanvas(cameraWidth, cameraHeight);
+  //pixelDensity(1);
+  captureScale = windowWidth / cameraWidth;
+  createCanvas(windowWidth, windowWidth);
   frameRate(frameRateTarget);
   
   captureConstraints = {
@@ -38,10 +39,9 @@ function setup() {
 
 function draw() {
   background(255);
+  image(capture, 0, 0, windowWidth, windowWidth);
 
   capture.loadPixels();
-
-  image(capture, 0, 0, cameraWidth, cameraHeight);
 
   frameCount++;
   if (frameCount % throttle === 0) {
@@ -51,7 +51,7 @@ function draw() {
   
   if (largestRedCluster) {
     oldRedBoundingBox = redBoundingBox;
-    redBoundingBox = boundingBox(largestRedCluster);
+    redBoundingBox = getBoundingBox(largestRedCluster);
 
     if (oldRedBoundingBox) {
       redBoundingBox.rect[0] = lerp(oldRedBoundingBox.rect[0], redBoundingBox.rect[0], lerpSpeed);
@@ -66,7 +66,7 @@ function draw() {
   
   if (largestGreenCluster) {
     oldGreenBoundingBox = greenBoundingBox;
-    greenBoundingBox = boundingBox(largestGreenCluster);
+    greenBoundingBox = getBoundingBox(largestGreenCluster);
 
     if (oldGreenBoundingBox) {
       greenBoundingBox.rect[0] = lerp(oldGreenBoundingBox.rect[0], greenBoundingBox.rect[0], lerpSpeed);
@@ -82,11 +82,10 @@ function draw() {
 
 function updateClusters() {  
   redClusters = findClusters(capture.pixels, capture.width, capture.height, isRed);
-  greenClusters = findClusters(capture.pixels, capture.width, capture.height, isGreen);
-
   largestRedCluster = findLargestCluster(redClusters, isRed);
-  largestGreenCluster = findLargestCluster(greenClusters, isGreen);
 
+  greenClusters = findClusters(capture.pixels, capture.width, capture.height, isGreen);
+  largestGreenCluster = findLargestCluster(greenClusters, isGreen);
 }
 
 function drawBoundingBox(box, color) {
@@ -100,7 +99,7 @@ function drawBoundingBox(box, color) {
   ellipse(box.center.x, box.center.y, 6, 6);
 }
 
-function boundingBox(cluster) {
+function getBoundingBox(cluster) {
   let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
   for (let [x, y] of cluster) {
     if (x < minX) minX = x;
