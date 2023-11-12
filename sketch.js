@@ -1,5 +1,5 @@
 let cameraWidth;
-let scale = 1;
+let captureScale = 1;
 let capture;
 let captureConstraints;
 let captureHD;
@@ -7,20 +7,22 @@ let captureHDConstraints;
 
 function setup() {
   cameraWidth = 480;
-  createCanvas(480, 480);
+  let canvas = createCanvas(480, 480);
+  canvas.elt.getContext('2d', { willReadFrequently: true });
+  //createCanvas(480, 480);
   frameRate(60);
   
   // captureConstraints = {
   //   video: {
   //     facingMode: "environment",
   //     frameRate: { ideal: 10  },
-  //     width: { ideal: 480/scale },
-  //     height: { ideal: 480/scale }
+  //     width: { ideal: 480/captureScale },
+  //     height: { ideal: 480/captureScale }
   //   },
   //   audio: false
   // };
   // capture = createCapture(captureConstraints, function(stream) {});
-  // capture.size(480/scale, 480/scale);
+  // capture.size(480/captureScale, 480/captureScale);
   // capture.hide();
   
   captureHDConstraints = {
@@ -34,7 +36,7 @@ function setup() {
   };
   captureHD = createCapture(captureHDConstraints, function(stream) {});
   captureHD.size(480, 480);
-  captureHD.hide();
+  //captureHD.hide();
   capture = captureHD;
   
   pixelDensity(1);
@@ -78,7 +80,18 @@ function draw() {
 }
 
 function isRed(pixels, index) {
-  return pixels[index] > 150 && pixels[index + 1] < 80 && pixels[index + 2] < 80;
+  let isRed = false;
+  let threshold = 70;
+
+  if (
+    pixels[index] > 150 &&
+    pixels[index] - pixels[index + 1] > threshold &&
+    pixels[index] - pixels[index + 2] > threshold
+    ) {
+    isRed = true;
+  }
+
+  return isRed;
 }
 
 function getCluster(pixels, startX, startY, width, visited) {
@@ -117,7 +130,7 @@ function boundingBox(cluster) {
   let centerY = minY + (maxY - minY) / 2;
   
   return {
-    rect: [minX*scale, minY*scale, maxX*scale, maxY*scale],
-    center: createVector(centerX*scale, centerY*scale)
+    rect: [minX*captureScale, minY*captureScale, maxX*captureScale, maxY*captureScale],
+    center: createVector(centerX*captureScale, centerY*captureScale)
   };
 }
