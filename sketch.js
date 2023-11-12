@@ -1,5 +1,5 @@
-let cameraWidth = 480;
-let cameraHeight = 480;
+let cameraWidth = 640;
+let cameraHeight = 640;
 let captureScale = 1;
 let capture = null;
 let captureConstraints;
@@ -167,8 +167,8 @@ function findClusters(pixels, width, height, isColor) {
   let clusters = [];
   let visited = new Set();
 
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
+  for (let y = 0; y < height; y += 2) {
+    for (let x = 0; x < width; x += 2) {
       let index = (x + y * width) * 4;
       if (isColor(pixels, index) && !visited.has(index)) {
         let cluster = getCluster(pixels, x, y, width, visited, isColor);
