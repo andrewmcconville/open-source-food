@@ -67,7 +67,7 @@ function isRed(pixels, index) {
 
   let isRedHue = (h > 0 && h < 10) || (h > 340 && h < 360);
   let isSaturated = s > 40;
-  let isNotTooLight = l > 30 && l < 80;
+  let isNotTooLight = l > 20 && l < 70;
 
   return isRedHue && isSaturated && isNotTooLight;
 }
@@ -79,9 +79,9 @@ function isGreen(pixels, index) {
 
   let [h, s, l] = rgbToHsl(r, g, b);
 
-  let isGreenHue = h > 90 && h < 140;
-  let isSaturated = s > 40;
-  let isNotTooLight = l > 30 && l < 80;
+  let isGreenHue = h > 90 && h < 150;
+  let isSaturated = s > 30;
+  let isNotTooLight = l > 20 && l < 80;
 
   return isGreenHue && isSaturated && isNotTooLight;
 }
