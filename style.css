@@ -1,13 +1,40 @@
-html {
-  min-height: 100%;
+* {
+  box-sizing: border-box;
 }
 
-html, body, main {
+html, body, .app-wrapper, main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
   margin: 0;
-  padding: 0;
+  padding: 0;  
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.app-wrapper {
+}
+
+.header {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+}
+
+.main {
+  background-color: antiquewhite;
+}
+
+.footer {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
 }
 
 canvas {

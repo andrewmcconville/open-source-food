@@ -13,6 +13,7 @@ function setup() {
     video: {
       facingMode: "environment",
       frameRate: { ideal: 60  },
+      aspectRatio: { ideal: 1 },
       width: { ideal: cameraWidth },
       height: { ideal: cameraHeight }
     },
@@ -28,10 +29,10 @@ function draw() {
 
   capture.loadPixels();
 
+  image(capture, 0, 0, cameraWidth, cameraHeight);
+
   let redClusters = findClusters(capture.pixels, capture.width, capture.height, isRed);
   let greenClusters = findClusters(capture.pixels, capture.width, capture.height, isGreen);
-
-  image(capture, 0, 0, cameraWidth, cameraHeight);
 
   let largestRedCluster = findLargestCluster(redClusters, isRed);
   let largestGreenCluster = findLargestCluster(greenClusters, isGreen);
