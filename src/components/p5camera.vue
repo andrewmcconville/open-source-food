@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import p5 from 'p5';
+import type { BoundingBox } from './../models/boundingBox.ts';
 
 const sketchContainer = ref<HTMLElement | null>(null);
 
@@ -15,17 +16,17 @@ onMounted(() => {
         let captureScale: number = 1;
         let capture = null;
         let captureConstraints;
-        const throttle: number = 4;
+        const throttleClusterSearch: number = 4;
         const frameRateTarget: number = 60;
         let frameCount: number = 0;
         let redClusters = [];
         let greenClusters = [];
-        let largestRedCluster = null;
-        let largestGreenCluster = null;
-        let redBoundingBox = null;
-        let oldRedBoundingBox = null;
-        let greenBoundingBox = null;
-        let oldGreenBoundingBox = null;
+        let largestRedCluster: Array<[number, number]>;
+        let largestGreenCluster: Array<[number, number]>;
+        let redBoundingBox: BoundingBox;
+        let oldRedBoundingBox: BoundingBox;
+        let greenBoundingBox: BoundingBox;
+        let oldGreenBoundingBox: BoundingBox;
         const lerpSpeed: number = 0.25;
 
         p.setup = () => {
@@ -55,7 +56,7 @@ onMounted(() => {
             capture.loadPixels();
 
             frameCount++;
-            if (frameCount % throttle === 0) {
+            if (frameCount % throttleClusterSearch === 0) {
                 updateClusters();
                 frameCount = 0;
             }
@@ -73,7 +74,7 @@ onMounted(() => {
                     redBoundingBox.center.y = p.lerp(oldRedBoundingBox.center.y, redBoundingBox.center.y, lerpSpeed);
                 }
 
-                drawBoundingBox(redBoundingBox, [0, 255, 0]);
+                drawBoundingBox(redBoundingBox, p.color(0, 255, 0));
             };
 
             if (largestGreenCluster) {
@@ -88,31 +89,31 @@ onMounted(() => {
                     greenBoundingBox.center.x = p.lerp(oldGreenBoundingBox.center.x, greenBoundingBox.center.x, lerpSpeed);
                     greenBoundingBox.center.y = p.lerp(oldGreenBoundingBox.center.y, greenBoundingBox.center.y, lerpSpeed);
                 }
-                
-                drawBoundingBox(greenBoundingBox, [255, 0, 0]);
+
+                drawBoundingBox(greenBoundingBox, p.color(255, 0, 0));
             }
         }
 
         function updateClusters() {
             redClusters = findClusters(capture.pixels, capture.width, capture.height, isRed);
-            largestRedCluster = findLargestCluster(redClusters, isRed);
+            largestRedCluster = findLargestCluster(redClusters);
 
             greenClusters = findClusters(capture.pixels, capture.width, capture.height, isGreen);
-            largestGreenCluster = findLargestCluster(greenClusters, isGreen);
+            largestGreenCluster = findLargestCluster(greenClusters);
         }
 
-        function drawBoundingBox(box, color: p5.Color) {
+        function drawBoundingBox(box: BoundingBox, color: p5.Color) {
             p.noFill();
-            p.stroke(...color);
+            p.stroke(color);
             p.strokeWeight(2);
             p.rectMode(p.CORNERS);
             p.rect(box.rect[0], box.rect[1], box.rect[2], box.rect[3]);
-            p.fill(...color);
+            p.fill(color);
             p.noStroke();
             p.ellipse(box.center.x, box.center.y, 6, 6);
         }
 
-        function getBoundingBox(cluster) {
+        function getBoundingBox(cluster): BoundingBox {
             let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
             for (let [x, y] of cluster) {
                 if (x < minX) minX = x;
@@ -129,37 +130,36 @@ onMounted(() => {
             };
         }
 
-        function isRed(pixels, index) {
-            let r = pixels[index];
-            let g = pixels[index + 1];
-            let b = pixels[index + 2];
+        function isRed(pixels, index): boolean {
+            let red: number = pixels[index];
+            let green: number = pixels[index + 1];
+            let blue: number = pixels[index + 2];
 
-            let [h, s, l] = rgbToHsl(r, g, b);
+            let [h, s, b] = rgbToHsb(red, green, blue);
 
-            let isRedHue = (h > 0 && h < 15) || (h > 350 && h < 360);
-            let isSaturated = s > 40;
-            let isNotTooLight = 30 < l && l < 60;
+            let withinHue = (h > 0 && h < 15) || (h > 350 && h < 360);
+            let withinSaturation = s > 40;
+            let withinBrightness = 30 < b && b < 60;
 
-            return isRedHue && isSaturated && isNotTooLight;
+            return withinHue && withinSaturation && withinBrightness;
         }
 
-        function isGreen(pixels, index) {
-            let r = pixels[index];
-            let g = pixels[index + 1];
-            let b = pixels[index + 2];
+        function isGreen(pixels, index): boolean {
+            let red: number = pixels[index];
+            let green: number = pixels[index + 1];
+            let blue: number = pixels[index + 2];
 
-            let [h, s, l] = rgbToHsl(r, g, b);
+            let [h, s, b] = rgbToHsb(red, green, blue);
 
-            let isGreenHue = h > 100 && h < 115;
-            let isSaturated = s > 30;
-            //let isNotTooLight = l > 20 && l < 80;
-            let isNotTooLight = 20 < l && l < 80;
+            let withinHue = h > 100 && h < 115;
+            let withinSaturation = s > 30;
+            let withinBrightness = 20 < b && b < 80;
 
-            return isGreenHue && isSaturated && isNotTooLight;
+            return withinHue && withinSaturation && withinBrightness;
         }
 
-        function getCluster(pixels, startX, startY, width, visited, isColor) {
-            let cluster = [];
+        function getCluster(pixels, startX, startY, width, visited, isColor): Array<[number, number]> {
+            let cluster: Array<[number, number]> = [];
             let stack = [[startX, startY]];
 
             while (stack.length > 0) {
@@ -201,28 +201,29 @@ onMounted(() => {
             return clusters.reduce((a, b) => (a.length > b.length ? a : b));
         }
 
-        function rgbToHsl(r, g, b) {
-            r /= 255, g /= 255, b /= 255;
-            let max = Math.max(r, g, b), min = Math.min(r, g, b);
-            let h, s, l = (max + min) / 2;
+        function rgbToHsb(red: number, green: number, blue: number) {
+            red /= 255;
+            green /= 255;
+            blue /= 255;
+            let max: number = Math.max(red, green, blue);
+            let min: number = Math.min(red, green, blue);
+            let h, s, v = max;
+
+            let d = max - min;
+            s = max == 0 ? 0 : d / max;
 
             if (max == min) {
-                h = s = 0; // achromatic
+                h = 0; // achromatic
             } else {
-                let d = max - min;
-                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
                 switch (max) {
-                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                    case g: h = (b - r) / d + 2; break;
-                    case b: h = (r - g) / d + 4; break;
+                    case red: h = (green - blue) / d + (green < blue ? 6 : 0); break;
+                    case green: h = (blue - red) / d + 2; break;
+                    case blue: h = (red - green) / d + 4; break;
                 }
-                h *= 60; // Convert from 0-6 range to 0-360 range for hue
+                h /= 6;
             }
 
-            s *= 100; // Convert from 0-1 range to 0-100 range for saturation
-            l *= 100; // Convert from 0-1 range to 0-100 range for lightness
-
-            return [h, s, l];
+            return [h * 360, s * 100, v * 100]; // Convert hue to degrees
         }
     }, sketchContainer.value!);
 });
