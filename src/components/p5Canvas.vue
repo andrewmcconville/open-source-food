@@ -1,3 +1,4 @@
+@ts-nocheck
 <template>
     <div ref="sketchContainer"></div>
 </template>
