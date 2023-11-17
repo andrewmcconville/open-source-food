@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-import p5camera from '../components/p5camera.vue';
+import p5Camera from '../components/p5Camera.vue';
 </script>
 
 <template>
   <main>
-    <TheWelcome />
-    <p5camera />
+    <p5Camera />
   </main>
 </template>
+
+<style scoped lang="scss">
+</style>

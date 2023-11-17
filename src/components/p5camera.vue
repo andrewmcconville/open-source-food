@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import p5 from 'p5';
-import type { BoundingBox } from './../models/boundingBox.ts';
+import type { BoundingBox } from '../models/boundingBox.js';
 
 const sketchContainer = ref<HTMLElement | null>(null);
 
