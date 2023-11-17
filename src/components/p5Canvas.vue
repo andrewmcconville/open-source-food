@@ -1,6 +1,7 @@
 
 <template>
     <div ref="sketchContainer"></div>
+    <button @click="toggleLoop">{{ isLooping ? 'Stop' : 'Start' }} Loop</button>
 </template>
   
 <script setup lang="ts">
@@ -8,10 +9,12 @@ import { onMounted, ref } from 'vue';
 import p5 from 'p5';
 import type { BoundingBox } from '../models/boundingBox.js';
 
+const isLooping = ref(true);
 const sketchContainer = ref<HTMLElement | null>(null);
+let p5Canvas: p5 | null = null;
 
 onMounted(() => {
-    new p5((p: p5) => {
+    p5Canvas = new p5((p: p5) => {
         const cameraWidth: number = 640;
         const cameraHeight: number = 640;
         let captureScale: number = 1;
@@ -139,8 +142,8 @@ onMounted(() => {
             let [h, s, b] = rgbToHsb(red, green, blue);
 
             let withinHue = (h > 0 && h < 15) || (h > 350 && h < 360);
-            let withinSaturation = s > 40;
-            let withinBrightness = 30 < b && b < 60;
+            let withinSaturation = s > 50;
+            let withinBrightness = 50 < b && b < 80;
 
             return withinHue && withinSaturation && withinBrightness;
         }
@@ -152,7 +155,7 @@ onMounted(() => {
 
             let [h, s, b] = rgbToHsb(red, green, blue);
 
-            let withinHue = h > 100 && h < 115;
+            let withinHue = h > 80 && h < 115;
             let withinSaturation = s > 30;
             let withinBrightness = 20 < b && b < 80;
 
@@ -234,4 +237,14 @@ onMounted(() => {
         }
     }, sketchContainer.value!);
 });
+
+const toggleLoop = () => {
+  isLooping.value = !isLooping.value;
+
+  if (isLooping.value) {
+    p5Canvas?.loop();
+  } else {
+    p5Canvas?.noLoop();
+  }
+};
 </script>
