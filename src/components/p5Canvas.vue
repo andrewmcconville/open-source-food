@@ -126,14 +126,6 @@ onMounted(() => {
                 mouseY < boundingBox.rect[3];
         }
 
-        function updateClusters() {
-            redClusters = findClusters(capture.pixels, capture.width, capture.height, isRed);
-            largestRedCluster = findLargestCluster(redClusters);
-
-            greenClusters = findClusters(capture.pixels, capture.width, capture.height, isGreen);
-            largestGreenCluster = findLargestCluster(greenClusters);
-        }
-
         function drawBoundingBox(box: BoundingBox, color: p5.Color) {
             p.noFill();
             p.stroke(color);
@@ -190,6 +182,33 @@ onMounted(() => {
             return withinHue && withinSaturation && withinBrightness;
         }
 
+        function updateClusters() {
+            redClusters = findClusters(capture.pixels, capture.width, capture.height, isRed);
+            largestRedCluster = findLargestCluster(redClusters);
+
+            greenClusters = findClusters(capture.pixels, capture.width, capture.height, isGreen);
+            largestGreenCluster = findLargestCluster(greenClusters);
+        }
+
+        function findClusters(pixels, width, height, isColor) {
+            let clusters = [];
+            let visited = new Set();
+
+            for (let y = 0; y < height; y += 2) {
+                for (let x = 0; x < width; x += 2) {
+                    let index = (x + y * width) * 4;
+                    if (isColor(pixels, index) && !visited.has(index)) {
+                        let cluster = getCluster(pixels, x, y, width, visited, isColor);
+                        if (cluster.length > 0) {
+                            clusters.push(cluster);
+                        }
+                    }
+                }
+            }
+
+            return clusters;
+        }
+
         function getCluster(pixels, startX, startY, width, visited, isColor): Array<[number, number]> {
             let cluster: Array<[number, number]> = [];
             let stack = [[startX, startY]];
@@ -210,25 +229,6 @@ onMounted(() => {
             }
 
             return cluster;
-        }
-
-        function findClusters(pixels, width, height, isColor) {
-            let clusters = [];
-            let visited = new Set();
-
-            for (let y = 0; y < height; y += 2) {
-                for (let x = 0; x < width; x += 2) {
-                    let index = (x + y * width) * 4;
-                    if (isColor(pixels, index) && !visited.has(index)) {
-                        let cluster = getCluster(pixels, x, y, width, visited, isColor);
-                        if (cluster.length > 0) {
-                            clusters.push(cluster);
-                        }
-                    }
-                }
-            }
-
-            return clusters;
         }
 
         function findLargestCluster(clusters) {
