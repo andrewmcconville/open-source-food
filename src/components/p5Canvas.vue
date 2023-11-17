@@ -191,6 +191,7 @@ onMounted(() => {
                     if (isColor(pixels, index) && !visited.has(index)) {
                         let cluster = getCluster(pixels, x, y, width, visited, isColor);
                         if (cluster.length > 0) {
+                            // @ts-ignore
                             clusters.push(cluster);
                         }
                     }
