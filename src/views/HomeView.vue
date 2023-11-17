@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import p5Camera from './../components/p5Camera.vue';
+import p5Canvas from '../components/p5Canvas.vue';
 </script>
 
 <template>
   <main>
-    <p5Camera />
+    <p5Canvas />
   </main>
 </template>
 
