@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 <template>
     <div ref="sketchContainer"></div>
 </template>
@@ -15,7 +15,7 @@ onMounted(() => {
         const cameraWidth: number = 640;
         const cameraHeight: number = 640;
         let captureScale: number = 1;
-        let capture = null;
+        let capture: any;
         let captureConstraints;
         const throttleClusterSearch: number = 4;
         const frameRateTarget: number = 60;
@@ -164,14 +164,17 @@ onMounted(() => {
             let stack = [[startX, startY]];
 
             while (stack.length > 0) {
-                let [x, y] = stack.pop();
-                let index = (x + y * width) * 4;
+                let point = stack.pop();
+                if (point !== undefined) {
+                    let [x, y] = point;
+                    let index = (x + y * width) * 4;
 
-                if (x >= 0 && y >= 0 && x < width && y < pixels.length / (width * 4) &&
-                    isColor(pixels, index) && !visited.has(index)) {
-                    visited.add(index);
-                    cluster.push([x, y]);
-                    stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+                    if (x >= 0 && y >= 0 && x < width && y < pixels.length / (width * 4) &&
+                        isColor(pixels, index) && !visited.has(index)) {
+                        visited.add(index);
+                        cluster.push([x, y]);
+                        stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+                    }
                 }
             }
 
@@ -208,7 +211,9 @@ onMounted(() => {
             blue /= 255;
             let max: number = Math.max(red, green, blue);
             let min: number = Math.min(red, green, blue);
-            let h, s, v = max;
+            let h = max;
+            let s = max;
+            let b = max;
 
             let d = max - min;
             s = max == 0 ? 0 : d / max;
@@ -224,7 +229,7 @@ onMounted(() => {
                 h /= 6;
             }
 
-            return [h * 360, s * 100, v * 100]; // Convert hue to degrees
+            return [h * 360, s * 100, b * 100]; // Convert hue to degrees
         }
     }, sketchContainer.value!);
 });
