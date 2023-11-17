@@ -8,12 +8,11 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
   <RouterView />
   <footer class="footer">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+    </nav>
   </footer>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped></style>

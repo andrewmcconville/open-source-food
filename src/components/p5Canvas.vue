@@ -1,16 +1,20 @@
 <template>
     <div ref="sketchContainer"></div>
     <button @click="toggleLoop">{{ isLooping ? 'Stop' : 'Start' }} Loop</button>
-    <p>{{ colorClicked }}</p>
+    <p>{{ store.activeColor }}</p>
+    <p>{{ store.activeColorObject?.origin }}</p>
 </template>
   
 <script setup lang="ts">
 // @ts-nocheck
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useMegaStore } from '../stores/megaStore';
 import p5 from 'p5';
-import type { BoundingBox } from '../models/boundingBox.js';
+import type { BoundingBox } from '../models/boundingBox';
 
-const colorClicked = ref<string>('none');
+const router = useRouter();
+const store = useMegaStore();
 const isLooping = ref<boolean>(true);
 const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
@@ -101,9 +105,11 @@ onMounted(() => {
         }
 
         p.mousePressed = () => {
-            let clickedBox: string = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
-            setColorClicked(clickedBox);
-            console.log(clickedBox);
+            if (p.mouseX >= 0 && p.mouseX <= p.width && p.mouseY >= 0 && p.mouseY <= p.height) {
+                let clickedBox: string = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
+                store.setActiveClicked(clickedBox);
+                router.push({ name: 'home', params: { param: clickedBox } });
+            }
         }
 
         function getClickedBox(mouseX: number, mouseY: number, redBoundingBox: BoundingBox, greenBoundingBox: BoundingBox): string {
@@ -273,9 +279,5 @@ const toggleLoop = () => {
     } else {
         p5Canvas?.noLoop();
     }
-};
-
-const setColorClicked = (value: string) => {
-    colorClicked.value = value;
 };
 </script>
