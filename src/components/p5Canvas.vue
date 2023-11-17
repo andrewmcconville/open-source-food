@@ -141,9 +141,9 @@ onMounted(() => {
 
             let [h, s, b] = rgbToHsb(red, green, blue);
 
-            let withinHue = (h > 0 && h < 15) || (h > 350 && h < 360);
+            let withinHue = h > 0 && 15 > h;
             let withinSaturation = s > 50;
-            let withinBrightness = 50 < b && b < 80;
+            let withinBrightness = b > 40 && 80 > b;
 
             return withinHue && withinSaturation && withinBrightness;
         }
@@ -155,9 +155,9 @@ onMounted(() => {
 
             let [h, s, b] = rgbToHsb(red, green, blue);
 
-            let withinHue = h > 80 && h < 115;
+            let withinHue = h > 80 && 115 > h;
             let withinSaturation = s > 30;
-            let withinBrightness = 20 < b && b < 80;
+            let withinBrightness = b > 20 && 80 > b;
 
             return withinHue && withinSaturation && withinBrightness;
         }
