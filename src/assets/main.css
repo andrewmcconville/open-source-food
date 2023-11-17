@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-html, body, .app-wrapper, main {
+html, body, #app, main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,9 +12,6 @@ html, body, .app-wrapper, main {
   padding: 0;  
   min-height: 100%;
   min-width: 100%;
-}
-
-.app-wrapper {
 }
 
 .header {
@@ -40,4 +37,3 @@ html, body, .app-wrapper, main {
 canvas {
   display: block;
 }
-  
