@@ -1,8 +1,10 @@
 <template>
+    <main class="p5-canvas">
     <div ref="sketchContainer"></div>
     <button @click="toggleLoop">{{ isLooping ? 'Stop' : 'Start' }} Loop</button>
     <p>{{ store.activeColor }}</p>
     <p>{{ store.activeColorObject?.origin }}</p>
+    </main>
 </template>
   
 <script setup lang="ts">

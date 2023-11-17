@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="home-view">
     <p5Canvas />
     <IngredientDetails v-if="store.activeColor != 'none'" />
   </main>
