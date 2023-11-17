@@ -1,22 +1,24 @@
-
 <template>
     <div ref="sketchContainer"></div>
     <button @click="toggleLoop">{{ isLooping ? 'Stop' : 'Start' }} Loop</button>
+    <p>{{ colorClicked }}</p>
 </template>
   
 <script setup lang="ts">
+// @ts-nocheck
 import { onMounted, ref } from 'vue';
 import p5 from 'p5';
 import type { BoundingBox } from '../models/boundingBox.js';
 
-const isLooping = ref(true);
+const colorClicked = ref<string>('none');
+const isLooping = ref<boolean>(true);
 const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
 
 onMounted(() => {
     p5Canvas = new p5((p: p5) => {
-        const cameraWidth: number = 640;
-        const cameraHeight: number = 640;
+        const cameraWidth: number = 720;
+        const cameraHeight: number = 720;
         let captureScale: number = 1;
         let capture: any;
         let captureConstraints;
@@ -96,6 +98,32 @@ onMounted(() => {
 
                 drawBoundingBox(greenBoundingBox, p.color(255, 0, 0));
             }
+        }
+
+        p.mousePressed = () => {
+            let clickedBox: string = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
+            setColorClicked(clickedBox);
+            console.log(clickedBox);
+        }
+
+        function getClickedBox(mouseX: number, mouseY: number, redBoundingBox: BoundingBox, greenBoundingBox: BoundingBox): string {
+            if (isMouseInsideBox(mouseX, mouseY, redBoundingBox)) {
+                return "red";
+            }
+            else if (isMouseInsideBox(mouseX, mouseY, greenBoundingBox)) {
+                return "green";
+            }
+            else {
+                return "none";
+            }
+        }
+
+        function isMouseInsideBox(mouseX: number, mouseY: number, boundingBox: BoundingBox): boolean {
+            return boundingBox &&
+                mouseX > boundingBox.rect[0] &&
+                mouseX < boundingBox.rect[2] &&
+                mouseY > boundingBox.rect[1] &&
+                mouseY < boundingBox.rect[3];
         }
 
         function updateClusters() {
@@ -194,7 +222,6 @@ onMounted(() => {
                     if (isColor(pixels, index) && !visited.has(index)) {
                         let cluster = getCluster(pixels, x, y, width, visited, isColor);
                         if (cluster.length > 0) {
-                            // @ts-ignore
                             clusters.push(cluster);
                         }
                     }
@@ -239,12 +266,16 @@ onMounted(() => {
 });
 
 const toggleLoop = () => {
-  isLooping.value = !isLooping.value;
+    isLooping.value = !isLooping.value;
 
-  if (isLooping.value) {
-    p5Canvas?.loop();
-  } else {
-    p5Canvas?.noLoop();
-  }
+    if (isLooping.value) {
+        p5Canvas?.loop();
+    } else {
+        p5Canvas?.noLoop();
+    }
+};
+
+const setColorClicked = (value: string) => {
+    colorClicked.value = value;
 };
 </script>
