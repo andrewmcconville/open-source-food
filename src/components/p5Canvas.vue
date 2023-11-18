@@ -121,7 +121,7 @@ onMounted(() => {
                 return "green";
             }
             else {
-                return null;
+                return '';
             }
         }
 
