@@ -1,10 +1,12 @@
 <template>
     <aside class="ingredient-details">
         <h1>{{ store.activeColorObject?.name }}</h1>
+        <p>{{ store.activeColorObject?.origin }}</p>
     </aside>
 </template>
 
 <script setup lang="ts">
+//import { watch } from 'vue';
 import { useMegaStore } from '../stores/megaStore';
 
 const store = useMegaStore();

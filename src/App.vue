@@ -2,7 +2,8 @@
   <header class="header">
     Header
   </header>
-  <RouterView />
+  <RouterView name="main"/>
+  <RouterView name="details"/>
   <footer class="footer">
     <nav>
       <RouterLink to="/">Home</RouterLink>

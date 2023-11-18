@@ -1,9 +1,7 @@
 <template>
     <main class="p5-canvas">
-    <div ref="sketchContainer"></div>
-    <button @click="toggleLoop">{{ isLooping ? 'Stop' : 'Start' }} Loop</button>
-    <p>{{ store.activeColor }}</p>
-    <p>{{ store.activeColorObject?.origin }}</p>
+        <div ref="sketchContainer"></div>
+        <button @click="toggleLoop">{{ isLooping ? 'Stop' : 'Start' }} Loop</button>
     </main>
 </template>
   
@@ -109,8 +107,13 @@ onMounted(() => {
         p.mousePressed = (event) => {
             if (event.target === p.canvas) {
                 let clickedBox: string = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
-                store.setActiveClicked(clickedBox);
-                router.push({ name: 'home', params: { param: clickedBox } });
+                if (clickedBox !== "none") {
+                    store.setActiveColor(clickedBox);
+                    router.push({ name: 'IngredientDetails', params: { id: clickedBox } });
+                } else {
+                    store.setActiveColor(clickedBox);
+                    router.push({ name: 'Home' });
+                }
             }
         }
 

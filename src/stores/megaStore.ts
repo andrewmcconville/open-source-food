@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import { watch, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import type { Color } from './../models/Colors';
 
 export const useMegaStore = defineStore('megaStore', {
@@ -25,8 +27,17 @@ export const useMegaStore = defineStore('megaStore', {
     },
   },
   actions: {
-    setActiveClicked(color: string) {
+    setActiveColor(color: string) {
       this.activeColor = color;
     },
   },
+});
+
+const store = useMegaStore();
+const route = useRoute();
+
+onMounted(() => {
+    watch(() => route.params.id, (newColor) => {
+        store.setActiveColor(newColor);
+    });
 });
