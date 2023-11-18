@@ -106,12 +106,10 @@ onMounted(() => {
 
         p.mousePressed = (event) => {
             if (event.target === p.canvas) {
-                let clickedBox: string = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
-                if (clickedBox !== "none") {
-                    store.setActiveColor(clickedBox);
+                let clickedBox: string | null = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
+                if (clickedBox) {
                     router.push({ name: 'IngredientDetails', params: { id: clickedBox } });
                 } else {
-                    store.setActiveColor(clickedBox);
                     router.push({ name: 'Home' });
                 }
             }
@@ -125,7 +123,7 @@ onMounted(() => {
                 return "green";
             }
             else {
-                return "none";
+                return null;
             }
         }
 

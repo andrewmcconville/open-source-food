@@ -13,7 +13,20 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { watch } from 'vue';
+import { useRoute, RouterLink, RouterView } from 'vue-router'
+import { useMegaStore } from './stores/megaStore';
+
+const route = useRoute();
+const store = useMegaStore();
+
+watch(() => route.params.id, (paramValue: string | Array<string>) => {
+  if (Array.isArray(paramValue)) {
+    paramValue = paramValue[0];
+  }
+  
+  store.setActiveColor(paramValue);
+});
 </script>
 
 <style scoped></style>
