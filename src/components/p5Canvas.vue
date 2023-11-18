@@ -106,8 +106,8 @@ onMounted(() => {
             }
         }
 
-        p.mousePressed = () => {
-            if (p.mouseX >= 0 && p.mouseX <= p.width && p.mouseY >= 0 && p.mouseY <= p.height) {
+        p.mousePressed = (event) => {
+            if (event.target === p.canvas) {
                 let clickedBox: string = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
                 store.setActiveClicked(clickedBox);
                 router.push({ name: 'home', params: { param: clickedBox } });
