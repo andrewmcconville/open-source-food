@@ -9,12 +9,10 @@
 // @ts-nocheck
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useMegaStore } from '../stores/megaStore';
 import p5 from 'p5';
-import type { BoundingBox } from '../models/boundingBox';
+import type { P5BoundingBox } from '../models/P5BoundingBox';
 
 const router = useRouter();
-const store = useMegaStore();
 const isLooping = ref<boolean>(true);
 const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
@@ -33,10 +31,10 @@ onMounted(() => {
         let greenClusters = [];
         let largestRedCluster: Array<[number, number]>;
         let largestGreenCluster: Array<[number, number]>;
-        let redBoundingBox: BoundingBox;
-        let oldRedBoundingBox: BoundingBox;
-        let greenBoundingBox: BoundingBox;
-        let oldGreenBoundingBox: BoundingBox;
+        let redBoundingBox: P5BoundingBox;
+        let oldRedBoundingBox: P5BoundingBox;
+        let greenBoundingBox: P5BoundingBox;
+        let oldGreenBoundingBox: P5BoundingBox;
         const lerpSpeed: number = 0.25;
 
         p.setup = () => {
@@ -115,7 +113,7 @@ onMounted(() => {
             }
         }
 
-        function getClickedBox(mouseX: number, mouseY: number, redBoundingBox: BoundingBox, greenBoundingBox: BoundingBox): string {
+        function getClickedBox(mouseX: number, mouseY: number, redBoundingBox: P5BoundingBox, greenBoundingBox: P5BoundingBox): string {
             if (isMouseInsideBox(mouseX, mouseY, redBoundingBox)) {
                 return "red";
             }
@@ -127,7 +125,7 @@ onMounted(() => {
             }
         }
 
-        function isMouseInsideBox(mouseX: number, mouseY: number, boundingBox: BoundingBox): boolean {
+        function isMouseInsideBox(mouseX: number, mouseY: number, boundingBox: P5BoundingBox): boolean {
             return boundingBox &&
                 mouseX > boundingBox.rect[0] &&
                 mouseX < boundingBox.rect[2] &&
@@ -135,7 +133,7 @@ onMounted(() => {
                 mouseY < boundingBox.rect[3];
         }
 
-        function drawBoundingBox(box: BoundingBox, color: p5.Color) {
+        function drawBoundingBox(box: P5BoundingBox, color: p5.Color) {
             p.noFill();
             p.stroke(color);
             p.strokeWeight(2);
@@ -146,7 +144,7 @@ onMounted(() => {
             p.ellipse(box.center.x, box.center.y, 6, 6);
         }
 
-        function getBoundingBox(cluster): BoundingBox {
+        function getBoundingBox(cluster): P5BoundingBox {
             let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
             for (let [x, y] of cluster) {
                 if (x < minX) minX = x;

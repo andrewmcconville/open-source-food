@@ -1,4 +1,4 @@
-export interface Color {
+export interface Ingredient {
   name: string;
   origin: string;
 }

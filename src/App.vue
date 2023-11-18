@@ -15,17 +15,17 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 import { useRoute, RouterLink, RouterView } from 'vue-router'
-import { useMegaStore } from './stores/megaStore';
+import { useAppStore } from './stores/AppStore';
 
 const route = useRoute();
-const store = useMegaStore();
+const store = useAppStore();
 
 watch(() => route.params.id, (paramValue: string | Array<string>) => {
   if (Array.isArray(paramValue)) {
     paramValue = paramValue[0];
   }
-  
-  store.setActiveColor(paramValue);
+
+  store.setActiveIngredient(paramValue);
 });
 </script>
 
