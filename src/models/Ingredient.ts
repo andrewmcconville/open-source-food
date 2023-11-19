@@ -1,8 +1,17 @@
 export interface Ingredient {
   name: string;
   events: Array<{
-    name: string;
+    CTE: string;
+    organization: string;
     date: string;
-    location: string;
+    location: {
+      city: string;
+      state: string;
+      field?: string;
+      building?: string;
+    };
+    quantity: number;
+    UOM: string;
+    TLC?: string;
   }>;
 }

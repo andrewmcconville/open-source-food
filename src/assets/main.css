@@ -2,6 +2,15 @@
   box-sizing: border-box;
 }
 
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 html, body, #app, main {
   display: flex;
   align-items: center;
