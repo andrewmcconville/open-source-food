@@ -13,7 +13,6 @@ const router = createRouter({
       components: {
         main: HomeView
       },
-      props: true
     },
     {
       path: '/:id',
@@ -22,7 +21,6 @@ const router = createRouter({
         main: HomeView,
         details: IngredientDetails
       },
-      props: true
     },
     {
       path: '/about',
