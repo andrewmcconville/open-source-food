@@ -8,8 +8,17 @@ export const useAppStore = defineStore('AppStore', {
     Ingredients: IngredientJSON as Ingredient[],
   }),
   getters: {
-    activeIngredient(): Ingredient | undefined {
-      return this.Ingredients.find(ingredient => ingredient.name === this.activeIngredientId);
+    activeIngredient(): Ingredient {
+      const indredient: Ingredient | undefined = this.Ingredients.find(ingredient => ingredient.name === this.activeIngredientId);
+      
+      if (indredient) {
+        return indredient;
+      } else {
+        return {
+          name: 'none',
+          events: [],
+        };
+      }
     },
   },
   actions: {

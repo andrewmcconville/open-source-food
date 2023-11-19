@@ -1,14 +1,70 @@
 [
   {
     "name": "none",
-    "origin": "none"
+    "events": []
   },
   {
-    "name": "red",
-    "origin": "Wisconsin"
+    "name": "tomato",
+    "events": [
+      {
+        "name": "plant",
+        "date": "2023-04-02T04:13:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "harvest",
+        "date": "2023-07-09T14:41:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "wash",
+        "date": "2023-07-09T15:41:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "store",
+        "date": "2023-07-09T17:26:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "ship",
+        "date": "2023-07-13T07:33:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "deliver",
+        "date": "2023-07-13T08:18:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "store",
+        "date": "2023-07-13T09:08:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "ship",
+        "date": "2023-07-19T08:46:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "deliver",
+        "date": "2023-07-19T10:31:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "store",
+        "date": "2023-07-19T11:21:00",
+        "location": "Waukesha"
+      },
+      {
+        "name": "sell",
+        "date": "2023-07-29T17:38:00",
+        "location": "Waukesha"
+      }
+    ]
   },
   {
-    "name": "green",
-    "origin": "Virginia"
+    "name": "lettuce",
+    "events": []
   }
 ]

@@ -115,10 +115,10 @@ onMounted(() => {
 
         function getClickedBox(mouseX: number, mouseY: number, redBoundingBox: P5BoundingBox, greenBoundingBox: P5BoundingBox): string {
             if (isMouseInsideBox(mouseX, mouseY, redBoundingBox)) {
-                return "red";
+                return "tomato";
             }
             else if (isMouseInsideBox(mouseX, mouseY, greenBoundingBox)) {
-                return "green";
+                return "lettuce";
             }
             else {
                 return '';

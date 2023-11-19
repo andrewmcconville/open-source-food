@@ -14,6 +14,11 @@ html, body, #app, main {
   min-width: 100%;
 }
 
+html {
+  color: #434958;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
 .header {
   background-color: aqua;
   display: flex;

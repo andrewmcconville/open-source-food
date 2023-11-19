@@ -1,4 +1,8 @@
 export interface Ingredient {
   name: string;
-  origin: string;
+  events: Array<{
+    name: string;
+    date: string;
+    location: string;
+  }>;
 }
