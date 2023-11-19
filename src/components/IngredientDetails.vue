@@ -1,11 +1,13 @@
 <template>
     <aside class="ingredient-details">
+        <RouterLink to="/">Back</RouterLink>
         <h1>{{ store.activeIngredient?.name }}</h1>
         <p>{{ store.activeIngredient?.origin }}</p>
     </aside>
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import { useAppStore } from '../stores/AppStore';
 
 const store = useAppStore();
