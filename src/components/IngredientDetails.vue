@@ -17,9 +17,10 @@
                             <p class="ingredient-details__CTE">{{ event.CTE }}</p>
                             <p class="ingredient-details__quantity">
                                 <template v-if="event.quantityBefore">
-                                    {{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template>
+                                    <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
                                     <span class="ingredient-details__arrow">&#8594;</span>
-                                </template>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template>
+                                </template>
+                                <span>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></span>
                             </p>
                             <p class="ingredient-details__location">
                                 {{ event.location.city }},
