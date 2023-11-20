@@ -51,6 +51,8 @@
           "state": "WI",
           "building": "W754 S279"
         },
+        "quantityBefore": 10000,
+        "UOMBefore": "lb",
         "quantity": 100,
         "UOM": "bin",
         "TLC": "A8-876HB93D5"
@@ -90,6 +92,8 @@
           "state": "WI",
           "building": "11"
         },
+        "quantityBefore": 10,
+        "UOMBefore": "bin",
         "quantity": 200,
         "UOM": "box",
         "TLC": "S1-006JI83A0"
@@ -129,8 +133,10 @@
           "state": "WI",
           "building": "C1"
         },
+        "quantityBefore": 20,
+        "UOMBefore": "box",
         "quantity": 400,
-        "UOM": "bag",
+        "UOM": "carton",
         "TLC": "B8-117KP71F8"
       },
       {
@@ -143,7 +149,7 @@
           "building": "C1"
         },
         "quantity": 10,
-        "UOM": "bag",
+        "UOM": "carton",
         "TLC": "B8-117KP71F8"
       },
       {
@@ -156,7 +162,7 @@
           "building": "1"
         },
         "quantity": 10,
-        "UOM": "bag",
+        "UOM": "carton",
         "TLC": "B8-117KP71F8"
       },
       {
@@ -169,7 +175,7 @@
           "building": "1"
         },
         "quantity": 0.25,
-        "UOM": "each",
+        "UOM": "item",
         "TLC": "B8-117KP71F8"
       }
     ]

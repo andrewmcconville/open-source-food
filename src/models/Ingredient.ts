@@ -10,6 +10,8 @@ export interface Ingredient {
       field?: string;
       building?: string;
     };
+    quantityBefore?: number;
+    UOMBefore?: string;
     quantity: number;
     UOM: string;
     TLC?: string;
