@@ -18,7 +18,7 @@
                             <p class="ingredient-details__quantity">
                                 <template v-if="event.quantityBefore">
                                     <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
-                                    <span class="ingredient-details__arrow">&#8594;</span>
+                                    <span class="ingredient-details__to">to</span>
                                 </template>
                                 <span>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></span>
                             </p>
@@ -171,10 +171,9 @@ const toggleViewMore = (index: number) => {
     justify-content: start;
 }
 
-.ingredient-details__arrow {
-    font-size: 14px;
+.ingredient-details__to {
     font-weight: 200;
-    margin: 0 4px;
+    margin: 0 6px;
 }
 
 .ingredient-details__view-more {
