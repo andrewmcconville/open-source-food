@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
+import GlossaryView from '../views/GlossaryView.vue'
 import IngredientDetails from '../components/IngredientDetails.vue'
 
 const router = createRouter({
@@ -28,7 +29,14 @@ const router = createRouter({
       components: {
         main: AboutView
       }
-    }
+    },
+    {
+      path: '/glossary',
+      name: 'Glossary',
+      components: {
+        main: GlossaryView
+      }
+    },
   ]
 })
 
