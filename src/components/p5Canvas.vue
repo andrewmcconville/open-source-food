@@ -1,7 +1,7 @@
 <template>
     <main class="p5-canvas">
         <div ref="sketchContainer"></div>
-        <button @click="toggleLoop">{{ isLooping ? 'Stop' : 'Start' }} Loop</button>
+        <button @click="toggleLoop">{{ p5CanvasStore.getIsLooping ? 'Stop' : 'Start' }} Loop</button>
     </main>
 </template>
   
@@ -11,9 +11,10 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import p5 from 'p5';
 import type { P5BoundingBox } from '../models/P5BoundingBox';
+import { useP5CanvasStore } from '../stores/P5CanvasStore';
 
 const router = useRouter();
-const isLooping = ref<boolean>(true);
+const p5CanvasStore = useP5CanvasStore();
 const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
 
@@ -24,7 +25,6 @@ onMounted(() => {
         let captureScale: number = 1;
         let capture: any;
         let captureConstraints;
-        const throttleClusterSearch: number = 4;
         const frameRateTarget: number = 60;
         let frameCount: number = 0;
         let redClusters = [];
@@ -64,7 +64,7 @@ onMounted(() => {
             capture.loadPixels();
 
             frameCount++;
-            if (frameCount % throttleClusterSearch === 0) {
+            if (frameCount % p5CanvasStore.getThrottleClusterSearch === 0) {
                 updateClusters();
                 frameCount = 0;
             }
@@ -273,12 +273,12 @@ onMounted(() => {
 });
 
 const toggleLoop = () => {
-    isLooping.value = !isLooping.value;
-
-    if (isLooping.value) {
+    if (p5CanvasStore.getIsLooping) {
         p5Canvas?.loop();
+        p5CanvasStore.setIsLooping(false);
     } else {
         p5Canvas?.noLoop();
+        p5CanvasStore.setIsLooping(true);
     }
 };
 </script>

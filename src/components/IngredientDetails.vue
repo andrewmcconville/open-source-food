@@ -93,7 +93,7 @@ const toggleViewMore = (index: number) => {
 
 .ingredient-details__scroller {
     flex-grow: 1;
-    overflow: scroll;
+    overflow-y: scroll;
     width: 100%;
     padding: 16px;
 }
