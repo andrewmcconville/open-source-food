@@ -12,6 +12,7 @@ export interface Ingredient {
     };
     quantityBefore?: number;
     UOMBefore?: string;
+    TLCBefore?: string;
     quantity: number;
     UOM: string;
     TLC?: string;

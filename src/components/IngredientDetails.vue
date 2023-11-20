@@ -15,7 +15,7 @@
                     <div class="ingredient-details__data">
                         <div class="ingredient-details__data-default" @click="toggleViewMore(index)">
                             <p class="ingredient-details__CTE">{{ event.CTE }}</p>
-                            <p>
+                            <p class="ingredient-details__quantity">
                                 <template v-if="event.quantityBefore">
                                     {{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template>
                                     <span class="ingredient-details__arrow">&#8594;</span>
@@ -30,7 +30,15 @@
                         </div>
                         <div class="ingredient-details__data-hidden">
                             <template v-if="viewMore[index]">
-                                <p v-if="event.TLC">From lot: {{ event.TLC }}</p>
+                                <template v-if="event.TLC">
+                                    <template v-if="event.TLCBefore">
+                                        <p>From lot: {{ event.TLCBefore }}</p>
+                                        <p>To lot: {{ event.TLC }}</p>
+                                    </template>
+                                    <template v-else>
+                                        <p>Lot: {{ event.TLC }}</p>
+                                    </template>
+                                </template>
                                 <p>About: {{ friendlyDate(event.date) }}</p>
                                 <p>On: {{ formattedDate(event.date) }}</p>
                                 <p>By: {{ event.organization }}</p>
@@ -126,6 +134,7 @@ const toggleViewMore = (index: number) => {
     text-align: center;
     margin-right: 12px;
     margin-top: 4px;
+    flex-shrink: 0;
 }
 
 .ingredient-details__day-count {
@@ -153,6 +162,12 @@ const toggleViewMore = (index: number) => {
     font-weight: 200;
     line-height: 1;
     margin-bottom: 8px;
+}
+
+.ingredient-details__quantity {
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 .ingredient-details__arrow {

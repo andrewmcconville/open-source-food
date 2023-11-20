@@ -94,6 +94,7 @@
         },
         "quantityBefore": 10,
         "UOMBefore": "bin",
+        "TLCBefore": "A8-876HB93D5",
         "quantity": 200,
         "UOM": "box",
         "TLC": "S1-006JI83A0"
@@ -135,6 +136,7 @@
         },
         "quantityBefore": 20,
         "UOMBefore": "box",
+        "TLCBefore": "S1-006JI83A0",
         "quantity": 400,
         "UOM": "carton",
         "TLC": "B8-117KP71F8"
@@ -166,7 +168,7 @@
         "TLC": "B8-117KP71F8"
       },
       {
-        "CTE": "sold",
+        "CTE": "sale",
         "organization": "Big Belly Burgers",
         "date": "2023-08-03T18:23:00",
         "location": {
