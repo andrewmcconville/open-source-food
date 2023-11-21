@@ -1,11 +1,16 @@
 <template>
-  <main class="home-view">
+  <aside class="home-view">
     <p5Canvas />
-  </main>
+  </aside>
 </template>
 
 <script setup lang="ts">
 import p5Canvas from '../components/p5Canvas.vue';
 </script>
 
-<style scoped></style>
+<style scoped>
+.home-view {
+  background-color: #fff;
+  width: 360px;
+}
+</style>

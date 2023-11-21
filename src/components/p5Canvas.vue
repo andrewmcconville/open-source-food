@@ -22,6 +22,7 @@ onMounted(() => {
     p5Canvas = new p5((p: p5) => {
         const cameraWidth: number = 720;
         const cameraHeight: number = 720;
+        const canvasWidth: number = 360;
         let captureScale: number = 1;
         let capture: any;
         let captureConstraints;
@@ -38,8 +39,8 @@ onMounted(() => {
         const lerpSpeed: number = 0.25;
 
         p.setup = () => {
-            captureScale = p.windowWidth / cameraWidth;
-            p.createCanvas(p.windowWidth, p.windowWidth);
+            captureScale = canvasWidth / cameraWidth;
+            p.createCanvas(canvasWidth, canvasWidth);
             p.frameRate(frameRateTarget);
 
             captureConstraints = {
@@ -59,7 +60,7 @@ onMounted(() => {
 
         p.draw = () => {
             p.background(255);
-            p.image(capture, 0, 0, p.windowWidth, p.windowWidth);
+            p.image(capture, 0, 0, canvasWidth, canvasWidth);
 
             capture.loadPixels();
 

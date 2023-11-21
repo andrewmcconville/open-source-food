@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import GlossaryView from '../views/GlossaryView.vue'
 import IngredientDetails from '../components/IngredientDetails.vue'
+import EventDetails from '../components/EventDetails.vue'
 
 const router = createRouter({
   //history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,7 +21,16 @@ const router = createRouter({
       name: 'IngredientDetails',
       components: {
         main: HomeView,
-        details: IngredientDetails
+        timeline: IngredientDetails
+      },
+    },
+    {
+      path: '/:id/:event',
+      name: 'EventDetails',
+      components: {
+        main: HomeView,
+        timeline: IngredientDetails,
+        details: EventDetails
       },
     },
     {

@@ -2,8 +2,11 @@
   <header class="header">
     Header
   </header>
-  <RouterView name="main"/>
-  <RouterView name="details"/>
+  <main class="main">
+    <RouterView name="main"/>
+    <RouterView name="timeline"/>
+    <RouterView name="details"/>
+  </main>
   <footer class="footer">
     <nav>
       <RouterLink to="/">Home</RouterLink>
@@ -31,4 +34,27 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.header {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+  flex-grow: 1;
+}
+
+.footer {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+}
+</style>

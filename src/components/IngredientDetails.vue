@@ -80,20 +80,18 @@ const toggleViewMore = (index: number) => {
 <style scoped>
 .ingredient-details {
     background: linear-gradient(145deg, #f0f0f0, #e8e8e8);
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    width: 320px;
+    width: 360px;
+    min-height: 0;
 }
 
 .ingredient-details__scroller {
     flex-grow: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     padding: 16px;
 }
