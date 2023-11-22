@@ -34,27 +34,4 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 });
 </script>
 
-<style scoped>
-.header {
-  background-color: aqua;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100%;
-}
-
-.main {
-  display: flex;
-  justify-content: center;
-  min-height: 0;
-  flex-grow: 1;
-}
-
-.footer {
-  background-color: aqua;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100%;
-}
-</style>
+<style scoped></style>

@@ -1,5 +1,5 @@
 <template>
-    <main class="glossary-view">
+    <article class="glossary-view">
         <h1>Glossary</h1>
         <dl>
             <dt>FTL: Food Traceability List</dt>
@@ -18,7 +18,7 @@
                 <p>https://www.youtube.com/watch?v=ZcSBvLQ6p6M&ab_channel=U.S.FoodandDrugAdministration</p>
             </dd>
         </dl>
-    </main>
+    </article>
 </template>
 
 <style scoped lang="scss">
