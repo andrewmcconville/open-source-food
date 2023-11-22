@@ -103,7 +103,7 @@ onMounted(() => {
             }
         }
 
-        p.mousePressed = (event) => {
+        p.mouseClicked = (event) => {
             if (event.target === p.canvas) {
                 let clickedBox: string | null = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
                 if (clickedBox) {
