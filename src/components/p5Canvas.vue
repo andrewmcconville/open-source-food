@@ -275,10 +275,10 @@ onMounted(() => {
 
 const toggleLoop = () => {
     if (p5CanvasStore.getIsLooping) {
-        p5Canvas?.loop();
+        p5Canvas?.noLoop();
         p5CanvasStore.setIsLooping(false);
     } else {
-        p5Canvas?.noLoop();
+        p5Canvas?.loop();
         p5CanvasStore.setIsLooping(true);
     }
 };
