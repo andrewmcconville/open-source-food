@@ -80,13 +80,28 @@ const toggleViewMore = (index: number) => {
 <style scoped>
 .ingredient-details {
     background: linear-gradient(145deg, #f0f0f0, #e8e8e8);
-
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    width: 360px;
+    flex: 1;
     min-height: 0;
+    
+    @media(max-width: 640px) {
+        display: none;
+    }
+}
+
+.ingredient-details--active {
+    @media(max-width: 640px) {
+        display: flex;
+        position: absolute;
+        width: 360px;
+        max-width: 100%;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
 }
 
 .ingredient-details__scroller {

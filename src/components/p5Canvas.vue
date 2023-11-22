@@ -284,9 +284,18 @@ const toggleLoop = () => {
 };
 </script>
 
-<style scoped>
+<style>
 .p5-canvas {
-  background-color: #fff;
-  width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    flex: 1;
+    min-height: 0;
+}
+
+#defaultCanvas0 {
+    width: 100% !important;
+    height: auto !important;
 }
 </style>
