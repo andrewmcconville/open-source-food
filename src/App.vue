@@ -3,9 +3,7 @@
     Header
   </header>
   <main class="main">
-    <RouterView name="main"/>
-    <RouterView name="timeline"/>
-    <RouterView name="details"/>
+    <RouterView name="default"/>
   </main>
   <footer class="footer">
     <nav>

@@ -13,38 +13,38 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       components: {
-        main: HomeView
+        default: HomeView
       },
-    },
-    {
-      path: '/:id',
-      name: 'IngredientDetails',
-      components: {
-        main: HomeView,
-        timeline: IngredientDetails
-      },
-    },
-    {
-      path: '/:id/:event',
-      name: 'EventDetails',
-      components: {
-        main: HomeView,
-        timeline: IngredientDetails,
-        details: EventDetails
-      },
+      children: [
+        {
+          path: ':id',
+          name: 'IngredientDetails',
+          components: {
+            timeline: IngredientDetails
+          },
+        },
+        {
+          path: ':id/:event',
+          name: 'EventDetails',
+          components: {
+            timeline: IngredientDetails,
+            details: EventDetails
+          },
+        }
+      ]
     },
     {
       path: '/about',
       name: 'About',
       components: {
-        main: AboutView
+        default: AboutView
       }
     },
     {
       path: '/glossary',
       name: 'Glossary',
       components: {
-        main: GlossaryView
+        default: GlossaryView
       }
     },
   ]
