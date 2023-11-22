@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
     isLooping: true as boolean,
-    throttleClusterSearch: 4 as number,
+    throttleClusterSearch: 6 as number,
   }),
   getters: {
     getIsLooping(): boolean {
