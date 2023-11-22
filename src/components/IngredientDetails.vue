@@ -8,7 +8,8 @@
                 <p class="ingredient-details__event-label">Event</p>
             </div>
             <ul class="ingredient-details__list">
-                <li class="ingredient-details__event" v-for="(event, index) in store.activeIngredient.events" :key="index">
+                <li v-for="(event, index) in store.activeIngredient.events" :key="index">
+                    <RouterLink :to="{ name: 'EventDetails', params: { event: 'detail' }}" class="ingredient-details__event">
                     <div class="ingredient-details__day">
                         <p class="ingredient-details__day-count">{{ dayCount(store.activeIngredient.events[0].date, event.date) }}</p>
                     </div>
@@ -50,6 +51,7 @@
                             </template>
                         </div>
                     </div>
+                    </RouterLink>
                 </li>
             </ul>
         </div>
@@ -122,6 +124,8 @@ const toggleViewMore = (index: number) => {
     justify-content: start;
     width: 100%;
     margin-bottom: 24px;
+    text-decoration: none;
+    color: #666;
 }
 
 .ingredient-details__labels {
