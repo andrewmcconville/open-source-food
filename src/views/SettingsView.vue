@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useP5CanvasStore } from '@/stores/P5CanvasStore';
 import { useFormattedNumber, useOrdinalNumber } from '../utilities/NumberFormats'
 
