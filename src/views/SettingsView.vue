@@ -2,7 +2,7 @@
     <article class="settings-view">
         <h1>Settings</h1>
         <div class="settings-view__group">
-          <p class="settings-view__title">Camera size</p>
+          <p class="settings-view__title">Camera resolution</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.cameraSize }}px</span>
             <span v-once @click="p5CanvasStore.setCameraSize(p5CanvasStore.cameraSizeDefault)">Default: {{ p5CanvasStore.cameraSizeDefault }}</span>
@@ -16,7 +16,7 @@
         </div>
 
         <div class="settings-view__group">
-          <p class="settings-view__title">Scan size</p>
+          <p class="settings-view__title">Scan resolution</p>
           <p class="settings-view__help-text">
             <span>Every <template v-if="pixelScanRatio < 1">{{ pixelScanRatioDisplay }}</template> row and column</span>
             <span v-once @click="p5CanvasStore.setPixelScanRatio(p5CanvasStore.pixelScanRatioDefault)">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>

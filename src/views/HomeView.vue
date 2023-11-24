@@ -34,7 +34,7 @@
     min-height: 0;
     flex-grow: 1;
     max-width: 1080px;
-    height: calc(100vh - (var(--header-height) + var(--footer-height)));
+    height: calc(100dvh - (var(--header-height) + var(--footer-height)));
     overflow: hidden;
 }
 
