@@ -36,9 +36,9 @@ onMounted(() => {
         let oldRedBoundingBox: P5BoundingBox;
         let greenBoundingBox: P5BoundingBox;
         let oldGreenBoundingBox: P5BoundingBox;
-        const lerpSpeed: number = 0.25;
 
         p.setup = () => {
+            p.pixelDensity(1);
             captureScale = canvasWidth / cameraWidth;
             p.createCanvas(canvasWidth, canvasWidth);
             p.frameRate(frameRateTarget);
@@ -62,44 +62,46 @@ onMounted(() => {
             p.background(255);
             p.image(capture, 0, 0, canvasWidth, canvasWidth);
 
-            capture.loadPixels();
 
-            frameCount++;
             if (frameCount % p5CanvasStore.getThrottleClusterSearch === 0) {
+                capture.loadPixels();
                 updateClusters();
+                if (largestRedCluster) {
+                    oldRedBoundingBox = redBoundingBox;
+                    redBoundingBox = getBoundingBox(largestRedCluster);
+                }
+                if (largestGreenCluster) {
+                    oldGreenBoundingBox = greenBoundingBox;
+                    greenBoundingBox = getBoundingBox(largestGreenCluster);
+                }
                 frameCount = 0;
             }
+            frameCount++;
 
-            if (largestRedCluster) {
-                oldRedBoundingBox = redBoundingBox;
-                redBoundingBox = getBoundingBox(largestRedCluster);
+            if (largestRedCluster && oldRedBoundingBox) {
+                let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
-                if (oldRedBoundingBox) {
-                    redBoundingBox.rect[0] = p.lerp(oldRedBoundingBox.rect[0], redBoundingBox.rect[0], lerpSpeed);
-                    redBoundingBox.rect[1] = p.lerp(oldRedBoundingBox.rect[1], redBoundingBox.rect[1], lerpSpeed);
-                    redBoundingBox.rect[2] = p.lerp(oldRedBoundingBox.rect[2], redBoundingBox.rect[2], lerpSpeed);
-                    redBoundingBox.rect[3] = p.lerp(oldRedBoundingBox.rect[3], redBoundingBox.rect[3], lerpSpeed);
-                    redBoundingBox.center.x = p.lerp(oldRedBoundingBox.center.x, redBoundingBox.center.x, lerpSpeed);
-                    redBoundingBox.center.y = p.lerp(oldRedBoundingBox.center.y, redBoundingBox.center.y, lerpSpeed);
-                }
+                lerpBox.rect[0] = p.lerp(oldRedBoundingBox.rect[0], redBoundingBox.rect[0], frameCount / p5CanvasStore.getThrottleClusterSearch);
+                lerpBox.rect[1] = p.lerp(oldRedBoundingBox.rect[1], redBoundingBox.rect[1], frameCount / p5CanvasStore.getThrottleClusterSearch);
+                lerpBox.rect[2] = p.lerp(oldRedBoundingBox.rect[2], redBoundingBox.rect[2], frameCount / p5CanvasStore.getThrottleClusterSearch);
+                lerpBox.rect[3] = p.lerp(oldRedBoundingBox.rect[3], redBoundingBox.rect[3], frameCount / p5CanvasStore.getThrottleClusterSearch);
+                lerpBox.center.x = p.lerp(oldRedBoundingBox.center.x, redBoundingBox.center.x, frameCount / p5CanvasStore.getThrottleClusterSearch);
+                lerpBox.center.y = p.lerp(oldRedBoundingBox.center.y, redBoundingBox.center.y, frameCount / p5CanvasStore.getThrottleClusterSearch);
 
-                drawBoundingBox(redBoundingBox, p.color(0, 255, 0));
+                drawBoundingBox(lerpBox, p.color(0, 255, 0));
             };
 
-            if (largestGreenCluster) {
-                oldGreenBoundingBox = greenBoundingBox;
-                greenBoundingBox = getBoundingBox(largestGreenCluster);
+            if (largestGreenCluster && oldGreenBoundingBox) {
+                let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
-                if (oldGreenBoundingBox) {
-                    greenBoundingBox.rect[0] = p.lerp(oldGreenBoundingBox.rect[0], greenBoundingBox.rect[0], lerpSpeed);
-                    greenBoundingBox.rect[1] = p.lerp(oldGreenBoundingBox.rect[1], greenBoundingBox.rect[1], lerpSpeed);
-                    greenBoundingBox.rect[2] = p.lerp(oldGreenBoundingBox.rect[2], greenBoundingBox.rect[2], lerpSpeed);
-                    greenBoundingBox.rect[3] = p.lerp(oldGreenBoundingBox.rect[3], greenBoundingBox.rect[3], lerpSpeed);
-                    greenBoundingBox.center.x = p.lerp(oldGreenBoundingBox.center.x, greenBoundingBox.center.x, lerpSpeed);
-                    greenBoundingBox.center.y = p.lerp(oldGreenBoundingBox.center.y, greenBoundingBox.center.y, lerpSpeed);
-                }
+                greenBoundingBox.rect[0] = p.lerp(oldGreenBoundingBox.rect[0], greenBoundingBox.rect[0], p5CanvasStore.lerpSpeed);
+                greenBoundingBox.rect[1] = p.lerp(oldGreenBoundingBox.rect[1], greenBoundingBox.rect[1], p5CanvasStore.lerpSpeed);
+                greenBoundingBox.rect[2] = p.lerp(oldGreenBoundingBox.rect[2], greenBoundingBox.rect[2], p5CanvasStore.lerpSpeed);
+                greenBoundingBox.rect[3] = p.lerp(oldGreenBoundingBox.rect[3], greenBoundingBox.rect[3], p5CanvasStore.lerpSpeed);
+                greenBoundingBox.center.x = p.lerp(oldGreenBoundingBox.center.x, greenBoundingBox.center.x, p5CanvasStore.lerpSpeed);
+                greenBoundingBox.center.y = p.lerp(oldGreenBoundingBox.center.y, greenBoundingBox.center.y, p5CanvasStore.lerpSpeed);
 
-                drawBoundingBox(greenBoundingBox, p.color(255, 0, 0));
+                drawBoundingBox(lerpBox, p.color(255, 0, 0));
             }
         }
 

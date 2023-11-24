@@ -10,7 +10,7 @@
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/glossary">Glossary</RouterLink>
-      Settings
+      <RouterLink to="/settings">Settings</RouterLink>      
     </nav>
   </footer>
 </template>
