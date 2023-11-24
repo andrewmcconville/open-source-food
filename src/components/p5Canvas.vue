@@ -304,10 +304,11 @@ const toggleLoop = () => {
 .p5-canvas {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
+    align-items: center;
+    justify-content: center;
     flex: 1;
     min-height: 0;
+    background-color: #444;
 }
 
 #defaultCanvas0 {

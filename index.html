@@ -5,7 +5,16 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Source Food</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --font-color: #444;
+        --header-height: 48px;
+        --footer-height: 60px;
+      }
+
       * {
         box-sizing: border-box;
         word-break: break-word;
@@ -45,10 +54,9 @@
 
       .header, .footer {
         display: flex;
-        align-items: center;
+        align-items: stretch;
         justify-content: center;
-        background-color: aqua;
-        padding: 12px;
+        background-color: #f8f8f8;
         position: fixed;
         right: 0;
         left: 0;
@@ -56,11 +64,16 @@
       }
 
       .header {
+        font-family: 'Sansita Swashed';
         top: 0;
+        border-bottom: 1px solid #d0d0d0;
+        height: var(--header-height);
       }
 
       .footer {
         bottom: 0;
+        border-top: 1px solid #d0d0d0;
+        height: var(--footer-height);
       }
 
       .main {
@@ -68,7 +81,7 @@
         justify-content: center;
         min-height: 0;
         flex-grow: 1;
-        padding: 48px 0;
+        padding: var(--header-height) 0 var(--footer-height) 0;
       }
 
       .loading {

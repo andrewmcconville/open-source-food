@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    Header
+    <h1 class="header__app-name">Open Source Food</h1>
   </header>
   <main class="main">
     <RouterView name="default" v-slot="{ Component }">
@@ -10,11 +10,23 @@
     </RouterView>
   </main>
   <footer class="footer">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-      <RouterLink to="/glossary">Glossary</RouterLink>
-      <RouterLink to="/settings">Settings</RouterLink>      
+    <nav class="nav">
+      <RouterLink class="nav__anchor" to="/">
+        <span class="nav__typcn typcn typcn-home-outline"></span>
+        Home
+      </RouterLink>
+      <RouterLink class="nav__anchor" to="/glossary">
+        <span class="nav__typcn typcn typcn-book"></span>
+        Glossary
+      </RouterLink>
+      <RouterLink class="nav__anchor" to="/about">
+        <span class="nav__typcn typcn typcn-info-large-outline"></span>
+        About
+      </RouterLink>
+      <RouterLink class="nav__anchor" to="/settings">
+        <span class="nav__typcn typcn typcn-spanner-outline"></span>
+        Settings
+      </RouterLink>      
     </nav>
   </footer>
 </template>
@@ -23,6 +35,7 @@
 import { watch } from 'vue';
 import { useRoute, RouterLink, RouterView } from 'vue-router'
 import { useAppStore } from './stores/AppStore';
+import 'typicons.font/src/font/typicons.css'
 
 const route = useRoute();
 const store = useAppStore();
@@ -36,4 +49,40 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.header__app-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--font-color);
+  line-height: 1;
+  margin: -6px 0 0 0;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.nav__anchor {
+  text-decoration: none;
+  width: 60px;
+  margin: 0 4px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--font-color);
+
+  &:hover {
+    background-color: #fff;
+  }
+}
+
+.nav__typcn {
+  font-size: 24px;
+}
+</style>
