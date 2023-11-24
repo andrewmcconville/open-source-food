@@ -68,7 +68,7 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 
 .nav__anchor {
   text-decoration: none;
-  width: 60px;
+  width: 72px;
   margin: 0 4px;
   font-size: 12px;
   display: flex;
@@ -83,6 +83,7 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 }
 
 .nav__typcn {
-  font-size: 24px;
+  font-size: 28px;
+  margin-top: -4px;
 }
 </style>
