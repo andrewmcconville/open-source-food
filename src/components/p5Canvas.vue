@@ -101,7 +101,7 @@ onMounted(() => {
             }
         }
 
-        p.mouseClicked = (event) => {
+        p.mousePressed = (event) => {
             alert('clicked');
             if (event.target === p.canvas) {
                 alert('canvas clicked');
