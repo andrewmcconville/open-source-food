@@ -1,8 +1,6 @@
 <template>
-    <aside class="event-details">
-        <RouterLink to=".">Back</RouterLink>
-        Details
-    </aside>
+    <RouterLink to=".">Back</RouterLink>
+    Details
 </template>
 
 <script setup lang="ts">

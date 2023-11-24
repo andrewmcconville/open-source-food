@@ -1,5 +1,6 @@
 <template>
-    <article class="settings-view">
+    <article class="settings-view article">
+      <div class="article__inner">
         <h1>Settings</h1>
         <div class="settings-view__group">
           <p class="settings-view__title">Camera resolution</p>
@@ -59,6 +60,7 @@
         <div class="settings-view__group">
           <button @click="p5CanvasStore.setrestoreDefaults">Restore defaults</button>
         </div>
+      </div>
     </article>
 </template>
 
@@ -87,8 +89,7 @@ const throttleClusterSearchDisplay = computed(() => ordinalNumber(10 - Math.roun
 
 <style scoped lang="scss">
 .settings-view {
-    flex: 1;
-    max-width: 360px;
+
 }
 .settings-view__group {
     margin-bottom: 64px;

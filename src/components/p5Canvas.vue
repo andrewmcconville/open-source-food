@@ -1,8 +1,6 @@
 <template>
-    <aside class="p5-canvas">
-        <div ref="sketchContainer"></div>
-        <button @click="toggleLoop">{{ p5CanvasStore.getIsLooping ? 'Stop' : 'Start' }} Loop</button>
-    </aside>
+    <div ref="sketchContainer"></div>
+    <button @click="toggleLoop">{{ p5CanvasStore.getIsLooping ? 'Stop' : 'Start' }} Loop</button>
 </template>
   
 <script setup lang="ts">
@@ -308,7 +306,6 @@ const toggleLoop = () => {
     justify-content: center;
     flex: 1;
     min-height: 0;
-    background-color: #444;
 }
 
 #defaultCanvas0 {

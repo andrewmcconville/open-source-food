@@ -13,11 +13,18 @@
         --font-color: #444;
         --header-height: 48px;
         --footer-height: 60px;
+        --app-max-width-large: 1080px;
+        --app-max-width-small: 720px;
       }
 
       * {
         box-sizing: border-box;
         word-break: break-word;
+      }
+
+      a {
+        color: var(--font-color);
+        text-decoration: none;
       }
 
       p {
@@ -38,6 +45,7 @@
       }
 
       html, body {
+        background-color: #444;
         margin: 0;
       }
       
@@ -56,23 +64,37 @@
         display: flex;
         align-items: stretch;
         justify-content: center;
-        background-color: #f8f8f8;
         position: fixed;
         right: 0;
         left: 0;
         z-index: 1;
       }
 
+      .header__inner, .footer__inner {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: var(--app-max-width-large);
+        background-color: #f8f8f8;
+        padding: 0 24px;
+      }
+
+      .header__inner {
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      .footer__inner {
+        border-top: 1px solid #d0d0d0;
+      }
+
       .header {
         font-family: 'Sansita Swashed';
         top: 0;
-        border-bottom: 1px solid #d0d0d0;
         height: var(--header-height);
       }
 
       .footer {
         bottom: 0;
-        border-top: 1px solid #d0d0d0;
         height: var(--footer-height);
       }
 
@@ -84,6 +106,19 @@
         padding: var(--header-height) 0 var(--footer-height) 0;
       }
 
+      .article {
+        background-color: #f0f0f0;
+        min-height: calc(100dvh - (var(--header-height) + var(--footer-height)));
+        max-width: var(--app-max-width-large);
+        width: 100%;
+        padding: 24px;
+      }
+
+      .article__inner {
+        max-width: var(--app-max-width-small);
+        margin: auto;
+      }
+
       .loading {
         margin: auto;
       }
@@ -91,11 +126,17 @@
   </head>
   <body>
     <div id="app">
-      <header class="header"></header>
+      <header class="header">
+        <div class="header__inner"></div>
+      </header>
       <main class="main">
-        <span class="loading">Loading...</span>
+        <div class="article">
+          <span class="loading">Loading...</span>
+        </div>
       </main>
-      <footer class="footer"></footer>
+      <footer class="footer">
+        <nav class="footer__inner"></nav>
+      </footer>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
