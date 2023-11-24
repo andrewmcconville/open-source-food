@@ -1,6 +1,11 @@
 <template>
     <aside class="event-details">
-        <RouterLink to=".">Back</RouterLink>
+        <header class="view-header__header">
+            <RouterLink to="." class="view-header__back-anchor">
+                <span class="view-header__back-typcn typcn typcn-arrow-left"></span>
+            </RouterLink>
+            <h1 class="view-header__heading">Details</h1>
+        </header>
         Details
     </aside>
 </template>

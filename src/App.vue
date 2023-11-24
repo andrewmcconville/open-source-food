@@ -94,20 +94,37 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 </style>
 
 <style lang="scss">
-.back__anchor {
+.view-header__header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.view-header__heading {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    flex-grow: 1;
+    text-transform: capitalize;
+    margin: 6px 0px 8px 0;
+}
+
+.view-header__back-anchor {
   font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 8px;
+  padding: 8px;
 
   &:hover {
     background-color: #fff;
   }
 }
 
-.back__typcn {
+.view-header__back-typcn {
   font-size: 32px;
-  margin-top: -6px;
+  margin-top: -4px;
 }
 </style>

@@ -18,19 +18,19 @@
                 <li>
                     <p>Vue</p>
                     <p>
-                        <a href="https://v3.vuejs.org/" target="_blank">https://v3.vuejs.org/</a>
+                        <a href="https://v3.vuejs.org" target="_blank">https://v3.vuejs.org</a>
                     </p>
                 </li>
                 <li>
                     <p>p5</p>
                     <p>
-                        <a href="https://p5js.org/" target="_blank">https://p5js.org/</a>
+                        <a href="https://p5js.org" target="_blank">https://p5js.org</a>
                     </p>
                 </li>
                 <li>
                     <p>Typicons</p>
                     <p>
-                        <a href="https://www.s-ings.com/typicons/" target="_blank">https://www.s-ings.com/typicons/</a>
+                        <a href="https://www.s-ings.com/typicons" target="_blank">https://www.s-ings.com/typicons</a>
                     </p>
                 </li>
             </ul>

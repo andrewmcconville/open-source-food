@@ -1,10 +1,10 @@
 <template>
     <aside class="ingredient-details">
-        <header class="ingredient-details__header">
-            <RouterLink to="/" class="back__anchor">
-                <span class="back__typcn typcn typcn-arrow-left"></span>
+        <header class="view-header__header">
+            <RouterLink to="/" class="view-header__back-anchor">
+                <span class="view-header__back-typcn typcn typcn-arrow-left"></span>
             </RouterLink>
-            <h1 class="ingredient-details__heading">Timeline</h1>
+            <h1 class="view-header__heading">Timeline</h1>
         </header>
         <div class="ingredient-details__scroller">
             <h1 class="ingredient-details__heading">{{ store.activeIngredient.name }}</h1>
@@ -109,23 +109,6 @@ const toggleViewMore = (index: number) => {
         left: 0;
         z-index: 2;
     }
-}
-
-.ingredient-details__header {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
-}
-
-.ingredient-details__heading {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1;
-    flex-grow: 1;
-    text-transform: capitalize;
-    margin: 6px 0px 8px 0;
 }
 
 .ingredient-details__scroller {
