@@ -36,6 +36,7 @@ onMounted(() => {
         let oldRedBoundingBox: P5BoundingBox;
         let greenBoundingBox: P5BoundingBox;
         let oldGreenBoundingBox: P5BoundingBox;
+        let lerpAmount: number = 1;
 
         p.setup = () => {
             p.pixelDensity(1);
@@ -62,7 +63,6 @@ onMounted(() => {
             p.background(255);
             p.image(capture, 0, 0, canvasWidth, canvasWidth);
 
-
             if (frameCount % p5CanvasStore.getThrottleClusterSearch === 0) {
                 capture.loadPixels();
                 updateClusters();
@@ -76,17 +76,18 @@ onMounted(() => {
                 }
                 frameCount = 0;
             }
-            frameCount++;
+            frameCount++;            
+            lerpAmount = frameCount / p5CanvasStore.getThrottleClusterSearch;
 
             if (largestRedCluster && oldRedBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
-                lerpBox.rect[0] = p.lerp(oldRedBoundingBox.rect[0], redBoundingBox.rect[0], frameCount / p5CanvasStore.getThrottleClusterSearch);
-                lerpBox.rect[1] = p.lerp(oldRedBoundingBox.rect[1], redBoundingBox.rect[1], frameCount / p5CanvasStore.getThrottleClusterSearch);
-                lerpBox.rect[2] = p.lerp(oldRedBoundingBox.rect[2], redBoundingBox.rect[2], frameCount / p5CanvasStore.getThrottleClusterSearch);
-                lerpBox.rect[3] = p.lerp(oldRedBoundingBox.rect[3], redBoundingBox.rect[3], frameCount / p5CanvasStore.getThrottleClusterSearch);
-                lerpBox.center.x = p.lerp(oldRedBoundingBox.center.x, redBoundingBox.center.x, frameCount / p5CanvasStore.getThrottleClusterSearch);
-                lerpBox.center.y = p.lerp(oldRedBoundingBox.center.y, redBoundingBox.center.y, frameCount / p5CanvasStore.getThrottleClusterSearch);
+                lerpBox.rect[0] = p.lerp(oldRedBoundingBox.rect[0], redBoundingBox.rect[0], lerpAmount);
+                lerpBox.rect[1] = p.lerp(oldRedBoundingBox.rect[1], redBoundingBox.rect[1], lerpAmount);
+                lerpBox.rect[2] = p.lerp(oldRedBoundingBox.rect[2], redBoundingBox.rect[2], lerpAmount);
+                lerpBox.rect[3] = p.lerp(oldRedBoundingBox.rect[3], redBoundingBox.rect[3], lerpAmount);
+                lerpBox.center.x = p.lerp(oldRedBoundingBox.center.x, redBoundingBox.center.x, lerpAmount);
+                lerpBox.center.y = p.lerp(oldRedBoundingBox.center.y, redBoundingBox.center.y, lerpAmount);
 
                 drawBoundingBox(lerpBox, p.color(0, 255, 0));
             };
@@ -94,12 +95,12 @@ onMounted(() => {
             if (largestGreenCluster && oldGreenBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
-                greenBoundingBox.rect[0] = p.lerp(oldGreenBoundingBox.rect[0], greenBoundingBox.rect[0], p5CanvasStore.lerpSpeed);
-                greenBoundingBox.rect[1] = p.lerp(oldGreenBoundingBox.rect[1], greenBoundingBox.rect[1], p5CanvasStore.lerpSpeed);
-                greenBoundingBox.rect[2] = p.lerp(oldGreenBoundingBox.rect[2], greenBoundingBox.rect[2], p5CanvasStore.lerpSpeed);
-                greenBoundingBox.rect[3] = p.lerp(oldGreenBoundingBox.rect[3], greenBoundingBox.rect[3], p5CanvasStore.lerpSpeed);
-                greenBoundingBox.center.x = p.lerp(oldGreenBoundingBox.center.x, greenBoundingBox.center.x, p5CanvasStore.lerpSpeed);
-                greenBoundingBox.center.y = p.lerp(oldGreenBoundingBox.center.y, greenBoundingBox.center.y, p5CanvasStore.lerpSpeed);
+                lerpBox.rect[0] = p.lerp(oldGreenBoundingBox.rect[0], greenBoundingBox.rect[0], lerpAmount);
+                lerpBox.rect[1] = p.lerp(oldGreenBoundingBox.rect[1], greenBoundingBox.rect[1], lerpAmount);
+                lerpBox.rect[2] = p.lerp(oldGreenBoundingBox.rect[2], greenBoundingBox.rect[2], lerpAmount);
+                lerpBox.rect[3] = p.lerp(oldGreenBoundingBox.rect[3], greenBoundingBox.rect[3], lerpAmount);
+                lerpBox.center.x = p.lerp(oldGreenBoundingBox.center.x, greenBoundingBox.center.x, lerpAmount);
+                lerpBox.center.y = p.lerp(oldGreenBoundingBox.center.y, greenBoundingBox.center.y, lerpAmount);
 
                 drawBoundingBox(lerpBox, p.color(255, 0, 0));
             }
