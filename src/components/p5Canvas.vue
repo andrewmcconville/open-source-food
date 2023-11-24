@@ -20,7 +20,7 @@ let p5Canvas: p5 | null = null;
 
 onMounted(() => {
     p5Canvas = new p5((p: p5) => {
-        const canvasSize: number = 360;
+        const canvasSize: number = 720;
         let cameraCanvasRatio: number = 1;
         let capture: any;
         let captureConstraints;

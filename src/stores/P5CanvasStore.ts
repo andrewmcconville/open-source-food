@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 
 const throttleClusterSearchDefault: number = 6;
 const frameRateTargetDefault: number = 60;
-const pixelScanRatioDefault: number = 2;
-const cameraSizeDefault: number = 360;
+const pixelScanRatioDefault: number = 3;
+const cameraSizeDefault: number = 720;
 
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
