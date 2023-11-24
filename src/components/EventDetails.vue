@@ -17,7 +17,12 @@
 <style scoped lang="scss">
 .event-details {
     background: var(--view-background);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
     flex: 1;
+    min-height: 0;
 }
 
 .event-details--active {
