@@ -20,13 +20,10 @@ let p5Canvas: p5 | null = null;
 
 onMounted(() => {
     p5Canvas = new p5((p: p5) => {
-        const cameraWidth: number = 360;
-        const cameraHeight: number = 360;
-        const canvasWidth: number = 360;
-        let captureScale: number = 1;
+        const canvasSize: number = 360;
+        let cameraCanvasRatio: number = 1;
         let capture: any;
         let captureConstraints;
-        const frameRateTarget: number = 60;
         let frameCount: number = 0;
         let redClusters = [];
         let greenClusters = [];
@@ -39,29 +36,29 @@ onMounted(() => {
         let lerpAmount: number = 1;
 
         p.setup = () => {
+            cameraCanvasRatio = canvasSize / p5CanvasStore.cameraSize;
             p.pixelDensity(1);
-            captureScale = canvasWidth / cameraWidth;
-            p.createCanvas(canvasWidth, canvasWidth);
-            p.frameRate(frameRateTarget);
+            p.createCanvas(canvasSize, canvasSize);
+            p.frameRate(p5CanvasStore.getFrameRateTarget);
 
             captureConstraints = {
                 video: {
                     facingMode: "environment",
-                    frameRate: { ideal: frameRateTarget },
+                    frameRate: { ideal: p5CanvasStore.getFrameRateTarget },
                     aspectRatio: { ideal: 1 },
-                    width: { ideal: cameraWidth },
-                    height: { ideal: cameraHeight }
+                    Size: { ideal: p5CanvasStore.cameraSize },
+                    height: { ideal: p5CanvasStore.cameraSize }
                 },
                 audio: false
             };
             capture = p.createCapture(captureConstraints, function () { });
-            capture.size(cameraWidth, cameraHeight);
+            capture.size(p5CanvasStore.cameraSize, p5CanvasStore.cameraSize);
             capture.hide();
         };
 
         p.draw = () => {
             p.background(0);
-            p.image(capture, 0, 0, canvasWidth, canvasWidth);
+            p.image(capture, 0, 0, canvasSize, canvasSize);
 
             if (frameCount % p5CanvasStore.getThrottleClusterSearch === 0) {
                 capture.loadPixels();
@@ -158,8 +155,8 @@ onMounted(() => {
             let centerY = minY + (maxY - minY) / 2;
 
             return {
-                rect: [minX * captureScale, minY * captureScale, maxX * captureScale, maxY * captureScale],
-                center: p.createVector(centerX * captureScale, centerY * captureScale)
+                rect: [minX * cameraCanvasRatio, minY * cameraCanvasRatio, maxX * cameraCanvasRatio, maxY * cameraCanvasRatio],
+                center: p.createVector(centerX * cameraCanvasRatio, centerY * cameraCanvasRatio)
             };
         }
 
@@ -203,8 +200,8 @@ onMounted(() => {
             let clusters = [];
             let visited = new Set();
 
-            for (let y = 0; y < height; y += 2) {
-                for (let x = 0; x < width; x += 2) {
+            for (let y = 0; y < height; y += p5CanvasStore.getPixelScanRatio) {
+                for (let x = 0; x < width; x += p5CanvasStore.getPixelScanRatio) {
                     let index = (x + y * width) * 4;
                     if (isColor(pixels, index) && !visited.has(index)) {
                         let cluster = getCluster(pixels, x, y, width, visited, isColor);
