@@ -1,15 +1,17 @@
 <template>
-    <RouterLink to=".">Back</RouterLink>
-    Details
+    <aside class="event-details">
+        <RouterLink to=".">Back</RouterLink>
+        Details
+    </aside>
 </template>
 
 <script setup lang="ts">
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .event-details {
-    background-color: bisque;
+    background: var(--view-background);
     flex: 1;
 }
 

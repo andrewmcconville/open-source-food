@@ -1,27 +1,21 @@
 <template>
   <article class="home-view">
     <RouterView name="camera" v-slot="{ Component }">
-      <aside class="home-view__column">
         <Component :is="Component" v-if="Component" />
-        <span v-else>p5 canvas</span>
-      </aside>
+        <aside v-else class="home-view__column">p5 canvas</aside>
     </RouterView>
 
     <RouterView name="timeline" v-slot="{ Component }">
       <KeepAlive>
-        <aside class="home-view__column">
-          <Component :is="Component" v-if="Component" />
-          <span v-else>Timeline</span>
-        </aside>
+        <Component :is="Component" v-if="Component" class="ingredient-details--active" />
+        <aside v-else class="home-view__column home-view__timeline">Timeline</aside>
       </KeepAlive>
     </RouterView>
 
     <RouterView name="details" v-slot="{ Component }">
       <KeepAlive>
-        <aside class="home-view__column">
-          <Component :is="Component" v-if="Component" />
-          <span v-else>Details</span>
-        </aside>
+        <Component :is="Component" v-if="Component" class="event-details--active" />
+        <aside v-else class="home-view__column home-view__event-details">Details</aside>
       </KeepAlive>
     </RouterView>
   </article>

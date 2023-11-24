@@ -1,61 +1,63 @@
 <template>
-    <RouterLink to="/" class="back__anchor">
-        <span class="back__typcn typcn typcn-arrow-left-thick"></span> Back
-    </RouterLink>
-    <h1>{{ store.activeIngredient.name }}</h1>
-    <div class="ingredient-details__scroller">
-        <div class="ingredient-details__labels">
-            <p class="ingredient-details__day-label">Day</p>
-            <p class="ingredient-details__event-label">Event</p>
-        </div>
-        <ul class="ingredient-details__list">
-            <li v-for="(event, index) in store.activeIngredient.events" :key="index">
-                <RouterLink :to="{ name: 'EventDetails', params: { event: 'detail' }}" class="ingredient-details__event">
-                <div class="ingredient-details__day">
-                    <p class="ingredient-details__day-count">{{ dayCount(store.activeIngredient.events[0].date, event.date) }}</p>
-                </div>
-                <div class="ingredient-details__data">
-                    <div class="ingredient-details__data-default" @click="toggleViewMore(index)">
-                        <p class="ingredient-details__CTE">{{ event.CTE }}</p>
-                        <p class="ingredient-details__quantity">
-                            <template v-if="event.quantityBefore">
-                                <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
-                                <span class="ingredient-details__to">to</span>
-                            </template>
-                            <span>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></span>
-                        </p>
-                        <p class="ingredient-details__location">
-                            {{ event.location.city }},
-                            {{ event.location.state }}
-                        </p>
-
-                        <button class="ingredient-details__view-more">View More</button>
+    <aside class="ingredient-details">
+        <RouterLink to="/" class="back__anchor">
+            <span class="back__typcn typcn typcn-arrow-left-thick"></span> Back
+        </RouterLink>
+        <h1>{{ store.activeIngredient.name }}</h1>
+        <div class="ingredient-details__scroller">
+            <div class="ingredient-details__labels">
+                <p class="ingredient-details__day-label">Day</p>
+                <p class="ingredient-details__event-label">Event</p>
+            </div>
+            <ul class="ingredient-details__list">
+                <li v-for="(event, index) in store.activeIngredient.events" :key="index">
+                    <RouterLink :to="{ name: 'EventDetails', params: { event: 'detail' }}" class="ingredient-details__event">
+                    <div class="ingredient-details__day">
+                        <p class="ingredient-details__day-count">{{ dayCount(store.activeIngredient.events[0].date, event.date) }}</p>
                     </div>
-                    <div class="ingredient-details__data-hidden">
-                        <template v-if="viewMore[index]">
-                            <template v-if="event.TLC">
-                                <template v-if="event.TLCBefore">
-                                    <p>From lot: {{ event.TLCBefore }}</p>
-                                    <p>To lot: {{ event.TLC }}</p>
+                    <div class="ingredient-details__data">
+                        <div class="ingredient-details__data-default" @click="toggleViewMore(index)">
+                            <p class="ingredient-details__CTE">{{ event.CTE }}</p>
+                            <p class="ingredient-details__quantity">
+                                <template v-if="event.quantityBefore">
+                                    <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
+                                    <span class="ingredient-details__to">to</span>
                                 </template>
-                                <template v-else>
-                                    <p>Lot: {{ event.TLC }}</p>
-                                </template>
-                            </template>
-                            <p>About: {{ friendlyDate(event.date) }}</p>
-                            <p>On: {{ formattedDate(event.date) }}</p>
-                            <p>By: {{ event.organization }}</p>
-                            <p>At:
-                                <template v-if="event.location.field">Field {{ event.location.field }}</template>
-                                <template v-else>Building {{ event.location.building }}</template>
+                                <span>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></span>
                             </p>
-                        </template>
+                            <p class="ingredient-details__location">
+                                {{ event.location.city }},
+                                {{ event.location.state }}
+                            </p>
+
+                            <button class="ingredient-details__view-more">View More</button>
+                        </div>
+                        <div class="ingredient-details__data-hidden">
+                            <template v-if="viewMore[index]">
+                                <template v-if="event.TLC">
+                                    <template v-if="event.TLCBefore">
+                                        <p>From lot: {{ event.TLCBefore }}</p>
+                                        <p>To lot: {{ event.TLC }}</p>
+                                    </template>
+                                    <template v-else>
+                                        <p>Lot: {{ event.TLC }}</p>
+                                    </template>
+                                </template>
+                                <p>About: {{ friendlyDate(event.date) }}</p>
+                                <p>On: {{ formattedDate(event.date) }}</p>
+                                <p>By: {{ event.organization }}</p>
+                                <p>At:
+                                    <template v-if="event.location.field">Field {{ event.location.field }}</template>
+                                    <template v-else>Building {{ event.location.building }}</template>
+                                </p>
+                            </template>
+                        </div>
                     </div>
-                </div>
-                </RouterLink>
-            </li>
-        </ul>
-    </div>
+                    </RouterLink>
+                </li>
+            </ul>
+        </div>
+    </aside>
 </template>
 
 <script setup lang="ts">
@@ -79,9 +81,9 @@ const toggleViewMore = (index: number) => {
 </script>
 
 
-<style scoped>
+<style scoped lang="scss">
 .ingredient-details {
-    background: linear-gradient(145deg, #f0f0f0, #e8e8e8);
+    background: var(--view-background);
     display: flex;
     flex-direction: column;
     align-items: start;

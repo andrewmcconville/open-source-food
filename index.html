@@ -15,6 +15,7 @@
         --footer-height: 60px;
         --app-max-width-large: 1080px;
         --app-max-width-small: 720px;
+        --view-background: linear-gradient(145deg, #f0f0f0, #e8e8e8);;
       }
 
       * {
@@ -107,7 +108,7 @@
       }
 
       .article {
-        background-color: #f0f0f0;
+        background: var(--view-background);
         min-height: calc(100dvh - (var(--header-height) + var(--footer-height)));
         max-width: var(--app-max-width-large);
         width: 100%;

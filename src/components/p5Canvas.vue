@@ -1,6 +1,8 @@
 <template>
-    <div ref="sketchContainer"></div>
-    <button @click="toggleLoop">{{ p5CanvasStore.getIsLooping ? 'Stop' : 'Start' }} Loop</button>
+    <aside class="p5-canvas">
+        <div ref="sketchContainer"></div>
+        <button @click="toggleLoop">{{ p5CanvasStore.getIsLooping ? 'Stop' : 'Start' }} Loop</button>
+    </aside>
 </template>
   
 <script setup lang="ts">
@@ -298,8 +300,9 @@ const toggleLoop = () => {
 };
 </script>
 
-<style>
+<style scoped>
 .p5-canvas {
+    background: var(--view-background);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -307,7 +310,9 @@ const toggleLoop = () => {
     flex: 1;
     min-height: 0;
 }
+</style>
 
+<style>
 #defaultCanvas0 {
     width: 100% !important;
     height: auto !important;
