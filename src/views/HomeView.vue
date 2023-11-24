@@ -34,7 +34,7 @@
     min-height: 0;
     flex-grow: 1;
     max-width: 1080px;
-    height: calc(100vh - 96px);
+    height: calc(100dvh - 96px);
     overflow: hidden;
 }
 

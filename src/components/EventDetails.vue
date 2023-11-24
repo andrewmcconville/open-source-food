@@ -19,11 +19,10 @@
     @media(max-width: 960px) {
         display: flex;
         position: absolute;
-        width: 360px;
-        max-width: 100%;
-        right: 0;
         top: 0;
+        right: 0;
         bottom: 0;
+        left: 0;
         z-index: 3;
     }
 }
