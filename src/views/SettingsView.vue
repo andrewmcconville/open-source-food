@@ -21,9 +21,9 @@
             <span>Every {{ pixelScanRatioDisplay }} row and column</span>
             <span v-once>{{ p5CanvasStore.pixelScanRatioDefault }} is default</span>
           </p>
-          <input class="settings-view__slider" type="range" min="0.1" max="1" step="0.1" v-model.number="pixelScanRatio" />
+          <input class="settings-view__slider" type="range" min="0.05" max="1" step="0.05" v-model.number="pixelScanRatio" />
           <p class="settings-view__help-text">
-            <span>10th</span>
+            <span>20th</span>
             <span>{{formattedNumber(Math.pow(p5CanvasStore.cameraSize, 2) / Math.pow(p5CanvasStore.pixelScanRatio, 2))}}px scanned per frame</span>
             <span>1 (all)</span>
           </p>
@@ -63,19 +63,15 @@ import { computed, onMounted } from 'vue';
 import { useP5CanvasStore } from '@/stores/P5CanvasStore';
 import { useFormattedNumber, useOrdinalNumber } from '../utilities/NumberFormats'
 
-onMounted(() => {
-    console.log('SettingsView mounted');
-});
-
 const p5CanvasStore = useP5CanvasStore();
 const { formattedNumber } = useFormattedNumber();
 const { ordinalNumber } = useOrdinalNumber();
 
 const pixelScanRatio = computed({
-  get: (): number => +((1 - ((p5CanvasStore.pixelScanRatio - 1) * (1 - 0.1) / (10 - 1))).toFixed(2)),
-  set: (value: number) => p5CanvasStore.setPixelScanRatio(10 - Math.round((value - 0.1) * (10 - 1) / (1 - 0.1))),
+  get: (): number => +((1 - ((p5CanvasStore.pixelScanRatio - 1) * (1 - 0.1) / (20 - 1))).toFixed(2)),
+  set: (value: number) => p5CanvasStore.setPixelScanRatio(20 - Math.round((value - 0.1) * (20 - 1) / (1 - 0.1))),
 });
-const pixelScanRatioDisplay = computed(() => ordinalNumber(10 - Math.round((pixelScanRatio.value - 0.05) * (10 - 1) / (1 - 0.05))));
+const pixelScanRatioDisplay = computed(() => ordinalNumber(20 - Math.round((pixelScanRatio.value - 0.05) * (20 - 1) / (1 - 0.05))));
 
 const throttleClusterSearch = computed({
   get: (): number => +((1 - ((p5CanvasStore.throttleClusterSearch - 1) * (1 - 0.1) / (10 - 1))).toFixed(2)),

@@ -19,7 +19,6 @@ const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
 
 onMounted(() => {
-    console.log('p5Canvas mounted');
     p5Canvas = new p5((p: p5) => {
         const canvasSize: number = 720;
         let cameraCanvasRatio: number = 1;
@@ -62,7 +61,6 @@ onMounted(() => {
             p.image(capture, 0, 0, canvasSize, canvasSize);
 
             if (frameCount % p5CanvasStore.getThrottleClusterSearch === 0) {
-                console.log('searching for clusters');
                 capture.loadPixels();
                 updateClusters();
                 if (largestRedCluster) {
@@ -275,7 +273,6 @@ onMounted(() => {
 
 onUnmounted(() => {
     if (p5Canvas !== null) {
-        console.log('p5Canvas unmounted');
         p5Canvas.remove();
     }
 });

@@ -59,15 +59,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref} from 'vue';
 import { RouterLink } from 'vue-router'
 import { useFormattedDate, useFriendlyDate, useDayCount } from '../utilities/DateFormats'
 import { useFormattedNumber } from '../utilities/NumberFormats'
 import { useAppStore } from '../stores/AppStore'
-
-onMounted(() => {
-    console.log('IngredientDetails mounted');
-});
 
 const store = useAppStore();
 const { formattedDate } = useFormattedDate();
