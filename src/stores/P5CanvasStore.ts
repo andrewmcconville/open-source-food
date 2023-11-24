@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia';
 
+const throttleClusterSearchDefault = 6;
+
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
     isLooping: true as boolean,
-    throttleClusterSearch: 6 as number,
+    throttleClusterSearchDefault: throttleClusterSearchDefault as number,
+    throttleClusterSearch: throttleClusterSearchDefault as number,
   }),
   getters: {
     getIsLooping(): boolean {

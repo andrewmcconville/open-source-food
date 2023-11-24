@@ -2,7 +2,7 @@
     <article class="settings-view">
         <h1>Settings</h1>
         <input type="range" min="1" max="15" step="1" v-model="throttleClusterSearch" />
-        <p>Run detection every {{ throttleClusterSearch }} frames. <span v-once>{{ throttleClusterSearch }} is default</span></p>
+        <p>Run detection every {{ throttleClusterSearch }} frames. <span v-once>{{ p5CanvasStore.throttleClusterSearchDefault }} is default</span></p>
     </article>
 </template>
 
