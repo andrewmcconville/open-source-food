@@ -20,8 +20,8 @@ let p5Canvas: p5 | null = null;
 
 onMounted(() => {
     p5Canvas = new p5((p: p5) => {
-        const cameraWidth: number = 360;
-        const cameraHeight: number = 360;
+        const cameraWidth: number = 720;
+        const cameraHeight: number = 720;
         const canvasWidth: number = 360;
         let captureScale: number = 1;
         let capture: any;
