@@ -101,7 +101,19 @@ onMounted(() => {
             }
         }
 
-        p.mousePressed = (event) => {
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        if (isSafari) {
+            p.touchEnded = (event: TouchEvent) => {
+                navigate(event);
+            }
+        } else {
+            p.mouseClicked = (event: MouseEvent) => {
+                navigate(event);
+            }
+        }
+
+        function navigate(event: MouseEvent | TouchEvent) {
             if (event.target === p.canvas) {
                 let clickedBox: string | null = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
                 if (clickedBox) {
