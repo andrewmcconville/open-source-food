@@ -21,5 +21,13 @@
     </article>
 </template>
 
+<script setup lang="ts">
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    console.log('GlossaryView mounted');
+});
+</script>
+
 <style scoped lang="scss">
 </style>

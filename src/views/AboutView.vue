@@ -8,5 +8,13 @@
     </article>
 </template>
 
+<script setup lang="ts">
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    console.log('AboutView mounted');
+});
+</script>
+
 <style scoped lang="scss">
 </style>

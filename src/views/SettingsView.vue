@@ -59,9 +59,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useP5CanvasStore } from '@/stores/P5CanvasStore';
 import { useFormattedNumber, useOrdinalNumber } from '../utilities/NumberFormats'
+
+onMounted(() => {
+    console.log('SettingsView mounted');
+});
 
 const p5CanvasStore = useP5CanvasStore();
 const { formattedNumber } = useFormattedNumber();

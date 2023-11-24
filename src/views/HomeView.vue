@@ -1,25 +1,34 @@
 <template>
   <article class="home-view">
-    <p5Canvas />
-
-    <RouterView name="timeline">
-      <template v-slot:default="{ Component }">
-        <Component :is="Component" v-if="Component" class="ingredient-details--active" />
-        <aside v-else class="home-view__column home-view__timeline">Timeline</aside>
-      </template>
+    <RouterView name="camera" v-slot="{ Component }">
+      <!-- <KeepAlive> -->
+        <Component :is="Component" v-if="Component" />
+        <aside v-else class="home-view__column">p5 canvas</aside>
+      <!-- </KeepAlive> -->
     </RouterView>
 
-    <RouterView name="details">
-      <template v-slot:default="{ Component }">
+    <RouterView name="timeline" v-slot="{ Component }">
+      <KeepAlive>
+        <Component :is="Component" v-if="Component" class="ingredient-details--active" />
+        <aside v-else class="home-view__column home-view__timeline">Timeline</aside>
+      </KeepAlive>
+    </RouterView>
+
+    <RouterView name="details" v-slot="{ Component }">
+      <KeepAlive>
         <Component :is="Component" v-if="Component" class="event-details--active" />
         <aside v-else class="home-view__column home-view__event-details">Details</aside>
-      </template>
+      </KeepAlive>
     </RouterView>
   </article>
 </template>
 
 <script setup lang="ts">
-import p5Canvas from '../components/p5Canvas.vue';
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    console.log('HomeView mounted');
+});
 </script>
 
 <style scoped lang="scss">
@@ -30,7 +39,7 @@ import p5Canvas from '../components/p5Canvas.vue';
     min-height: 0;
     flex-grow: 1;
     max-width: 1080px;
-    max-height: calc(100vh - 96px);
+    height: calc(100vh - 96px);
     overflow: hidden;
 }
 

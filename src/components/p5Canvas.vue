@@ -7,7 +7,7 @@
   
 <script setup lang="ts">
 // @ts-nocheck
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import p5 from 'p5';
 import type { P5BoundingBox } from '../models/P5BoundingBox';
@@ -19,6 +19,7 @@ const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
 
 onMounted(() => {
+    console.log('p5Canvas mounted');
     p5Canvas = new p5((p: p5) => {
         const canvasSize: number = 720;
         let cameraCanvasRatio: number = 1;
@@ -61,6 +62,7 @@ onMounted(() => {
             p.image(capture, 0, 0, canvasSize, canvasSize);
 
             if (frameCount % p5CanvasStore.getThrottleClusterSearch === 0) {
+                console.log('searching for clusters');
                 capture.loadPixels();
                 updateClusters();
                 if (largestRedCluster) {
@@ -107,7 +109,7 @@ onMounted(() => {
                 if (clickedBox) {
                     router.push({ name: 'IngredientDetails', params: { id: clickedBox } });
                 } else {
-                    router.push({ name: 'Home' });
+                    router.push({ name: 'p5Canvas' });
                 }
             }
         }
@@ -269,6 +271,13 @@ onMounted(() => {
             return [h * 360, s * 100, b * 100]; // Convert hue to degrees
         }
     }, sketchContainer.value!);
+});
+
+onUnmounted(() => {
+    if (p5Canvas !== null) {
+        console.log('p5Canvas unmounted');
+        p5Canvas.remove();
+    }
 });
 
 const toggleLoop = () => {
