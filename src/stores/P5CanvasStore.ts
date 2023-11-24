@@ -35,6 +35,12 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     },
   },
   actions: {
+    setrestoreDefaults() {
+      this.setThrottleClusterSearch(throttleClusterSearchDefault);
+      this.setFrameRateTarget(frameRateTargetDefault);
+      this.setPixelScanRatio(pixelScanRatioDefault);
+      this.setCameraSize(cameraSizeDefault);
+    },
     setIsLooping(isLooping: boolean) {
       this.isLooping = isLooping;
     },

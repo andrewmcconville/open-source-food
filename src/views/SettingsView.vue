@@ -5,7 +5,7 @@
           <p class="settings-view__title">Camera size</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.cameraSize }}px</span>
-            <span v-once>{{ p5CanvasStore.cameraSizeDefault }} is default</span>
+            <span v-once @click="p5CanvasStore.setCameraSize(p5CanvasStore.cameraSizeDefault)">Default: {{ p5CanvasStore.cameraSizeDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="360" max="720" step="360" v-model.number="p5CanvasStore.cameraSize" />
           <p class="settings-view__help-text">
@@ -18,22 +18,22 @@
         <div class="settings-view__group">
           <p class="settings-view__title">Scan size</p>
           <p class="settings-view__help-text">
-            <span>Every {{ pixelScanRatioDisplay }} row and column</span>
-            <span v-once>{{ p5CanvasStore.pixelScanRatioDefault }} is default</span>
+            <span>Every <template v-if="pixelScanRatio < 1">{{ pixelScanRatioDisplay }}</template> row and column</span>
+            <span v-once @click="p5CanvasStore.setPixelScanRatio(p5CanvasStore.pixelScanRatioDefault)">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="0.05" max="1" step="0.05" v-model.number="pixelScanRatio" />
           <p class="settings-view__help-text">
-            <span>20th</span>
+            <span>20</span>
             <span>{{formattedNumber(Math.pow(p5CanvasStore.cameraSize, 2) / Math.pow(p5CanvasStore.pixelScanRatio, 2))}}px scanned per frame</span>
-            <span>1 (all)</span>
+            <span>All pixels: 1</span>
           </p>
         </div>
 
         <div class="settings-view__group">
           <p class="settings-view__title">Frame rate</p>
           <p class="settings-view__help-text">
-            <span>{{ p5CanvasStore.frameRateTarget }} fps</span>
-            <span v-once>{{ p5CanvasStore.frameRateTargetDefault }} is default</span>
+            <span>{{ p5CanvasStore.frameRateTarget }}fps</span>
+            <span v-once @click="p5CanvasStore.setFrameRateTarget(p5CanvasStore.frameRateTargetDefault)">Default: {{ p5CanvasStore.frameRateTargetDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="2" max="120" step="2" v-model.number="p5CanvasStore.frameRateTarget" />
           <p class="settings-view__help-text">
@@ -45,15 +45,19 @@
         <div class="settings-view__group">
           <p class="settings-view__title">Scan rate</p>
           <p class="settings-view__help-text">
-            <span>Every {{ throttleClusterSearchDisplay }} frame.</span>
-            <span v-once>{{ p5CanvasStore.throttleClusterSearchDefault }} is default</span>
+            <span>Every <template v-if="throttleClusterSearch < 1">{{ throttleClusterSearchDisplay }}</template> frame.</span>
+            <span v-once @click="p5CanvasStore.setThrottleClusterSearch(p5CanvasStore.throttleClusterSearchDefault)">Default: {{ p5CanvasStore.throttleClusterSearchDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="0.1" max="1" step="0.1" v-model.number="throttleClusterSearch" />
           <p class="settings-view__help-text">
-            <span>min</span>
+            <span>10</span>
             <span>{{formattedNumber(p5CanvasStore.frameRateTarget / p5CanvasStore.throttleClusterSearch)}} scans per second</span>
-            <span>max</span>
+            <span>All frames: 1</span>
           </p>
+        </div>
+
+        <div class="settings-view__group">
+          <button @click="p5CanvasStore.setrestoreDefaults">Restore defaults</button>
         </div>
     </article>
 </template>
