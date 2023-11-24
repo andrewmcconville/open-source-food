@@ -29,8 +29,6 @@
       }
 
       html, body {
-        display: flex;
-        flex-grow: 1;
         margin: 0;
       }
       
@@ -44,11 +42,24 @@
         flex-grow: 1;
       }
 
-      .header {
+      .header, .footer {
         display: flex;
         align-items: center;
         justify-content: center;
         background-color: aqua;
+        padding: 12px;
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      .header {
+        top: 0;
+      }
+
+      .footer {
+        bottom: 0;
       }
 
       .main {
@@ -56,18 +67,11 @@
         justify-content: center;
         min-height: 0;
         flex-grow: 1;
+        padding: 48px 0;
       }
 
       .loading {
         margin: auto;
-      }
-
-      .footer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: aqua;
-        padding: 12px;
       }
     </style>
   </head>

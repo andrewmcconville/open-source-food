@@ -30,6 +30,8 @@ import p5Canvas from '../components/p5Canvas.vue';
     min-height: 0;
     flex-grow: 1;
     max-width: 1080px;
+    max-height: calc(100vh - 96px);
+    overflow: hidden;
 }
 
 .home-view__column {  

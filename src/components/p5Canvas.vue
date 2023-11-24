@@ -295,5 +295,7 @@ const toggleLoop = () => {
 #defaultCanvas0 {
     width: 100% !important;
     height: auto !important;
+    max-width: 360px;
+    margin: auto;
 }
 </style>
