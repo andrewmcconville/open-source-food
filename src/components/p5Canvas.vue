@@ -102,9 +102,12 @@ onMounted(() => {
         }
 
         p.mouseClicked = (event) => {
+            alert('clicked');
             if (event.target === p.canvas) {
+                alert('canvas clicked');
                 let clickedBox: string | null = getClickedBox(p.mouseX, p.mouseY, redBoundingBox, greenBoundingBox);
                 if (clickedBox) {
+                    alert('clicked box');
                     router.push({ name: 'IngredientDetails', params: { id: clickedBox } });
                 } else {
                     router.push({ name: 'p5Canvas' });
