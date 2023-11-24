@@ -37,11 +37,11 @@
 }
 
 .home-view__column {  
-  background: linear-gradient(145deg, #f0f0f0, #e8e8e8);
+  background: var(--view-background);
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: stretch;
+  align-items: center;
+  justify-content: center;
   flex: 1;
   min-height: 0;
 }

@@ -1,10 +1,13 @@
 <template>
     <aside class="ingredient-details">
-        <RouterLink to="/" class="back__anchor">
-            <span class="back__typcn typcn typcn-arrow-left-thick"></span> Back
-        </RouterLink>
-        <h1>{{ store.activeIngredient.name }}</h1>
+        <header class="ingredient-details__header">
+            <RouterLink to="/" class="back__anchor">
+                <span class="back__typcn typcn typcn-arrow-left"></span>
+            </RouterLink>
+            <h1 class="ingredient-details__heading">Timeline</h1>
+        </header>
         <div class="ingredient-details__scroller">
+            <h1 class="ingredient-details__heading">{{ store.activeIngredient.name }}</h1>
             <div class="ingredient-details__labels">
                 <p class="ingredient-details__day-label">Day</p>
                 <p class="ingredient-details__event-label">Event</p>
@@ -106,6 +109,23 @@ const toggleViewMore = (index: number) => {
         left: 0;
         z-index: 2;
     }
+}
+
+.ingredient-details__header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.ingredient-details__heading {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    flex-grow: 1;
+    text-transform: capitalize;
+    margin: 6px 0px 8px 0;
 }
 
 .ingredient-details__scroller {
@@ -217,4 +237,4 @@ const toggleViewMore = (index: number) => {
     justify-content: space-between;
     font-size: 14px;
 }
-</style>../utilities/DateFormats
+</style>

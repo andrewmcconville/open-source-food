@@ -99,7 +99,7 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
+  padding: 0 8px;
 
   &:hover {
     background-color: #fff;
@@ -107,7 +107,7 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 }
 
 .back__typcn {
-  font-size: 28px;
+  font-size: 32px;
   margin-top: -6px;
 }
 </style>
