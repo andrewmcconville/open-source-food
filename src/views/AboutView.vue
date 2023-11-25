@@ -34,7 +34,10 @@
                         </li>
                         <li>
                             <h2>Web</h2>
-                            <p>I wrote this app in HTML, CSS, and JavaScript</p>
+                            <p>I wrote this app in HTML, CSS, and TypeScript (a strongly typed version of JavaScript)</p>
+                            <p>
+                                <a href="https://www.typescriptlang.org/" target="_blank">https://www.typescriptlang.org/</a>
+                            </p>
                         </li>
                         <li>
                             <h2>Vue</h2>
