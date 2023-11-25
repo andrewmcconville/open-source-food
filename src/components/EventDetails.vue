@@ -2,7 +2,9 @@
     <aside class="event-details">
         <header class="view-header__header">
             <RouterLink to="." class="view-header__back-anchor">
-                <img class="nav__anchor-icon" src="@/assets/solar-icon-set/ArrowLeft.svg" alt="Arrow Left" width="26" height="26" />
+                <svg width="26" height="26" class="view-header__anchor-icon">
+                    <use xlink:href="@/assets/solar-icon-set/arrow-left-linear.svg#icon"></use>
+                </svg>
             </RouterLink>
             <h1 class="view-header__heading">Tracking Event</h1>
         </header>
@@ -47,7 +49,7 @@ watch(() => route.params.event, () => {
 
 <style scoped lang="scss">
 .event-details {
-    background: var(--warm-gray-20);
+    background: var(--yellow-10);
     display: flex;
     flex-direction: column;
     align-items: start;

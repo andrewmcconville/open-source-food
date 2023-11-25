@@ -15,19 +15,27 @@
     <div class="footer__inner">
       <nav class="nav">
         <RouterLink class="nav__anchor" to="/">
-          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/Camera.svg" alt="Camera" width="26" height="26" />
+          <svg width="26" height="26" class="nav__anchor-icon">
+            <use xlink:href="@/assets/solar-icon-set/camera-linear.svg#icon"></use>
+          </svg>
           Home
         </RouterLink>
         <RouterLink class="nav__anchor" to="/glossary">
-          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/Book.svg" alt="Book" width="26" height="26" />
+          <svg width="26" height="26" class="nav__anchor-icon">
+            <use xlink:href="@/assets/solar-icon-set/book-linear.svg#icon"></use>
+          </svg>
           Glossary
         </RouterLink>
         <RouterLink class="nav__anchor" to="/about">
-          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/InfoCircle.svg" alt="InfoCircle" width="26" height="26" />
+          <svg width="26" height="26" class="nav__anchor-icon">
+            <use xlink:href="@/assets/solar-icon-set/info-circle-linear.svg#icon"></use>
+          </svg>
           About
         </RouterLink>
         <RouterLink class="nav__anchor" to="/settings">
-          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/Settings.svg" alt="Settings" width="26" height="26" />
+          <svg width="26" height="26" class="nav__anchor-icon">
+            <use xlink:href="@/assets/solar-icon-set/settings-linear.svg#icon"></use>
+          </svg>
           Settings
         </RouterLink>
       </nav>
@@ -76,7 +84,7 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  color: var(--font-color);
+  color: var(--teal);
 
   &:hover {
     background-color: #fff;
@@ -85,6 +93,8 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
 
 .nav__anchor-icon {
   margin-bottom: 4px;
+  fill: var(--teal);
+  //filter: invert(65%) sepia(26%) saturate(1133%) hue-rotate(131deg) brightness(84%) contrast(84%);
 }
 </style>
 
@@ -116,8 +126,7 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   }
 }
 
-.view-header__back-typcn {
-  font-size: 32px;
-  margin-top: -4px;
+.view-header__anchor-icon {
+  fill: var(--teal);
 }
 </style>
