@@ -14,7 +14,7 @@
         --header-height: 48px;
         --footer-height: 60px;
         --app-max-width-large: 1080px;
-        --app-max-width-small: 720px;
+        --app-max-width-small: 540px;
         --view-background: #f0f0f0;
       }
 
@@ -38,17 +38,15 @@
         list-style-type: none;
       }
 
+      html, body {
+        margin: 0;
+      }
+
       html {
-        background-color: #ddd;
         color: #444;
         font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
         font-size: 18px;        
-        height: 100svh;
-      }
-
-      html, body {
-        background-color: #444;
-        margin: 0;
+        height: 100dvh;
       }
       
       canvas {
@@ -59,10 +57,10 @@
       #app {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
       }
 
       .header, .footer {
+        background-color: #f8f8f8;
         display: flex;
         align-items: stretch;
         justify-content: center;
@@ -76,6 +74,7 @@
         font-family: 'Josefin Sans';
         top: 0;
         height: var(--header-height);
+        border-bottom: 1px solid #d0d0d0;
       }
 
       .header__app-name {
@@ -93,6 +92,7 @@
       .footer {
         bottom: 0;
         height: var(--footer-height);
+        border-top: 1px solid #d0d0d0;
       }
 
       .header__inner, .footer__inner {
@@ -100,19 +100,11 @@
         justify-content: center;
         width: 100%;
         max-width: var(--app-max-width-large);
-        background-color: #f8f8f8;
         padding: 0 24px;
       }
 
-      .header__inner {
-        border-bottom: 1px solid #d0d0d0;
-      }
-
-      .footer__inner {
-        border-top: 1px solid #d0d0d0;
-      }
-
       .main {
+        background-color: var(--view-background);
         display: flex;
         justify-content: center;
         min-height: 0;
@@ -121,7 +113,6 @@
       }
 
       .article {
-        background: var(--view-background);
         min-height: calc(100dvh - (var(--header-height) + var(--footer-height)));
         max-width: var(--app-max-width-large);
         width: 100%;
