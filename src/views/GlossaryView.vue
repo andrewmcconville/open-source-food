@@ -18,6 +18,8 @@
                     <p>https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/food-safety-modernization-act-fsma</p>
                     <p>https://www.youtube.com/watch?v=ZcSBvLQ6p6M&ab_channel=U.S.FoodandDrugAdministration</p>
                 </dd>
+                <dt>OWL: Web Ontology Language</dt>
+                <dd></dd>
             </dl>
         </div>
     </article>

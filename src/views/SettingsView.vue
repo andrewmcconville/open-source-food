@@ -4,6 +4,7 @@
         <h1>Settings</h1>
         <div class="settings-view__group">
           <p class="settings-view__title">Camera resolution</p>
+          <p>cameraSize</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.cameraSize }}px</span>
             <span v-once @click="p5CanvasStore.setCameraSize(p5CanvasStore.cameraSizeDefault)">Default: {{ p5CanvasStore.cameraSizeDefault }}</span>
@@ -18,6 +19,7 @@
 
         <div class="settings-view__group">
           <p class="settings-view__title">Scan resolution</p>
+          <p>pixelScanRatio</p>
           <p class="settings-view__help-text">
             <span>Every <template v-if="pixelScanRatio < 1">{{ pixelScanRatioDisplay }}</template> row and column</span>
             <span v-once @click="p5CanvasStore.setPixelScanRatio(p5CanvasStore.pixelScanRatioDefault)">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>
@@ -32,6 +34,7 @@
 
         <div class="settings-view__group">
           <p class="settings-view__title">Frame rate</p>
+          <p>frameRateTarget</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.frameRateTarget }}fps</span>
             <span v-once @click="p5CanvasStore.setFrameRateTarget(p5CanvasStore.frameRateTargetDefault)">Default: {{ p5CanvasStore.frameRateTargetDefault }}</span>
@@ -45,6 +48,7 @@
 
         <div class="settings-view__group">
           <p class="settings-view__title">Scan rate</p>
+          <p>throttleClusterSearch</p>
           <p class="settings-view__help-text">
             <span>Every <template v-if="throttleClusterSearch < 1">{{ throttleClusterSearchDisplay }}</template> frame.</span>
             <span v-once @click="p5CanvasStore.setThrottleClusterSearch(p5CanvasStore.throttleClusterSearchDefault)">Default: {{ p5CanvasStore.throttleClusterSearchDefault }}</span>
