@@ -2,7 +2,7 @@
     <aside class="ingredient-details">
         <header class="view-header__header">
             <RouterLink to="/" class="view-header__back-anchor">
-                <span class="view-header__back-typcn typcn typcn-arrow-left"></span>
+                <img class="nav__anchor-icon" src="@/assets/solar-icon-set/ArrowLeft.svg" alt="Arrow Left" width="26" height="26" />
             </RouterLink>
             <h1 class="view-header__heading">Timeline</h1>
         </header>

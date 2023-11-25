@@ -15,19 +15,19 @@
     <div class="footer__inner">
       <nav class="nav">
         <RouterLink class="nav__anchor" to="/">
-          <span class="nav__typcn typcn typcn-home-outline"></span>
+          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/Camera.svg" alt="Camera" width="26" height="26" />
           Home
         </RouterLink>
         <RouterLink class="nav__anchor" to="/glossary">
-          <span class="nav__typcn typcn typcn-book"></span>
+          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/Book.svg" alt="Book" width="26" height="26" />
           Glossary
         </RouterLink>
         <RouterLink class="nav__anchor" to="/about">
-          <span class="nav__typcn typcn typcn-info-large-outline"></span>
+          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/InfoCircle.svg" alt="InfoCircle" width="26" height="26" />
           About
         </RouterLink>
         <RouterLink class="nav__anchor" to="/settings">
-          <span class="nav__typcn typcn typcn-spanner-outline"></span>
+          <img class="nav__anchor-icon" src="@/assets/solar-icon-set/Settings.svg" alt="Settings" width="26" height="26" />
           Settings
         </RouterLink>
       </nav>
@@ -38,8 +38,7 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 import { useRoute, RouterLink, RouterView } from 'vue-router'
-import { useAppStore } from './stores/AppStore';
-import 'typicons.font/src/font/typicons.css'
+import { useAppStore } from './stores/AppStore'
 
 const route = useRoute();
 const store = useAppStore();
@@ -54,18 +53,6 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 </script>
 
 <style scoped lang="scss">
-.header__app-name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  letter-spacing: -1px;
-  font-weight: 700;
-  color: var(--font-color);
-  line-height: 1;
-  margin: -6px 0 0 0;
-}
-
 .nav {
   display: flex;
   max-width: var(--app-max-width-small);
@@ -87,9 +74,8 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
   }
 }
 
-.nav__typcn {
-  font-size: 28px;
-  margin-top: -4px;
+.nav__anchor-icon {
+  margin-bottom: 4px;
 }
 </style>
 
@@ -107,12 +93,10 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
     font-weight: 600;
     line-height: 1;
     flex-grow: 1;
-    text-transform: capitalize;
     margin: 6px 0px 8px 0;
 }
 
 .view-header__back-anchor {
-  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;

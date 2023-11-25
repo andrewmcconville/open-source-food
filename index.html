@@ -7,7 +7,7 @@
     <title>Open Source Food</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
     <style>
       :root {
         --font-color: #444;
@@ -72,6 +72,29 @@
         z-index: 1;
       }
 
+      .header {
+        font-family: 'Josefin Sans';
+        top: 0;
+        height: var(--header-height);
+      }
+
+      .header__app-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        letter-spacing: -1px;
+        font-weight: 300;
+        color: var(--font-color);
+        line-height: 1;
+        margin: 0;
+      }
+
+      .footer {
+        bottom: 0;
+        height: var(--footer-height);
+      }
+
       .header__inner, .footer__inner {
         display: flex;
         justify-content: center;
@@ -87,17 +110,6 @@
 
       .footer__inner {
         border-top: 1px solid #d0d0d0;
-      }
-
-      .header {
-        font-family: 'Sansita Swashed';
-        top: 0;
-        height: var(--header-height);
-      }
-
-      .footer {
-        bottom: 0;
-        height: var(--footer-height);
       }
 
       .main {
@@ -129,7 +141,9 @@
   <body>
     <div id="app">
       <header class="header">
-        <div class="header__inner"></div>
+        <div class="header__inner">
+          <h1 class="header__app-name">Open Source Food</h1>
+        </div>
       </header>
       <main class="main">
         <div class="article">

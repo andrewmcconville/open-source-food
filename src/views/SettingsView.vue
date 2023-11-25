@@ -88,9 +88,7 @@ const throttleClusterSearchDisplay = computed(() => ordinalNumber(10 - Math.roun
 </script>
 
 <style scoped lang="scss">
-.settings-view {
 
-}
 .settings-view__group {
     margin-bottom: 64px;
 }
