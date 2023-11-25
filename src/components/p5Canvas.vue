@@ -36,6 +36,7 @@ onMounted(() => {
         let lerpAmount: number = 1;
 
         p.setup = () => {
+            p5CanvasStore.setIsLooping(true);
             cameraCanvasRatio = canvasSize / p5CanvasStore.cameraSize;
             p.pixelDensity(1);
             p.createCanvas(canvasSize, canvasSize);
