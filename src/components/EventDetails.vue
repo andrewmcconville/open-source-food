@@ -4,14 +4,45 @@
             <RouterLink to="." class="view-header__back-anchor">
                 <img class="nav__anchor-icon" src="@/assets/solar-icon-set/ArrowLeft.svg" alt="Arrow Left" width="26" height="26" />
             </RouterLink>
-            <h1 class="view-header__heading">Details</h1>
+            <h1 class="view-header__heading">Tracking Event</h1>
         </header>
-        Details
+        <div class="event-details__scroller">
+            <template v-if="trackingEvent.TLC">
+                <template v-if="trackingEvent.TLCBefore">
+                    <p>From lot: {{ trackingEvent.TLCBefore }}</p>
+                    <p>To lot: {{ trackingEvent.TLC }}</p>
+                </template>
+                <template v-else>
+                    <p>Lot: {{ trackingEvent.TLC }}</p>
+                </template>
+            </template>
+            <p>About: {{ friendlyDate(trackingEvent.date) }}</p>
+            <p>On: {{ formattedDate(trackingEvent.date) }}</p>
+            <p>By: {{ trackingEvent.organization }}</p>
+            <p>At:
+                <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
+                <template v-else>Building {{ trackingEvent.location.building }}</template>
+            </p>
+        </div>
     </aside>
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue';
+import { useRoute, RouterLink } from 'vue-router'
+import { useFormattedDate, useFriendlyDate } from '../utilities/DateFormats'
+import { useAppStore } from '../stores/AppStore'
+import type { TrackingEvent } from '../models/TrackingEvent'
 
+const route = useRoute();
+const store = useAppStore();
+const { formattedDate } = useFormattedDate();
+const { friendlyDate } = useFriendlyDate();
+let trackingEvent: TrackingEvent = store.getActiveIngredientTrackingEvent;
+
+watch(() => route.params.event, () => {
+    trackingEvent = store.getActiveIngredientTrackingEvent;
+});
 </script>
 
 <style scoped lang="scss">
@@ -35,5 +66,12 @@
         left: 0;
         z-index: 3;
     }
+}
+
+.event-details__scroller {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+    padding: 16px;
 }
 </style>

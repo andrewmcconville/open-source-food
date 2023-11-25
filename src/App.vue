@@ -48,7 +48,15 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
     paramValue = paramValue[0];
   }
 
-  store.setActiveIngredient(paramValue);
+  store.setActiveIngredientId(paramValue);
+});
+
+watch(() => route.params.event, (paramValue: string | Array<string>) => {
+  if (Array.isArray(paramValue)) {
+    paramValue = paramValue[0];
+  }
+
+  store.setActiveIngredientEventIndex(parseInt(paramValue));
 });
 </script>
 
@@ -89,8 +97,8 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
 }
 
 .view-header__heading {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 400;
     line-height: 1;
     flex-grow: 1;
     margin: 6px 0px 8px 0;
@@ -100,7 +108,7 @@ watch(() => route.params.id, (paramValue: string | Array<string>) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 12px 8px;
 
   &:hover {
     background-color: #fff;

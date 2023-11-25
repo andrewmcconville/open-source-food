@@ -1,20 +1,6 @@
+import type { TrackingEvent } from "./TrackingEvent";
+
 export interface Ingredient {
   name: string;
-  events: Array<{
-    CTE: string;
-    organization: string;
-    date: string;
-    location: {
-      city: string;
-      state: string;
-      field?: string;
-      building?: string;
-    };
-    quantityBefore?: number;
-    UOMBefore?: string;
-    TLCBefore?: string;
-    quantity: number;
-    UOM: string;
-    TLC?: string;
-  }>;
+  events: Array<TrackingEvent>;
 }
