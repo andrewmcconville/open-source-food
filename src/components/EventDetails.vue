@@ -28,7 +28,7 @@
 .event-details--active {
     @media(max-width: 960px) {
         display: flex;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
