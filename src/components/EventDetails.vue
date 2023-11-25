@@ -47,7 +47,7 @@ watch(() => route.params.event, () => {
 
 <style scoped lang="scss">
 .event-details {
-    background: var(--view-background);
+    background: var(--warm-gray-20);
     display: flex;
     flex-direction: column;
     align-items: start;

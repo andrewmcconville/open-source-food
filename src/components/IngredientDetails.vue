@@ -53,7 +53,7 @@ const { formattedNumber } = useFormattedNumber();
 
 <style scoped lang="scss">
 .ingredient-details {
-    background: var(--view-background);
+    background: var(--warm-gray-20);
     display: flex;
     flex-direction: column;
     align-items: start;
