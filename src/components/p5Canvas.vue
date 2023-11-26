@@ -1,7 +1,10 @@
 <template>
     <aside class="p5-canvas">
         <div ref="sketchContainer"></div>
-        <button @click="toggleLoop">{{ p5CanvasStore.getIsLooping ? 'Stop' : 'Start' }} Loop</button>
+        <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Stop' : 'Start' }} Loop</button>
+        <div class="canvas-top-left" :style="{ transform: `translate(${p5CanvasStore.tomatoVector.x}px, ${p5CanvasStore.tomatoVector.y}px)` }">
+            <div class="canvas-top-left__thing"></div>
+        </div>
     </aside>
 </template>
   
@@ -26,6 +29,9 @@ onMounted(() => {
         let captureConstraints;
         let frameCount: number = 0;
         let lerpAmount: number = 1;
+
+        let canvasXY: p5.Vector = p.createVector(0, 0);
+        let canvasDomRatio: number = 1;
 
         //TO DO: these four things are not DRY
         let tomatoClusters = [];
@@ -54,12 +60,12 @@ onMounted(() => {
             cameraCanvasRatio = canvasSize / p5CanvasStore.cameraSize;
             p.pixelDensity(1);
             p.createCanvas(canvasSize, canvasSize);
-            p.frameRate(p5CanvasStore.getFrameRateTarget);
+            p.frameRate(p5CanvasStore.frameRateTarget);
 
             captureConstraints = {
                 video: {
                     facingMode: "environment",
-                    frameRate: { ideal: p5CanvasStore.getFrameRateTarget },
+                    frameRate: { ideal: p5CanvasStore.frameRateTarget },
                     aspectRatio: { ideal: 1 },
                     Size: { ideal: p5CanvasStore.cameraSize },
                     height: { ideal: p5CanvasStore.cameraSize }
@@ -75,7 +81,11 @@ onMounted(() => {
             p.background(0);
             p.image(capture, 0, 0, canvasSize, canvasSize);
 
-            if (frameCount % p5CanvasStore.getThrottleClusterSearch === 0) {
+            canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
+            canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
+            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / canvasSize;
+
+            if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
                 capture.loadPixels();
                 updateClusters();
                 if (largestTomatoCluster) {
@@ -97,7 +107,7 @@ onMounted(() => {
                 frameCount = 0;
             }
             frameCount++;            
-            lerpAmount = frameCount / p5CanvasStore.getThrottleClusterSearch;
+            lerpAmount = frameCount / p5CanvasStore.throttleClusterSearch;
 
             if (largestTomatoCluster && oldTomatoBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
@@ -108,10 +118,12 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldTomatoBoundingBox.rect[3], tomatoBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldTomatoBoundingBox.center, tomatoBoundingBox.center, lerpAmount);
 
-                drawBoundingBox(lerpBox, p.color(0, 255, 0));
+                p5CanvasStore.tomatoVector = p5.Vector.add(new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio), canvasXY);
+
+                p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(0, 255, 0)) : null;
             };
 
-            if (largestLettuceCluster && oldLettuceBoundingBox) {
+            if (false && largestLettuceCluster && oldLettuceBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
                 lerpBox.rect[0] = p.lerp(oldLettuceBoundingBox.rect[0], lettuceBoundingBox.rect[0], lerpAmount);
@@ -120,10 +132,10 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldLettuceBoundingBox.rect[3], lettuceBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldLettuceBoundingBox.center, lettuceBoundingBox.center, lerpAmount);
 
-                drawBoundingBox(lerpBox, p.color(255, 0, 0));
+                p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 0, 0)) : null;
             }
 
-            if (largeestBreadCluster && oldBreadBoundingBox) {
+            if (false && largeestBreadCluster && oldBreadBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
                 lerpBox.rect[0] = p.lerp(oldBreadBoundingBox.rect[0], breadBoundingBox.rect[0], lerpAmount);
@@ -132,10 +144,10 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldBreadBoundingBox.rect[3], breadBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldBreadBoundingBox.center, breadBoundingBox.center, lerpAmount);
 
-                drawBoundingBox(lerpBox, p.color(0, 0, 255));
+                p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(0, 0, 255)) : null;
             }
 
-            if (largeestMeatCluster && oldMeatBoundingBox) {
+            if (false && largeestMeatCluster && oldMeatBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
                 lerpBox.rect[0] = p.lerp(oldMeatBoundingBox.rect[0], meatBoundingBox.rect[0], lerpAmount);
@@ -144,7 +156,7 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldMeatBoundingBox.rect[3], meatBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldMeatBoundingBox.center, meatBoundingBox.center, lerpAmount);
 
-                drawBoundingBox(lerpBox, p.color(255, 255, 255));
+                p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 255, 255)) : null;
             }
         }
 
@@ -299,8 +311,8 @@ onMounted(() => {
             let clusters = [];
             let visited = new Set();
 
-            for (let y = 0; y < height; y += p5CanvasStore.getPixelScanRatio) {
-                for (let x = 0; x < width; x += p5CanvasStore.getPixelScanRatio) {
+            for (let y = 0; y < height; y += p5CanvasStore.pixelScanRatio) {
+                for (let x = 0; x < width; x += p5CanvasStore.pixelScanRatio) {
                     let index = (x + y * width) * 4;
                     if (isColor(pixels, index) && !visited.has(index)) {
                         let cluster = getCluster(pixels, x, y, width, visited, isColor);
@@ -377,7 +389,7 @@ onUnmounted(() => {
 });
 
 const toggleLoop = () => {
-    if (p5CanvasStore.getIsLooping) {
+    if (p5CanvasStore.isLooping) {
         p5Canvas?.noLoop();
         p5CanvasStore.setIsLooping(false);
     } else {
@@ -396,6 +408,24 @@ const toggleLoop = () => {
     justify-content: center;
     flex: 1;
     min-height: 0;
+}
+
+.canvas-top-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.canvas-top-left__thing {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: 4px solid red;
+    border-radius: 100%;
 }
 </style>
 

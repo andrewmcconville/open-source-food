@@ -62,6 +62,19 @@
         </div>
 
         <div class="settings-view__group">
+          <p class="settings-view__title">Bounding Boxes</p>
+          <p>showCanvasBoudingBoxes</p>
+          <p class="settings-view__help-text">
+            <span>{{ p5CanvasStore.showCanvasBoudingBoxes }}</span>
+            <span v-once @click="p5CanvasStore.setShowCanvasBoudingBoxes(p5CanvasStore.showCanvasBoudingBoxesDefault)">Default: {{ p5CanvasStore.showCanvasBoudingBoxesDefault.toString() }}</span>
+          </p>
+          <input type="checkbox" v-model.number="p5CanvasStore.showCanvasBoudingBoxes" />
+          <p class="settings-view__help-text">            
+            <span>These are drwan in p5 not HTML</span>
+          </p>
+        </div>
+
+        <div class="settings-view__group">
           <button @click="p5CanvasStore.setrestoreDefaults">Restore defaults</button>
         </div>
       </div>

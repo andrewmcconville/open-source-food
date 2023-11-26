@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia';
+import p5 from 'p5';
 
 const throttleClusterSearchDefault: number = 4;
 const frameRateTargetDefault: number = 60;
-const pixelScanRatioDefault: number = 4;
+const pixelScanRatioDefault: number = 8;
 const cameraSizeDefault: number = 360;
+const showCanvasBoudingBoxesDefault: boolean = false;
 
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
@@ -16,23 +18,15 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     pixelScanRatio: pixelScanRatioDefault as number,
     cameraSizeDefault: cameraSizeDefault as number,
     cameraSize: cameraSizeDefault as number,
+    tomatoVector: new p5.Vector(0, 0) as p5.Vector,
+    lettuceVector: new p5.Vector(0, 0) as p5.Vector,
+    breadVector: new p5.Vector(0, 0) as p5.Vector,
+    meatVector: new p5.Vector(0, 0) as p5.Vector,
+    showCanvasBoudingBoxesDefault: showCanvasBoudingBoxesDefault as boolean,
+    showCanvasBoudingBoxes: showCanvasBoudingBoxesDefault as boolean,
   }),
   getters: {
-    getIsLooping(): boolean {
-        return this.isLooping;
-    },
-    getThrottleClusterSearch(): number {
-        return this.throttleClusterSearch;
-    },
-    getFrameRateTarget(): number {
-        return this.frameRateTarget;
-    },
-    getPixelScanRatio(): number {
-        return this.pixelScanRatio;
-    },
-    getCameraSize(): number {
-        return this.cameraSize;
-    },
+    
   },
   actions: {
     setrestoreDefaults() {
@@ -40,6 +34,7 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
       this.setFrameRateTarget(frameRateTargetDefault);
       this.setPixelScanRatio(pixelScanRatioDefault);
       this.setCameraSize(cameraSizeDefault);
+      this.setShowCanvasBoudingBoxes(showCanvasBoudingBoxesDefault);
     },
     setIsLooping(isLooping: boolean) {
       this.isLooping = isLooping;
@@ -56,5 +51,8 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     setCameraSize(cameraSize: number) {
       this.cameraSize = cameraSize;
     },
+    setShowCanvasBoudingBoxes(showCanvasBoudingBoxes: boolean) {
+      this.showCanvasBoudingBoxes = showCanvasBoudingBoxes;
+    }
   },
 });
