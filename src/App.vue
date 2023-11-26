@@ -97,36 +97,3 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   fill: var(--teal);
 }
 </style>
-
-<style lang="scss">
-.view-header__header {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
-}
-
-.view-header__heading {
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1;
-    flex-grow: 1;
-    margin: 6px 0px 8px 0;
-}
-
-.view-header__back-anchor {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 8px;
-
-  &:hover {
-    background-color: #fff;
-  }
-}
-
-.view-header__anchor-icon {
-  fill: var(--teal);
-}
-</style>
