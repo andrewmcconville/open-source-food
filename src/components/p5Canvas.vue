@@ -103,7 +103,7 @@ onMounted(() => {
         };
 
         p.draw = () => {
-            p.background(0);
+            //p.background(0);
             //p.image(capture, 0, 0, p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
 
             if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
