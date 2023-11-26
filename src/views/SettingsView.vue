@@ -24,9 +24,9 @@
             <span>Every <template v-if="pixelScanRatio < 1">{{ pixelScanRatioDisplay }}</template> row and column</span>
             <span v-once @click="p5CanvasStore.setPixelScanRatio(p5CanvasStore.pixelScanRatioDefault)">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>
           </p>
-          <input class="settings-view__slider" type="range" min="0.1" max="1" step="0.05" v-model.number="pixelScanRatio" />
+          <input class="settings-view__slider" type="range" min="0.05" max="1" step="0.05" v-model.number="pixelScanRatio" />
           <p class="settings-view__help-text">
-            <span>19</span>
+            <span>20</span>
             <span>{{formattedNumber(Math.pow(p5CanvasStore.canvasSize, 2) / Math.pow(p5CanvasStore.pixelScanRatio, 2))}}px scanned per frame</span>
             <span>All pixels: 1</span>
           </p>
