@@ -95,7 +95,7 @@ onMounted(() => {
             };
             capture = p.createCapture(captureConstraints, function () { });
             capture.size(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
-            capture.hide();
+            //capture.hide();
 
             canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / p5CanvasStore.canvasSize;
             canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
@@ -104,7 +104,7 @@ onMounted(() => {
 
         p.draw = () => {
             p.background(0);
-            p.image(capture, 0, 0, p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
+            //p.image(capture, 0, 0, p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
 
             if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
                 capture.loadPixels();
@@ -460,5 +460,6 @@ const toggleLoop = () => {
     height: auto !important;
     max-width: 360px;
     margin: auto;
+    display: none;
 }
 </style>
