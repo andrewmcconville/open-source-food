@@ -24,12 +24,10 @@
 <script setup lang="ts">
 // @ts-nocheck
 import { onMounted, onUnmounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
 import p5 from 'p5';
 import type { P5BoundingBox } from '../models/P5BoundingBox';
 import { useP5CanvasStore } from '../stores/P5CanvasStore';
 
-const router = useRouter();
 const p5CanvasStore = useP5CanvasStore();
 const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
@@ -193,55 +191,6 @@ onMounted(() => {
             canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
             canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         }
-
-        // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-        // if (isSafari) {
-        //     p.touchEnded = (event: TouchEvent) => {
-        //         navigate(event);
-        //     }
-        // } else {
-        //     p.mouseClicked = (event: MouseEvent) => {
-        //         navigate(event);
-        //     }
-        // }
-
-        // function navigate(event: MouseEvent | TouchEvent) {
-        //     if (event.target === p.canvas) {
-        //         let clickedBox: string | null = getClickedBox(p.mouseX, p.mouseY, tomatoBoundingBox, lettuceBoundingBox, breadBoundingBox, meatBoundingBox);
-        //         if (clickedBox) {
-        //             router.push({ name: 'IngredientDetails', params: { id: clickedBox } });
-        //         } else {
-        //             router.push({ name: 'p5Canvas' });
-        //         }
-        //     }
-        // }
-
-        // function getClickedBox(mouseX: number, mouseY: number, tomatoBoundingBox: P5BoundingBox, lettuceBoundingBox: P5BoundingBox, breadBoundingBox: P5BoundingBox, meatBoundingBox: P5BoundingBox): string {
-        //     if (isMouseInsideBox(mouseX, mouseY, tomatoBoundingBox)) {
-        //         return "tomato";
-        //     }
-        //     else if (isMouseInsideBox(mouseX, mouseY, lettuceBoundingBox)) {
-        //         return "lettuce";
-        //     }
-        //     else if (isMouseInsideBox(mouseX, mouseY, breadBoundingBox)) {
-        //         return "bread";
-        //     }
-        //     else if (isMouseInsideBox(mouseX, mouseY, meatBoundingBox)) {
-        //         return "meat";
-        //     }
-        //     else {
-        //         return '';
-        //     }
-        // }
-
-        // function isMouseInsideBox(mouseX: number, mouseY: number, boundingBox: P5BoundingBox): boolean {
-        //     return boundingBox &&
-        //         mouseX > boundingBox.rect[0] &&
-        //         mouseX < boundingBox.rect[2] &&
-        //         mouseY > boundingBox.rect[1] &&
-        //         mouseY < boundingBox.rect[3];
-        // }
 
         function drawBoundingBox(box: P5BoundingBox, color: p5.Color) {
             p.noFill();
@@ -448,10 +397,10 @@ const toggleLoop = () => {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 
 .p5-canvas__food-marker {
