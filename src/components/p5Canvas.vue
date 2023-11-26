@@ -30,7 +30,7 @@
                 <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__food-marker p5-canvas__food-marker--meat" />
             </div>
         </div>
-        <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Stop' : 'Start' }} Loop</button>
+        <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
     </aside>
 </template>
   
@@ -44,16 +44,15 @@ import { useP5CanvasStore } from '../stores/P5CanvasStore';
 const p5CanvasStore = useP5CanvasStore();
 const sketchContainer = ref<HTMLElement | null>(null);
 let p5Canvas: p5 | null = null;
+let capture: any;
 
 onMounted(() => {
     p5Canvas = new p5((p: p5) => {
-        let capture: any;
         let captureConstraints;
         let frameCount: number = 0;
         let lerpAmount: number = 1;
 
         let canvasDomRatio: number = 1;
-        let canvasXY: p5.Vector = p.createVector(0, 0);
 
         //TO DO: these four things are not DRY
         let tomatoClusters = [];
@@ -82,30 +81,24 @@ onMounted(() => {
             p.pixelDensity(1);
             p.createCanvas(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
             p.frameRate(p5CanvasStore.frameRateTarget);
-
+            
             captureConstraints = {
                 video: {
                     facingMode: "environment",
                     frameRate: { ideal: p5CanvasStore.frameRateTarget },
                     aspectRatio: { ideal: 1 },
-                    Size: { ideal: p5CanvasStore.canvasSize },
+                    width: { ideal: p5CanvasStore.canvasSize },
                     height: { ideal: p5CanvasStore.canvasSize }
                 },
                 audio: false
             };
             capture = p.createCapture(captureConstraints, function () { });
             capture.size(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
-            //capture.hide();
 
             canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / p5CanvasStore.canvasSize;
-            canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
-            canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         };
 
         p.draw = () => {
-            //p.background(0);
-            //p.image(capture, 0, 0, p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
-
             if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
                 capture.loadPixels();
                 updateClusters();
@@ -201,8 +194,6 @@ onMounted(() => {
 
         p.windowResized = () => {
             canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / p5CanvasStore.canvasSize;
-            canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
-            canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         }
 
         function drawBoundingBox(box: P5BoundingBox, color: p5.Color) {
@@ -379,17 +370,23 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    if (p5Canvas !== null) {
-        p5Canvas.remove();
-    }
+    stopCapture();
+    p5Canvas.remove();
 });
+
+function stopCapture() {
+    capture.elt.srcObject.getTracks().forEach((track: any) => track.stop());
+}
 
 const toggleLoop = () => {
     if (p5CanvasStore.isLooping) {
         p5Canvas?.noLoop();
+        capture.pause();
         p5CanvasStore.setIsLooping(false);
+        
     } else {
         p5Canvas?.loop();
+        capture.play();
         p5CanvasStore.setIsLooping(true);
     }
 };
@@ -408,6 +405,8 @@ const toggleLoop = () => {
 
 .p5-canvas__sketch-container {
     position: relative;
+    width: 360px;
+    max-width: 100dvw;
     z-index: 0;
 }
 
@@ -417,6 +416,8 @@ const toggleLoop = () => {
     left: 0;
     z-index: 1;
     pointer-events: none;
+    width: 100%;
+    height: auto;
 }
 
 .p5-canvas__center-marker {
@@ -455,11 +456,14 @@ const toggleLoop = () => {
 </style>
 
 <style>
-#defaultCanvas0 {
+#defaultCanvas0, video {
     width: 100% !important;
     height: auto !important;
     max-width: 360px;
     margin: auto;
+}
+
+#defaultCanvas0 {
     display: none;
 }
 </style>
