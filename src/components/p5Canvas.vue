@@ -189,7 +189,7 @@ onMounted(() => {
         }
 
         p.windowResized = () => {
-            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / canvasSize;
+            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / p5CanvasStore.canvasSize;
             canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
             canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         }
