@@ -36,8 +36,6 @@ let p5Canvas: p5 | null = null;
 
 onMounted(() => {
     p5Canvas = new p5((p: p5) => {
-        const canvasSize: number = 720;
-        let cameraCanvasRatio: number = 1;
         let capture: any;
         let captureConstraints;
         let frameCount: number = 0;
@@ -71,7 +69,7 @@ onMounted(() => {
         p.setup = () => {
             p5CanvasStore.setIsLooping(true);
             p.pixelDensity(1);
-            p.createCanvas(canvasSize, canvasSize);
+            p.createCanvas(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
             p.frameRate(p5CanvasStore.frameRateTarget);
 
             captureConstraints = {
@@ -79,24 +77,23 @@ onMounted(() => {
                     facingMode: "environment",
                     frameRate: { ideal: p5CanvasStore.frameRateTarget },
                     aspectRatio: { ideal: 1 },
-                    Size: { ideal: p5CanvasStore.cameraSize },
-                    height: { ideal: p5CanvasStore.cameraSize }
+                    Size: { ideal: p5CanvasStore.canvasSize },
+                    height: { ideal: p5CanvasStore.canvasSize }
                 },
                 audio: false
             };
             capture = p.createCapture(captureConstraints, function () { });
-            capture.size(p5CanvasStore.cameraSize, p5CanvasStore.cameraSize);
+            capture.size(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
             capture.hide();
 
-            cameraCanvasRatio = canvasSize / p5CanvasStore.cameraSize;
-            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / canvasSize;
+            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / p5CanvasStore.canvasSize;
             canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
             canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         };
 
         p.draw = () => {
             p.background(0);
-            p.image(capture, 0, 0, canvasSize, canvasSize);
+            p.image(capture, 0, 0, p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
 
             if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
                 capture.loadPixels();
@@ -128,7 +125,7 @@ onMounted(() => {
                 } else {
                     p5CanvasStore.meatVector = null;
                 }
-                
+
                 frameCount = 0;
             }
             frameCount++;            
@@ -269,8 +266,8 @@ onMounted(() => {
             let centerY = minY + (maxY - minY) / 2;
 
             return {
-                rect: [minX * cameraCanvasRatio, minY * cameraCanvasRatio, maxX * cameraCanvasRatio, maxY * cameraCanvasRatio],
-                center: p.createVector(centerX * cameraCanvasRatio, centerY * cameraCanvasRatio)
+                rect: [minX, minY, maxX, maxY],
+                center: p.createVector(centerX, centerY)
             };
         }
 

@@ -4,15 +4,15 @@
         <h1>Settings</h1>
         <div class="settings-view__group">
           <p class="settings-view__title">Camera resolution</p>
-          <p>cameraSize</p>
+          <p>canvasSize</p>
           <p class="settings-view__help-text">
-            <span>{{ p5CanvasStore.cameraSize }}px</span>
-            <span v-once @click="p5CanvasStore.setCameraSize(p5CanvasStore.cameraSizeDefault)">Default: {{ p5CanvasStore.cameraSizeDefault }}</span>
+            <span>{{ p5CanvasStore.canvasSize }}px</span>
+            <span v-once @click="p5CanvasStore.setCanvasSize(p5CanvasStore.canvasSizeDefault)">Default: {{ p5CanvasStore.canvasSizeDefault }}</span>
           </p>
-          <input class="settings-view__slider" type="range" min="360" max="720" step="360" v-model.number="p5CanvasStore.cameraSize" />
+          <input class="settings-view__slider" type="range" min="360" max="720" step="360" v-model.number="p5CanvasStore.canvasSize" />
           <p class="settings-view__help-text">
             <span>360</span>
-            <span>{{formattedNumber(Math.pow(p5CanvasStore.cameraSize, 2))}}px per frame</span>
+            <span>{{formattedNumber(Math.pow(p5CanvasStore.canvasSize, 2))}}px per frame</span>
             <span>720</span>
           </p>
         </div>
@@ -27,7 +27,7 @@
           <input class="settings-view__slider" type="range" min="0.05" max="1" step="0.05" v-model.number="pixelScanRatio" />
           <p class="settings-view__help-text">
             <span>20</span>
-            <span>{{formattedNumber(Math.pow(p5CanvasStore.cameraSize, 2) / Math.pow(p5CanvasStore.pixelScanRatio, 2))}}px scanned per frame</span>
+            <span>{{formattedNumber(Math.pow(p5CanvasStore.canvasSize, 2) / Math.pow(p5CanvasStore.pixelScanRatio, 2))}}px scanned per frame</span>
             <span>All pixels: 1</span>
           </p>
         </div>

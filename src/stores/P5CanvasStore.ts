@@ -4,7 +4,7 @@ import p5 from 'p5';
 const throttleClusterSearchDefault: number = 4;
 const frameRateTargetDefault: number = 60;
 const pixelScanRatioDefault: number = 8;
-const cameraSizeDefault: number = 360;
+const canvasSizeDefault: number = 360;
 const showCanvasBoudingBoxesDefault: boolean = false;
 
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
@@ -16,8 +16,8 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     frameRateTarget: frameRateTargetDefault as number,
     pixelScanRatioDefault: pixelScanRatioDefault as number,
     pixelScanRatio: pixelScanRatioDefault as number,
-    cameraSizeDefault: cameraSizeDefault as number,
-    cameraSize: cameraSizeDefault as number,
+    canvasSizeDefault: canvasSizeDefault as number,
+    canvasSize: canvasSizeDefault as number,
     tomatoVector: null as p5.Vector | null,
     lettuceVector: null as p5.Vector | null,
     breadVector: null as p5.Vector | null,
@@ -33,7 +33,7 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
       this.setThrottleClusterSearch(throttleClusterSearchDefault);
       this.setFrameRateTarget(frameRateTargetDefault);
       this.setPixelScanRatio(pixelScanRatioDefault);
-      this.setCameraSize(cameraSizeDefault);
+      this.setCanvasSize(canvasSizeDefault);
       this.setShowCanvasBoudingBoxes(showCanvasBoudingBoxesDefault);
     },
     setIsLooping(isLooping: boolean) {
@@ -48,8 +48,8 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     setPixelScanRatio(pixelScanRatio: number) {
       this.pixelScanRatio = pixelScanRatio;
     },
-    setCameraSize(cameraSize: number) {
-      this.cameraSize = cameraSize;
+    setCanvasSize(canvasSize: number) {
+      this.canvasSize = canvasSize;
     },
     setShowCanvasBoudingBoxes(showCanvasBoudingBoxes: boolean) {
       this.showCanvasBoudingBoxes = showCanvasBoudingBoxes;
