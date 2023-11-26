@@ -408,6 +408,7 @@ const toggleLoop = () => {
 
 .p5-canvas__sketch-container {
     position: relative;
+    z-index: 0;
 }
 
 .p5-canvas__line {
@@ -415,6 +416,7 @@ const toggleLoop = () => {
     top: 0;
     left: 0;
     z-index: 1;
+    pointer-events: none;
 }
 
 .p5-canvas__center-marker {
@@ -424,7 +426,7 @@ const toggleLoop = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    z-index: 2;
 }
 
 .p5-canvas__food-marker {
