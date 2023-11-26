@@ -30,8 +30,8 @@ onMounted(() => {
         let frameCount: number = 0;
         let lerpAmount: number = 1;
 
-        let canvasXY: p5.Vector = p.createVector(0, 0);
         let canvasDomRatio: number = 1;
+        let canvasXY: p5.Vector = p.createVector(0, 0);
 
         //TO DO: these four things are not DRY
         let tomatoClusters = [];
@@ -57,7 +57,6 @@ onMounted(() => {
 
         p.setup = () => {
             p5CanvasStore.setIsLooping(true);
-            cameraCanvasRatio = canvasSize / p5CanvasStore.cameraSize;
             p.pixelDensity(1);
             p.createCanvas(canvasSize, canvasSize);
             p.frameRate(p5CanvasStore.frameRateTarget);
@@ -75,15 +74,16 @@ onMounted(() => {
             capture = p.createCapture(captureConstraints, function () { });
             capture.size(p5CanvasStore.cameraSize, p5CanvasStore.cameraSize);
             capture.hide();
+
+            cameraCanvasRatio = canvasSize / p5CanvasStore.cameraSize;
+            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / canvasSize;
+            canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
+            canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         };
 
         p.draw = () => {
             p.background(0);
             p.image(capture, 0, 0, canvasSize, canvasSize);
-
-            canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
-            canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
-            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / canvasSize;
 
             if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
                 capture.loadPixels();
@@ -158,6 +158,12 @@ onMounted(() => {
 
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 255, 255)) : null;
             }
+        }
+
+        p.windowResized = () => {
+            canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / canvasSize;
+            canvasXY.x = sketchContainer.value.getBoundingClientRect().left;
+            canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         }
 
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
