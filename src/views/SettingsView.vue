@@ -24,9 +24,9 @@
             <span>Every <template v-if="pixelScanRatio < 1">{{ pixelScanRatioDisplay }}</template> row and column</span>
             <span v-once @click="p5CanvasStore.setPixelScanRatio(p5CanvasStore.pixelScanRatioDefault)">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>
           </p>
-          <input class="settings-view__slider" type="range" min="0.05" max="1" step="0.05" v-model.number="pixelScanRatio" />
+          <input class="settings-view__slider" type="range" min="0.1" max="1" step="0.05" v-model.number="pixelScanRatio" />
           <p class="settings-view__help-text">
-            <span>20</span>
+            <span>19</span>
             <span>{{formattedNumber(Math.pow(p5CanvasStore.canvasSize, 2) / Math.pow(p5CanvasStore.pixelScanRatio, 2))}}px scanned per frame</span>
             <span>All pixels: 1</span>
           </p>
@@ -69,8 +69,10 @@
             <span v-once @click="p5CanvasStore.setShowCanvasBoudingBoxes(p5CanvasStore.showCanvasBoudingBoxesDefault)">Default: {{ p5CanvasStore.showCanvasBoudingBoxesDefault.toString() }}</span>
           </p>
           <input type="checkbox" v-model.number="p5CanvasStore.showCanvasBoudingBoxes" />
-          <p class="settings-view__help-text">            
-            <span>These are drwan in p5 not HTML</span>
+          <p class="settings-view__help-text">       
+            <span>Off</span>     
+            <span>On draws boxes on the p5 canvas</span>
+            <span>On</span>
           </p>
         </div>
 

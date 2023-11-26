@@ -4,19 +4,19 @@
         <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Stop' : 'Start' }} Loop</button>
 
         <div class="p5-canvas__center-marker" v-show="p5CanvasStore.tomatoVector" :style="{ transform: `translate(${p5CanvasStore.tomatoVector?.x}px, ${p5CanvasStore.tomatoVector?.y}px)` }">
-            <div class="p5-canvas__food-marker p5-canvas__food-marker--tomato"></div>
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__food-marker p5-canvas__food-marker--tomato" />
         </div>
 
         <div class="p5-canvas__center-marker" v-show="p5CanvasStore.lettuceVector" :style="{ transform: `translate(${p5CanvasStore.lettuceVector?.x}px, ${p5CanvasStore.lettuceVector?.y}px)` }">
-            <div class="p5-canvas__food-marker p5-canvas__food-marker--lettuce"></div>
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__food-marker p5-canvas__food-marker--lettuce" />
         </div>
 
         <div class="p5-canvas__center-marker" v-show="p5CanvasStore.breadVector" :style="{ transform: `translate(${p5CanvasStore.breadVector?.x}px, ${p5CanvasStore.breadVector?.y}px)` }">
-            <div class="p5-canvas__food-marker p5-canvas__food-marker--bread"></div>
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__food-marker p5-canvas__food-marker--bread" />
         </div>
 
         <div class="p5-canvas__center-marker" v-show="p5CanvasStore.meatVector" :style="{ transform: `translate(${p5CanvasStore.meatVector?.x}px, ${p5CanvasStore.meatVector?.y}px)` }">
-            <div class="p5-canvas__food-marker p5-canvas__food-marker--meat"></div>
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__food-marker p5-canvas__food-marker--meat" />
         </div>
     </aside>
 </template>
@@ -194,54 +194,54 @@ onMounted(() => {
             canvasXY.y = sketchContainer.value.getBoundingClientRect().top;
         }
 
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-        if (isSafari) {
-            p.touchEnded = (event: TouchEvent) => {
-                navigate(event);
-            }
-        } else {
-            p.mouseClicked = (event: MouseEvent) => {
-                navigate(event);
-            }
-        }
+        // if (isSafari) {
+        //     p.touchEnded = (event: TouchEvent) => {
+        //         navigate(event);
+        //     }
+        // } else {
+        //     p.mouseClicked = (event: MouseEvent) => {
+        //         navigate(event);
+        //     }
+        // }
 
-        function navigate(event: MouseEvent | TouchEvent) {
-            if (event.target === p.canvas) {
-                let clickedBox: string | null = getClickedBox(p.mouseX, p.mouseY, tomatoBoundingBox, lettuceBoundingBox, breadBoundingBox, meatBoundingBox);
-                if (clickedBox) {
-                    router.push({ name: 'IngredientDetails', params: { id: clickedBox } });
-                } else {
-                    router.push({ name: 'p5Canvas' });
-                }
-            }
-        }
+        // function navigate(event: MouseEvent | TouchEvent) {
+        //     if (event.target === p.canvas) {
+        //         let clickedBox: string | null = getClickedBox(p.mouseX, p.mouseY, tomatoBoundingBox, lettuceBoundingBox, breadBoundingBox, meatBoundingBox);
+        //         if (clickedBox) {
+        //             router.push({ name: 'IngredientDetails', params: { id: clickedBox } });
+        //         } else {
+        //             router.push({ name: 'p5Canvas' });
+        //         }
+        //     }
+        // }
 
-        function getClickedBox(mouseX: number, mouseY: number, tomatoBoundingBox: P5BoundingBox, lettuceBoundingBox: P5BoundingBox, breadBoundingBox: P5BoundingBox, meatBoundingBox: P5BoundingBox): string {
-            if (isMouseInsideBox(mouseX, mouseY, tomatoBoundingBox)) {
-                return "tomato";
-            }
-            else if (isMouseInsideBox(mouseX, mouseY, lettuceBoundingBox)) {
-                return "lettuce";
-            }
-            else if (isMouseInsideBox(mouseX, mouseY, breadBoundingBox)) {
-                return "bread";
-            }
-            else if (isMouseInsideBox(mouseX, mouseY, meatBoundingBox)) {
-                return "meat";
-            }
-            else {
-                return '';
-            }
-        }
+        // function getClickedBox(mouseX: number, mouseY: number, tomatoBoundingBox: P5BoundingBox, lettuceBoundingBox: P5BoundingBox, breadBoundingBox: P5BoundingBox, meatBoundingBox: P5BoundingBox): string {
+        //     if (isMouseInsideBox(mouseX, mouseY, tomatoBoundingBox)) {
+        //         return "tomato";
+        //     }
+        //     else if (isMouseInsideBox(mouseX, mouseY, lettuceBoundingBox)) {
+        //         return "lettuce";
+        //     }
+        //     else if (isMouseInsideBox(mouseX, mouseY, breadBoundingBox)) {
+        //         return "bread";
+        //     }
+        //     else if (isMouseInsideBox(mouseX, mouseY, meatBoundingBox)) {
+        //         return "meat";
+        //     }
+        //     else {
+        //         return '';
+        //     }
+        // }
 
-        function isMouseInsideBox(mouseX: number, mouseY: number, boundingBox: P5BoundingBox): boolean {
-            return boundingBox &&
-                mouseX > boundingBox.rect[0] &&
-                mouseX < boundingBox.rect[2] &&
-                mouseY > boundingBox.rect[1] &&
-                mouseY < boundingBox.rect[3];
-        }
+        // function isMouseInsideBox(mouseX: number, mouseY: number, boundingBox: P5BoundingBox): boolean {
+        //     return boundingBox &&
+        //         mouseX > boundingBox.rect[0] &&
+        //         mouseX < boundingBox.rect[2] &&
+        //         mouseY > boundingBox.rect[1] &&
+        //         mouseY < boundingBox.rect[3];
+        // }
 
         function drawBoundingBox(box: P5BoundingBox, color: p5.Color) {
             p.noFill();
