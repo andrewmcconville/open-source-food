@@ -1,6 +1,6 @@
 import type { TrackingEvent } from "./TrackingEvent";
 
 export interface Ingredient {
-  name: string;
+  name: string | null;
   events: Array<TrackingEvent>;
 }

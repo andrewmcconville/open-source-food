@@ -1,5 +1,5 @@
 export interface TrackingEvent {
-  CTE: string;
+  CTE: string | null;
   organization: string;
   date: string;
   location: {

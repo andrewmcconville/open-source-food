@@ -10,20 +10,24 @@ export const useAppStore = defineStore('AppStore', {
     Ingredients: IngredientJSON as Ingredient[],
   }),
   getters: {
-    getActiveIngredient(): Ingredient {
+    getActiveIngredient(): Ingredient | undefined {
       const indredient: Ingredient | undefined = this.Ingredients.find(ingredient => ingredient.name === this.activeIngredientId);
       
       if (indredient) {
         return indredient;
       } else {
-        return {
-          name: 'none',
-          events: [],
-        };
+        return
       }
     },
-    getActiveIngredientTrackingEvent(): TrackingEvent {
-      return this.getActiveIngredient.events[this.activeIngredientEventIndex];
+    getActiveIngredientTrackingEvent(): TrackingEvent | undefined {
+      const indredient: Ingredient | undefined = this.getActiveIngredient;
+      const events: TrackingEvent[] | undefined = indredient ? indredient.events : undefined;
+      
+      if (events) {
+        return events[this.activeIngredientEventIndex];
+      } else {
+        return
+      }
     },
   },
   actions: {

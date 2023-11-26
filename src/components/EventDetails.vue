@@ -9,22 +9,27 @@
             <h1 class="view-header__heading">Tracking Event</h1>
         </header>
         <div class="event-details__scroller">
-            <template v-if="trackingEvent.TLC">
-                <template v-if="trackingEvent.TLCBefore">
-                    <p>From lot: {{ trackingEvent.TLCBefore }}</p>
-                    <p>To lot: {{ trackingEvent.TLC }}</p>
+            <template v-if="trackingEvent">
+                <template v-if="trackingEvent.TLC">
+                    <template v-if="trackingEvent.TLCBefore">
+                        <p>From lot: {{ trackingEvent.TLCBefore }}</p>
+                        <p>To lot: {{ trackingEvent.TLC }}</p>
+                    </template>
+                    <template v-else>
+                        <p>Lot: {{ trackingEvent.TLC }}</p>
+                    </template>
                 </template>
-                <template v-else>
-                    <p>Lot: {{ trackingEvent.TLC }}</p>
-                </template>
+                <p>About: {{ friendlyDate(trackingEvent.date) }}</p>
+                <p>On: {{ formattedDate(trackingEvent.date) }}</p>
+                <p>By: {{ trackingEvent.organization }}</p>
+                <p>At:
+                    <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
+                    <template v-else>Building {{ trackingEvent.location.building }}</template>
+                </p>
             </template>
-            <p>About: {{ friendlyDate(trackingEvent.date) }}</p>
-            <p>On: {{ formattedDate(trackingEvent.date) }}</p>
-            <p>By: {{ trackingEvent.organization }}</p>
-            <p>At:
-                <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
-                <template v-else>Building {{ trackingEvent.location.building }}</template>
-            </p>
+            <template v-else>
+                <p>Unknown tracking event</p>
+            </template>
         </div>
     </aside>
 </template>
@@ -40,7 +45,7 @@ const route = useRoute();
 const store = useAppStore();
 const { formattedDate } = useFormattedDate();
 const { friendlyDate } = useFriendlyDate();
-let trackingEvent: TrackingEvent = store.getActiveIngredientTrackingEvent;
+let trackingEvent: TrackingEvent | undefined = store.getActiveIngredientTrackingEvent;
 
 watch(() => route.params.event, () => {
     trackingEvent = store.getActiveIngredientTrackingEvent;

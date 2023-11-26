@@ -9,34 +9,39 @@
             <h1 class="view-header__heading">Timeline</h1>
         </header>
         <div class="ingredient-details__scroller">
-            <h1 class="ingredient-details__heading">{{ store.getActiveIngredient.name }}</h1>
-            <div class="ingredient-details__labels">
-                <p class="ingredient-details__day-label">Day</p>
-                <p class="ingredient-details__event-label">Event</p>
-            </div>
-            <ul class="ingredient-details__list">
-                <li v-for="(event, index) in store.getActiveIngredient.events" :key="index">
-                    <RouterLink :to="{ name: 'EventDetails', params: { event: index }}" class="ingredient-details__event">
-                        <div class="ingredient-details__day">
-                            <p class="ingredient-details__day-count">{{ dayCount(store.getActiveIngredient.events[0].date, event.date) }}</p>
-                        </div>
-                        <div class="ingredient-details__data">
-                            <p class="ingredient-details__CTE">{{ event.CTE }}</p>
-                            <p class="ingredient-details__quantity">
-                                <template v-if="event.quantityBefore">
-                                    <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
-                                    <span class="ingredient-details__to">to</span>
-                                </template>
-                                <span>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></span>
-                            </p>
-                            <p class="ingredient-details__location">
-                                {{ event.location.city }},
-                                {{ event.location.state }}
-                            </p>
-                        </div>
-                    </RouterLink>
-                </li>
-            </ul>
+            <template v-if="store.getActiveIngredient">
+                <h1 class="ingredient-details__heading">{{ store.getActiveIngredient.name }}</h1>
+                <div class="ingredient-details__labels">
+                    <p class="ingredient-details__day-label">Day</p>
+                    <p class="ingredient-details__event-label">Event</p>
+                </div>
+                <ul class="ingredient-details__list">
+                    <li v-for="(event, index) in store.getActiveIngredient.events" :key="index">
+                        <RouterLink :to="{ name: 'EventDetails', params: { event: index }}" class="ingredient-details__event">
+                            <div class="ingredient-details__day">
+                                <p class="ingredient-details__day-count">{{ dayCount(store.getActiveIngredient.events[0].date, event.date) }}</p>
+                            </div>
+                            <div class="ingredient-details__data">
+                                <p class="ingredient-details__CTE">{{ event.CTE }}</p>
+                                <p class="ingredient-details__quantity">
+                                    <template v-if="event.quantityBefore">
+                                        <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
+                                        <span class="ingredient-details__to">to</span>
+                                    </template>
+                                    <span>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></span>
+                                </p>
+                                <p class="ingredient-details__location">
+                                    {{ event.location.city }},
+                                    {{ event.location.state }}
+                                </p>
+                            </div>
+                        </RouterLink>
+                    </li>
+                </ul>
+            </template>
+            <template v-else>
+                <p>Unknown ingredient</p>
+            </template>
         </div>
     </aside>
 </template>
