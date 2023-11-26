@@ -2,8 +2,21 @@
     <aside class="p5-canvas">
         <div ref="sketchContainer"></div>
         <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Stop' : 'Start' }} Loop</button>
-        <div class="canvas-top-left" :style="{ transform: `translate(${p5CanvasStore.tomatoVector.x}px, ${p5CanvasStore.tomatoVector.y}px)` }">
-            <div class="canvas-top-left__thing"></div>
+
+        <div class="p5-canvas__center-marker" v-show="p5CanvasStore.tomatoVector" :style="{ transform: `translate(${p5CanvasStore.tomatoVector?.x}px, ${p5CanvasStore.tomatoVector?.y}px)` }">
+            <div class="p5-canvas__food-marker p5-canvas__food-marker--tomato"></div>
+        </div>
+
+        <div class="p5-canvas__center-marker" v-show="p5CanvasStore.lettuceVector" :style="{ transform: `translate(${p5CanvasStore.lettuceVector?.x}px, ${p5CanvasStore.lettuceVector?.y}px)` }">
+            <div class="p5-canvas__food-marker p5-canvas__food-marker--lettuce"></div>
+        </div>
+
+        <div class="p5-canvas__center-marker" v-show="p5CanvasStore.breadVector" :style="{ transform: `translate(${p5CanvasStore.breadVector?.x}px, ${p5CanvasStore.breadVector?.y}px)` }">
+            <div class="p5-canvas__food-marker p5-canvas__food-marker--bread"></div>
+        </div>
+
+        <div class="p5-canvas__center-marker" v-show="p5CanvasStore.meatVector" :style="{ transform: `translate(${p5CanvasStore.meatVector?.x}px, ${p5CanvasStore.meatVector?.y}px)` }">
+            <div class="p5-canvas__food-marker p5-canvas__food-marker--meat"></div>
         </div>
     </aside>
 </template>
@@ -91,19 +104,31 @@ onMounted(() => {
                 if (largestTomatoCluster) {
                     oldTomatoBoundingBox = tomatoBoundingBox;
                     tomatoBoundingBox = getBoundingBox(largestTomatoCluster);
+                } else {
+                    p5CanvasStore.tomatoVector = null;
                 }
+
                 if (largestLettuceCluster) {
                     oldLettuceBoundingBox = lettuceBoundingBox;
                     lettuceBoundingBox = getBoundingBox(largestLettuceCluster);
+                } else {
+                    p5CanvasStore.lettuceVector = null;
                 }
+
                 if (largeestBreadCluster) {
                     oldBreadBoundingBox = breadBoundingBox;
                     breadBoundingBox = getBoundingBox(largeestBreadCluster);
+                } else {
+                    p5CanvasStore.breadVector = null;
                 }
+
                 if (largeestMeatCluster) {
                     oldMeatBoundingBox = meatBoundingBox;
                     meatBoundingBox = getBoundingBox(largeestMeatCluster);
+                } else {
+                    p5CanvasStore.meatVector = null;
                 }
+                
                 frameCount = 0;
             }
             frameCount++;            
@@ -123,7 +148,7 @@ onMounted(() => {
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(0, 255, 0)) : null;
             };
 
-            if (false && largestLettuceCluster && oldLettuceBoundingBox) {
+            if (largestLettuceCluster && oldLettuceBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
                 lerpBox.rect[0] = p.lerp(oldLettuceBoundingBox.rect[0], lettuceBoundingBox.rect[0], lerpAmount);
@@ -132,10 +157,12 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldLettuceBoundingBox.rect[3], lettuceBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldLettuceBoundingBox.center, lettuceBoundingBox.center, lerpAmount);
 
+                p5CanvasStore.lettuceVector = p5.Vector.add(new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio), canvasXY);
+
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 0, 0)) : null;
             }
 
-            if (false && largeestBreadCluster && oldBreadBoundingBox) {
+            if (largeestBreadCluster && oldBreadBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
                 lerpBox.rect[0] = p.lerp(oldBreadBoundingBox.rect[0], breadBoundingBox.rect[0], lerpAmount);
@@ -144,10 +171,12 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldBreadBoundingBox.rect[3], breadBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldBreadBoundingBox.center, breadBoundingBox.center, lerpAmount);
 
+                p5CanvasStore.breadVector = p5.Vector.add(new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio), canvasXY);
+
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(0, 0, 255)) : null;
             }
 
-            if (false && largeestMeatCluster && oldMeatBoundingBox) {
+            if (largeestMeatCluster && oldMeatBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
                 lerpBox.rect[0] = p.lerp(oldMeatBoundingBox.rect[0], meatBoundingBox.rect[0], lerpAmount);
@@ -155,6 +184,8 @@ onMounted(() => {
                 lerpBox.rect[2] = p.lerp(oldMeatBoundingBox.rect[2], meatBoundingBox.rect[2], lerpAmount);
                 lerpBox.rect[3] = p.lerp(oldMeatBoundingBox.rect[3], meatBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldMeatBoundingBox.center, meatBoundingBox.center, lerpAmount);
+
+                p5CanvasStore.meatVector = p5.Vector.add(new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio), canvasXY);
 
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 255, 255)) : null;
             }
@@ -405,7 +436,7 @@ const toggleLoop = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .p5-canvas {
     background: var(--view-background);
     display: flex;
@@ -416,7 +447,7 @@ const toggleLoop = () => {
     min-height: 0;
 }
 
-.canvas-top-left {
+.p5-canvas__center-marker {
     position: fixed;
     top: 0;
     left: 0;
@@ -426,12 +457,28 @@ const toggleLoop = () => {
     justify-content: center;
 }
 
-.canvas-top-left__thing {
+.p5-canvas__food-marker {
     width: 20px;
     height: 20px;
     position: absolute;
-    border: 4px solid red;
+    border: 4px solid #000;
     border-radius: 100%;
+
+    &--tomato {
+        border-color: red;
+    }
+
+    &--lettuce {
+        border-color: green;
+    }
+
+    &--bread {
+        border-color: yellow;
+    }
+
+    &--meat {
+        border-color: brown;
+    }
 }
 </style>
 
