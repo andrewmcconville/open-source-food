@@ -86,7 +86,8 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   justify-content: center;
   color: var(--teal);
 
-  &:hover {
+  &:hover,
+  &.router-link-active {
     background-color: #fff;
   }
 }
@@ -94,7 +95,6 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
 .nav__anchor-icon {
   margin-bottom: 4px;
   fill: var(--teal);
-  //filter: invert(65%) sepia(26%) saturate(1133%) hue-rotate(131deg) brightness(84%) contrast(84%);
 }
 </style>
 
