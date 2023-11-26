@@ -1,5 +1,15 @@
 {
     "name": "Open Source Food",
     "short_name": "OSFood",
-    "theme_color": "#fffce5"
-  }
+    "dir": "ltr",
+    "lang": "en-US",
+    "default_locale": "en",
+    "description": "An interface to track food ingretients from farm to fork.",
+    "author": "Andrew McConville",
+
+    "start_url": "/",
+    "theme_color": "#0f9099",
+    "background_color": "#fefff8",
+    "display": "standalone",
+    "orientation": "portrait-primary"
+}
