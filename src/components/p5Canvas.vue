@@ -79,7 +79,6 @@ onMounted(() => {
         p.setup = () => {
             p5CanvasStore.setIsLooping(true);
             p.pixelDensity(1);
-            console.log(p5CanvasStore.pixelScanRatio);
             p.createCanvas(p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio);
             p.frameRate(p5CanvasStore.frameRateTarget);
             
@@ -105,8 +104,9 @@ onMounted(() => {
             p.image(capture, 0, 0, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio);
             
             if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
-                capture.loadPixels();
+                p.loadPixels();
                 updateClusters();
+
                 if (largestTomatoCluster) {
                     oldTomatoBoundingBox = tomatoBoundingBox;
                     tomatoBoundingBox = getBoundingBox(largestTomatoCluster);
@@ -149,7 +149,7 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldTomatoBoundingBox.rect[3], tomatoBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldTomatoBoundingBox.center, tomatoBoundingBox.center, lerpAmount);
 
-                p5CanvasStore.tomatoVector = new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio);
+                p5CanvasStore.tomatoVector = new p5.Vector(lerpBox.center.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpBox.center.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
 
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(0, 255, 0)) : null;
             };
@@ -163,7 +163,7 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldLettuceBoundingBox.rect[3], lettuceBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldLettuceBoundingBox.center, lettuceBoundingBox.center, lerpAmount);
 
-                p5CanvasStore.lettuceVector = new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio);
+                p5CanvasStore.lettuceVector = new p5.Vector(lerpBox.center.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpBox.center.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
 
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 0, 0)) : null;
             }
@@ -177,7 +177,7 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldBreadBoundingBox.rect[3], breadBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldBreadBoundingBox.center, breadBoundingBox.center, lerpAmount);
 
-                p5CanvasStore.breadVector = new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio);
+                p5CanvasStore.breadVector = new p5.Vector(lerpBox.center.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpBox.center.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
 
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(0, 0, 255)) : null;
             }
@@ -191,7 +191,7 @@ onMounted(() => {
                 lerpBox.rect[3] = p.lerp(oldMeatBoundingBox.rect[3], meatBoundingBox.rect[3], lerpAmount);
                 lerpBox.center = p5.Vector.lerp(oldMeatBoundingBox.center, meatBoundingBox.center, lerpAmount);
 
-                p5CanvasStore.meatVector = new p5.Vector(lerpBox.center.x * canvasDomRatio, lerpBox.center.y * canvasDomRatio);
+                p5CanvasStore.meatVector = new p5.Vector(lerpBox.center.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpBox.center.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
 
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 255, 255)) : null;
             }
@@ -206,10 +206,10 @@ onMounted(() => {
             p.stroke(color);
             p.strokeWeight(1);
             p.rectMode(p.CORNERS);
-            p.rect(box.rect[0] / p5CanvasStore.pixelScanRatio, box.rect[1] / p5CanvasStore.pixelScanRatio, box.rect[2] / p5CanvasStore.pixelScanRatio, box.rect[3] / p5CanvasStore.pixelScanRatio);
+            p.rect(box.rect[0], box.rect[1], box.rect[2], box.rect[3]);
             p.fill(color);
             p.noStroke();
-            p.ellipse(box.center.x / p5CanvasStore.pixelScanRatio, box.center.y / p5CanvasStore.pixelScanRatio, 4, 4);
+            p.ellipse(box.center.x, box.center.y, 4, 4);
         }
 
         function getBoundingBox(cluster): P5BoundingBox {
@@ -286,16 +286,16 @@ onMounted(() => {
         }
 
         function updateClusters() {
-            tomatoClusters = findClusters(capture.pixels, capture.width, capture.height, isTomato);
+            tomatoClusters = findClusters(p.pixels, p.width, p.height, isTomato);
             largestTomatoCluster = findLargestCluster(tomatoClusters);
 
-            lettuceClusters = findClusters(capture.pixels, capture.width, capture.height, isLettuce);
+            lettuceClusters = findClusters(p.pixels, p.width, p.height, isLettuce);
             largestLettuceCluster = findLargestCluster(lettuceClusters);
 
-            breadClusters = findClusters(capture.pixels, capture.width, capture.height, isBread);
+            breadClusters = findClusters(p.pixels, p.width, p.height, isBread);
             largeestBreadCluster = findLargestCluster(breadClusters);
 
-            meatClusters = findClusters(capture.pixels, capture.width, capture.height, isMeat);
+            meatClusters = findClusters(p.pixels, p.width, p.height, isMeat);
             largeestMeatCluster = findLargestCluster(meatClusters);
         }
 
@@ -303,11 +303,11 @@ onMounted(() => {
             let clusters = [];
             let visited = new Set();
 
-            for (let y = 0; y < height; y += p5CanvasStore.pixelScanRatio) {
-                for (let x = 0; x < width; x += p5CanvasStore.pixelScanRatio) {
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
                     let index = (x + y * width) * 4;
                     if (isColor(pixels, index) && !visited.has(index)) {
-                        let cluster = getCluster(pixels, x, y, width, visited, isColor);
+                        let cluster = findCluster(pixels, x, y, width, visited, isColor);
                         if (cluster.length > 0) {
                             clusters.push(cluster);
                         }
@@ -318,7 +318,7 @@ onMounted(() => {
             return clusters;
         }
 
-        function getCluster(pixels, startX, startY, width, visited, isColor): Array<[number, number]> {
+        function findCluster(pixels, startX, startY, width, visited, isColor): Array<[number, number]> {
             let cluster: Array<[number, number]> = [];
             let stack = [[startX, startY]];
 
@@ -335,8 +335,7 @@ onMounted(() => {
                     }
                 }
             }
-
-            return cluster;
+            return cluster//.length > p5CanvasStore.minClusterSize ? cluster : [];
         }
 
         function findLargestCluster(clusters) {

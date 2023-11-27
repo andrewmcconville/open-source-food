@@ -6,6 +6,7 @@ const frameRateTargetDefault: number = 60;
 const pixelScanRatioDefault: number = 12;
 const canvasSizeDefault: number = 240;
 const showCanvasBoudingBoxesDefault: boolean = false;
+const minClusterSizeDefault: number = 1;
 
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
@@ -24,6 +25,8 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     meatVector: null as p5.Vector | null,
     showCanvasBoudingBoxesDefault: showCanvasBoudingBoxesDefault as boolean,
     showCanvasBoudingBoxes: showCanvasBoudingBoxesDefault as boolean,
+    minClusterSizeDefault: minClusterSizeDefault as number,
+    minClusterSize: minClusterSizeDefault as number,
   }),
   getters: {
     
@@ -35,6 +38,7 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
       this.setPixelScanRatio(pixelScanRatioDefault);
       this.setCanvasSize(canvasSizeDefault);
       this.setShowCanvasBoudingBoxes(showCanvasBoudingBoxesDefault);
+      this.setMinClusterSize(minClusterSizeDefault);
     },
     setIsLooping(isLooping: boolean) {
       this.isLooping = isLooping;
@@ -53,6 +57,9 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     },
     setShowCanvasBoudingBoxes(showCanvasBoudingBoxes: boolean) {
       this.showCanvasBoudingBoxes = showCanvasBoudingBoxes;
-    }
+    },
+    setMinClusterSize(minClusterSize: number) {
+      this.minClusterSize = minClusterSize;
+    },
   },
 });
