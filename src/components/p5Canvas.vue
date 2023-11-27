@@ -466,6 +466,10 @@ const toggleLoop = () => {
     margin: auto;
 }
 
+#defaultCanvas0 {
+    image-rendering: pixelated;
+}
+
 .p5-canvas__sketch-container--hide-canvas #defaultCanvas0 {
     display: none;
 }
