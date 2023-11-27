@@ -6,9 +6,7 @@
   </header>
   <main class="main">
     <RouterView name="default" v-slot="{ Component }">
-      <KeepAlive>
         <Component :is="Component" />
-      </KeepAlive>
     </RouterView>
   </main>
   <footer class="footer">
