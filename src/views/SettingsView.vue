@@ -9,11 +9,11 @@
             <span>{{ p5CanvasStore.canvasSize }}px</span>
             <span v-once @click="p5CanvasStore.setCanvasSize(p5CanvasStore.canvasSizeDefault)">Default: {{ p5CanvasStore.canvasSizeDefault }}</span>
           </p>
-          <input class="settings-view__slider" type="range" min="240" max="720" step="240" v-model.number="p5CanvasStore.canvasSize" />
+          <input class="settings-view__slider" type="range" min="240" max="480" step="120" v-model.number="p5CanvasStore.canvasSize" />
           <p class="settings-view__help-text">
             <span>240</span>
             <span>{{formattedNumber(Math.pow(p5CanvasStore.canvasSize, 2))}}px per frame</span>
-            <span>720</span>
+            <span>480</span>
           </p>
         </div>
 
@@ -24,7 +24,7 @@
             <span>Every <template v-if="pixelScanRatio < 1">{{ pixelScanRatioDisplay }}</template> row and column</span>
             <span v-once @click="p5CanvasStore.setPixelScanRatio(p5CanvasStore.pixelScanRatioDefault)">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>
           </p>
-          <input class="settings-view__slider" type="range" min="0.05" max="1" step="0.05" v-model.number="pixelScanRatio" />
+          <input class="settings-view__slider" type="range" min="0.1" max="1" step="0.05" v-model.number="pixelScanRatio" />
           <p class="settings-view__help-text">
             <span>20</span>
             <span>{{formattedNumber(Math.pow(p5CanvasStore.canvasSize, 2) / Math.pow(p5CanvasStore.pixelScanRatio, 2))}}px scanned per frame</span>
@@ -96,7 +96,7 @@ const pixelScanRatio = computed({
   get: (): number => +((1 - ((p5CanvasStore.pixelScanRatio - 1) * (1 - 0.1) / (20 - 1))).toFixed(2)),
   set: (value: number) => p5CanvasStore.setPixelScanRatio(20 - Math.round((value - 0.1) * (20 - 1) / (1 - 0.1))),
 });
-const pixelScanRatioDisplay = computed(() => ordinalNumber(20 - Math.round((pixelScanRatio.value - 0.05) * (20 - 1) / (1 - 0.05))));
+const pixelScanRatioDisplay = computed(() => ordinalNumber(20 - Math.round((pixelScanRatio.value - 0.1) * (20 - 1) / (1 - 0.1))));
 
 const throttleClusterSearch = computed({
   get: (): number => +((1 - ((p5CanvasStore.throttleClusterSearch - 1) * (1 - 0.1) / (10 - 1))).toFixed(2)),

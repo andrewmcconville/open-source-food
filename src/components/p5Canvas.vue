@@ -303,8 +303,8 @@ onMounted(() => {
             let clusters = [];
             let visited = new Set();
 
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
+            for (let y = 0; y < height; y += p5CanvasStore.pixelScanRatio) {
+                for (let x = 0; x < width; x += p5CanvasStore.pixelScanRatio) {
                     let index = (x + y * width) * 4;
                     if (isColor(pixels, index) && !visited.has(index)) {
                         let cluster = getCluster(pixels, x, y, width, visited, isColor);
