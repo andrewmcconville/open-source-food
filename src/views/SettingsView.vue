@@ -62,7 +62,7 @@
         </div>
 
         <div class="settings-view__group">
-          <p class="settings-view__title">Bounding Boxes</p>
+          <p class="settings-view__title">Show p5 canvas</p>
           <p>showCanvasBoudingBoxes</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.showCanvasBoudingBoxes }}</span>
@@ -71,7 +71,7 @@
           <input type="checkbox" v-model.number="p5CanvasStore.showCanvasBoudingBoxes" />
           <p class="settings-view__help-text">       
             <span>Off</span>     
-            <span>On draws boxes on the p5 canvas</span>
+            <span></span>
             <span>On</span>
           </p>
         </div>

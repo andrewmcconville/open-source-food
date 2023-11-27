@@ -209,7 +209,7 @@ onMounted(() => {
             p.rect(box.rect[0] / p5CanvasStore.pixelScanRatio, box.rect[1] / p5CanvasStore.pixelScanRatio, box.rect[2] / p5CanvasStore.pixelScanRatio, box.rect[3] / p5CanvasStore.pixelScanRatio);
             p.fill(color);
             p.noStroke();
-            p.ellipse(box.center.x / p5CanvasStore.pixelScanRatio, box.center.y / p5CanvasStore.pixelScanRatio, 6, 6);
+            p.ellipse(box.center.x / p5CanvasStore.pixelScanRatio, box.center.y / p5CanvasStore.pixelScanRatio, 4, 4);
         }
 
         function getBoundingBox(cluster): P5BoundingBox {
