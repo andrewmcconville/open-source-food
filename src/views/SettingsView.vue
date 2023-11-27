@@ -9,11 +9,11 @@
             <span>{{ p5CanvasStore.canvasSize }}px</span>
             <span v-once @click="p5CanvasStore.setCanvasSize(p5CanvasStore.canvasSizeDefault)">Default: {{ p5CanvasStore.canvasSizeDefault }}</span>
           </p>
-          <input class="settings-view__slider" type="range" min="360" max="720" step="360" v-model.number="p5CanvasStore.canvasSize" />
+          <input class="settings-view__slider" type="range" min="320" max="640" step="320" v-model.number="p5CanvasStore.canvasSize" />
           <p class="settings-view__help-text">
-            <span>360</span>
+            <span>320</span>
             <span>{{formattedNumber(Math.pow(p5CanvasStore.canvasSize, 2))}}px per frame</span>
-            <span>720</span>
+            <span>640</span>
           </p>
         </div>
 
