@@ -79,7 +79,8 @@ onMounted(() => {
         p.setup = () => {
             p5CanvasStore.setIsLooping(true);
             p.pixelDensity(1);
-            p.createCanvas(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
+            console.log(p5CanvasStore.pixelScanRatio);
+            p.createCanvas(p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio);
             p.frameRate(p5CanvasStore.frameRateTarget);
             
             captureConstraints = {
@@ -94,14 +95,14 @@ onMounted(() => {
             };
             capture = p.createCapture(captureConstraints, function () { });
             capture.size(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
-            capture.hide();
+            //capture.hide();
 
             canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / p5CanvasStore.canvasSize;
         };
 
         p.draw = () => {
             p.background(255);
-            p.image(capture, 0, 0, p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
+            p.image(capture, 0, 0, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio);
             
             if (frameCount % p5CanvasStore.throttleClusterSearch === 0) {
                 capture.loadPixels();
@@ -203,12 +204,12 @@ onMounted(() => {
         function drawBoundingBox(box: P5BoundingBox, color: p5.Color) {
             p.noFill();
             p.stroke(color);
-            p.strokeWeight(2);
+            p.strokeWeight(1);
             p.rectMode(p.CORNERS);
-            p.rect(box.rect[0], box.rect[1], box.rect[2], box.rect[3]);
+            p.rect(box.rect[0] / p5CanvasStore.pixelScanRatio, box.rect[1] / p5CanvasStore.pixelScanRatio, box.rect[2] / p5CanvasStore.pixelScanRatio, box.rect[3] / p5CanvasStore.pixelScanRatio);
             p.fill(color);
             p.noStroke();
-            p.ellipse(box.center.x, box.center.y, 6, 6);
+            p.ellipse(box.center.x / p5CanvasStore.pixelScanRatio, box.center.y / p5CanvasStore.pixelScanRatio, 6, 6);
         }
 
         function getBoundingBox(cluster): P5BoundingBox {
@@ -302,8 +303,8 @@ onMounted(() => {
             let clusters = [];
             let visited = new Set();
 
-            for (let y = 0; y < height; y += p5CanvasStore.pixelScanRatio) {
-                for (let x = 0; x < width; x += p5CanvasStore.pixelScanRatio) {
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
                     let index = (x + y * width) * 4;
                     if (isColor(pixels, index) && !visited.has(index)) {
                         let cluster = getCluster(pixels, x, y, width, visited, isColor);
@@ -327,8 +328,7 @@ onMounted(() => {
                     let [x, y] = point;
                     let index = (x + y * width) * 4;
 
-                    if (x >= 0 && y >= 0 && x < width && y < pixels.length / (width * 4) &&
-                        isColor(pixels, index) && !visited.has(index)) {
+                    if (x >= 0 && y >= 0 && x < width && y < pixels.length / (width * 4) && isColor(pixels, index) && !visited.has(index)) {
                         visited.add(index);
                         cluster.push([x, y]);
                         stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
@@ -468,6 +468,6 @@ const toggleLoop = () => {
 }
 
 #defaultCanvas0 {
-    /* display: none; */
+    display: none;
 }
 </style>

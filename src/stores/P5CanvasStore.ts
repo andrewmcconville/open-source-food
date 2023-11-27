@@ -3,7 +3,7 @@ import p5 from 'p5';
 
 const throttleClusterSearchDefault: number = 4;
 const frameRateTargetDefault: number = 60;
-const pixelScanRatioDefault: number = 12;
+const pixelScanRatioDefault: number = 8;
 const canvasSizeDefault: number = 360;
 const showCanvasBoudingBoxesDefault: boolean = false;
 
