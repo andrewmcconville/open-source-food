@@ -335,7 +335,7 @@ onMounted(() => {
                     }
                 }
             }
-            return cluster//.length > p5CanvasStore.minClusterSize ? cluster : [];
+            return cluster.length >= p5CanvasStore.minClusterSize ? cluster : [];
         }
 
         function findLargestCluster(clusters) {

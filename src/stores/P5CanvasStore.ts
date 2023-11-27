@@ -3,10 +3,10 @@ import p5 from 'p5';
 
 const throttleClusterSearchDefault: number = 4;
 const frameRateTargetDefault: number = 60;
-const pixelScanRatioDefault: number = 12;
-const canvasSizeDefault: number = 240;
+const pixelScanRatioDefault: number = 10;
+const canvasSizeDefault: number = 360;
 const showCanvasBoudingBoxesDefault: boolean = false;
-const minClusterSizeDefault: number = 1;
+const minClusterSizeDefault: number = 4;
 
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
