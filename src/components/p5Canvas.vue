@@ -1,6 +1,6 @@
 <template>
     <aside class="p5-canvas">
-        <div ref="sketchContainer" class="p5-canvas__sketch-container">
+        <div ref="sketchContainer" class="p5-canvas__sketch-container" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
 
             <svg height="360" width="360" class="p5-canvas__line" v-show="p5CanvasStore.tomatoVector">
                 <line :x1="p5CanvasStore.tomatoVector?.x" :y1="p5CanvasStore.tomatoVector?.y" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
@@ -95,7 +95,7 @@ onMounted(() => {
             };
             capture = p.createCapture(captureConstraints, function () { });
             capture.size(p5CanvasStore.canvasSize, p5CanvasStore.canvasSize);
-            //capture.hide();
+            p5CanvasStore.showCanvasBoudingBoxes ? capture.hide() : null;
 
             canvasDomRatio = sketchContainer.value.getBoundingClientRect().width / p5CanvasStore.canvasSize;
         };
@@ -467,7 +467,7 @@ const toggleLoop = () => {
     margin: auto;
 }
 
-#defaultCanvas0 {
+.p5-canvas__sketch-container--hide-canvas #defaultCanvas0 {
     display: none;
 }
 </style>
