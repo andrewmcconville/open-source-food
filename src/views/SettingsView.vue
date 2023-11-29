@@ -3,6 +3,21 @@
       <div class="article__inner">
         <h1>Settings</h1>
         <div class="settings-view__group">
+          <p class="settings-view__title">Show p5 canvas</p>
+          <p>showCanvasBoudingBoxes</p>
+          <p class="settings-view__help-text">
+            <span>{{ p5CanvasStore.showCanvasBoudingBoxes }}</span>
+            <span v-once @click="p5CanvasStore.setShowCanvasBoudingBoxes(p5CanvasStore.showCanvasBoudingBoxesDefault)">Default: {{ p5CanvasStore.showCanvasBoudingBoxesDefault.toString() }}</span>
+          </p>
+          <input type="checkbox" v-model.number="p5CanvasStore.showCanvasBoudingBoxes" />
+          <p class="settings-view__help-text">       
+            <span>Off</span>     
+            <span></span>
+            <span>On</span>
+          </p>
+        </div>
+
+        <div class="settings-view__group">
           <p class="settings-view__title">Camera resolution</p>
           <p>canvasSize</p>
           <p class="settings-view__help-text">
@@ -58,21 +73,6 @@
             <span>10</span>
             <span>{{formattedNumber(p5CanvasStore.frameRateTarget / p5CanvasStore.throttleClusterSearch)}} scans per second</span>
             <span>All frames: 1</span>
-          </p>
-        </div>
-
-        <div class="settings-view__group">
-          <p class="settings-view__title">Show p5 canvas</p>
-          <p>showCanvasBoudingBoxes</p>
-          <p class="settings-view__help-text">
-            <span>{{ p5CanvasStore.showCanvasBoudingBoxes }}</span>
-            <span v-once @click="p5CanvasStore.setShowCanvasBoudingBoxes(p5CanvasStore.showCanvasBoudingBoxesDefault)">Default: {{ p5CanvasStore.showCanvasBoudingBoxesDefault.toString() }}</span>
-          </p>
-          <input type="checkbox" v-model.number="p5CanvasStore.showCanvasBoudingBoxes" />
-          <p class="settings-view__help-text">       
-            <span>Off</span>     
-            <span></span>
-            <span>On</span>
           </p>
         </div>
 

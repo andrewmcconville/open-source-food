@@ -7,6 +7,7 @@ const pixelScanRatioDefault: number = 8;
 const canvasSizeDefault: number = 480;
 const showCanvasBoudingBoxesDefault: boolean = false;
 const minClusterSizeDefault: number = 4;
+const labelLerpSpeedDefault: number = 8;
 
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
@@ -19,14 +20,20 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     pixelScanRatio: pixelScanRatioDefault as number,
     canvasSizeDefault: canvasSizeDefault as number,
     canvasSize: canvasSizeDefault as number,
-    tomatoVector: null as p5.Vector | null,
-    lettuceVector: null as p5.Vector | null,
-    breadVector: null as p5.Vector | null,
-    meatVector: null as p5.Vector | null,
+    tomatoFoodVector: null as p5.Vector | null,
+    tomatoLabelVector: null as p5.Vector | null,
+    lettuceFoodVector: null as p5.Vector | null,
+    lettuceLabelVector: null as p5.Vector | null,
+    breadFoodVector: null as p5.Vector | null,
+    breadLabelVector: null as p5.Vector | null,
+    meatFoodVector: null as p5.Vector | null,
+    meatLabelVector: null as p5.Vector | null,
     showCanvasBoudingBoxesDefault: showCanvasBoudingBoxesDefault as boolean,
     showCanvasBoudingBoxes: showCanvasBoudingBoxesDefault as boolean,
     minClusterSizeDefault: minClusterSizeDefault as number,
     minClusterSize: minClusterSizeDefault as number,
+    labelLerpSpeedDefault: labelLerpSpeedDefault as number,
+    labelLerpSpeed: labelLerpSpeedDefault as number,
   }),
   getters: {
     
