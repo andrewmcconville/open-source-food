@@ -26,11 +26,11 @@
         --footer-height: 60px;
         --app-max-width-large: 1080px;
         --app-max-width-small: 540px;
-        --yellow-10: #fefff8;
-        --yellow-20: #fffce5;
+        --yellow-10: 254, 255, 248;
+        --yellow-20: 255, 252, 229;
         --yellow-30: #000;
-        --yellow-40: #d1cb9f;
-        --teal: #0f9099;
+        --yellow-40: 209, 203, 159;
+        --teal: 15, 144, 153;
       }
 
       * {
@@ -40,7 +40,7 @@
 
       a {
         text-decoration: none;
-        color: var(--teal);
+        color: rgb(var(--teal));
       }
 
       a:visited {
@@ -78,7 +78,7 @@
       }
 
       .header, .footer {
-        background-color: var(--yellow-20);
+        background-color: rgb(var(--yellow-20));
         display: flex;
         align-items: stretch;
         justify-content: center;
@@ -92,7 +92,7 @@
         font-family: 'Josefin Sans';
         top: 0;
         height: var(--header-height);
-        border-bottom: 1px solid var(--yellow-40);
+        border-bottom: 1px solid rgb(var(--yellow-40));
       }
 
       .header__app-name {
@@ -102,7 +102,7 @@
         font-size: 30px;
         letter-spacing: -2px;
         font-weight: 300;
-        color: var(--teal);
+        color: rgb(var(--teal));
         line-height: 1;
         margin: 2px 0 0 0;
       }
@@ -110,7 +110,7 @@
       .footer {
         bottom: 0;
         height: var(--footer-height);
-        border-top: 1px solid var(--yellow-40);
+        border-top: 1px solid rgb(var(--yellow-40));
       }
 
       .header__inner, .footer__inner {
@@ -122,7 +122,7 @@
       }
 
       .main {
-        background-color: var(--yellow-10);
+        background-color: rgb(var(--yellow-10));
         display: flex;
         justify-content: center;
         min-height: 0;

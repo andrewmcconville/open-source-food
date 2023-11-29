@@ -26,5 +26,5 @@
 }
 
 .view-header__anchor-icon {
-  fill: var(--teal);
+  fill: rgb(var(--teal));
 }

@@ -51,6 +51,30 @@
             </div>
         </div>
         <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
+        <nav>
+            <ul>
+                <li>
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="">
+                        Tomato
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="">
+                        Lettuce
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="">
+                        Bread
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="">
+                        Hamburger
+                    </RouterLink>
+                </li>
+            </ul>
+        </nav>
     </aside>
 </template>
   
@@ -556,13 +580,13 @@ const toggleLoop = () => {
 
 .p5-canvas__food-label {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(var(--yellow-20), 0.5);
     padding: 4px 8px 6px 8px;
     backdrop-filter: blur(8px);
     white-space: nowrap;
     line-height: 1;
     color: #000;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid #fff;
 }
 </style>
 
