@@ -503,7 +503,12 @@ onUnmounted(() => {
 });
 
 function stopCapture() {
-    capture.elt.srcObject.getTracks().forEach((track: any) => track.stop());
+    if (capture.elt.srcObject) {
+        capture.elt.srcObject.getTracks().forEach((track: any) => track.stop());
+    }
+    else {
+        return
+    }
 }
 
 const toggleLoop = () => {
@@ -526,14 +531,14 @@ const toggleLoop = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex: 1;
     min-height: 0;
 }
 
 .p5-canvas__sketch-container {
     position: relative;
-    width: 360px;
+    width: 100%;
     max-width: 100dvw;
     z-index: 0;
 }
@@ -566,7 +571,7 @@ const toggleLoop = () => {
 }
 
 .p5-canvas__food-marker {
-    background-color: rgba(var(--yellow-20-rgb), 0.25);
+    background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
     width: 20px;
     height: 20px;
@@ -575,21 +580,21 @@ const toggleLoop = () => {
     border-radius: 100%;
     z-index: 0;
 
-    // &--tomato {
-    //     border-color: red;
-    // }
+    &--tomato {        
+        background-color: rgba(200, 100, 60, 0.2);
+    }
 
-    // &--lettuce {
-    //     border-color: green;
-    // }
+    &--lettuce {
+        background-color: rgba(130, 190, 70, 0.2);
+    }
 
-    // &--bread {
-    //     border-color: yellow;
-    // }
+    &--bread {
+        background-color: rgba(200, 170, 110, 0.2);
+    }
 
-    // &--meat {
-    //     border-color: brown;
-    // }
+    &--meat {
+        background-color: rgba(130, 80, 70, 0.2);
+    }
 }
 
 .p5-canvas__food-label {
@@ -623,6 +628,11 @@ const toggleLoop = () => {
 
 .p5-canvas__ingredient-list {
     display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    width: 100%;
+    justify-content: start;
+    align-items: start;
 }
 
 .p5-canvas__ingredient {
@@ -634,8 +644,7 @@ const toggleLoop = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 2px;
-    border-radius: 4px;
+    margin: 2px;
 }
 </style>
 
@@ -643,10 +652,7 @@ const toggleLoop = () => {
 #defaultCanvas0, video {
     width: 100% !important;
     height: auto !important;
-    max-width: 360px;
     margin: auto;
-    border-radius: 8px;
-    border: 1px solid #000;
 }
 
 #defaultCanvas0 {
