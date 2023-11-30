@@ -50,30 +50,22 @@
                 </RouterLink>
             </div>
         </div>
+
         <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
-        <nav>
-            <ul>
-                <li>
-                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="">
-                        Tomato
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="">
-                        Lettuce
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="">
-                        Bread
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="">
-                        Hamburger
-                    </RouterLink>
-                </li>
-            </ul>
+
+        <nav class="p5-canvas__ingredient-list">
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__ingredient">
+                Tomato
+            </RouterLink>
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__ingredient">
+                Lettuce
+            </RouterLink>
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__ingredient">
+                Bread
+            </RouterLink>
+            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__ingredient">
+                Hamburger
+            </RouterLink>
         </nav>
     </aside>
 </template>
@@ -105,6 +97,7 @@ onMounted(() => {
         let largestTomatoCluster: Array<[number, number]>;
         let newTomatoBoundingBox: P5BoundingBox;
         let oldTomatoBoundingBox: P5BoundingBox;
+        let newTomatoBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newTomatoLabel: p5.Vector;
         let oldTomatoLabel: p5.Vector;
 
@@ -112,6 +105,7 @@ onMounted(() => {
         let largestLettuceCluster: Array<[number, number]>;
         let newLettuceBoundingBox: P5BoundingBox;
         let oldLettuceBoundingBox: P5BoundingBox;
+        let newLettuceBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newLettuceLabel: p5.Vector;
         let oldLettuceLabel: p5.Vector;
 
@@ -119,6 +113,7 @@ onMounted(() => {
         let largeestBreadCluster: Array<[number, number]>;
         let newBreadBoundingBox: P5BoundingBox;
         let oldBreadBoundingBox: P5BoundingBox;
+        let newBreadBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newBreadLabel: p5.Vector;
         let oldBreadLabel: p5.Vector;
 
@@ -126,6 +121,7 @@ onMounted(() => {
         let largeestMeatCluster: Array<[number, number]>;
         let newMeatBoundingBox: P5BoundingBox;
         let oldMeatBoundingBox: P5BoundingBox;
+        let newMeatBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newMeatLabel: p5.Vector;
         let oldMeatLabel: p5.Vector;
 
@@ -156,7 +152,7 @@ onMounted(() => {
         p.draw = () => {
             p.background(255);
             p.image(capture, 0, 0, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio, p5CanvasStore.canvasSize / p5CanvasStore.pixelScanRatio);
-            
+
             if (frameCountFood % p5CanvasStore.throttleClusterSearch === 0) {
                 p.loadPixels();
                 updateClusters();
@@ -164,6 +160,7 @@ onMounted(() => {
                 if (largestTomatoCluster) {
                     oldTomatoBoundingBox = newTomatoBoundingBox;
                     newTomatoBoundingBox = getBoundingBox(largestTomatoCluster);
+                    newTomatoBoundingBoxTotal = p5.Vector.add(newTomatoBoundingBoxTotal, newTomatoBoundingBox.center);
                 }
                 else {
                     p5CanvasStore.tomatoFoodVector = null;
@@ -172,6 +169,7 @@ onMounted(() => {
                 if (largestLettuceCluster) {
                     oldLettuceBoundingBox = newLettuceBoundingBox;
                     newLettuceBoundingBox = getBoundingBox(largestLettuceCluster);
+                    newLettuceBoundingBoxTotal = p5.Vector.add(newLettuceBoundingBoxTotal, newLettuceBoundingBox.center);
                 }
                 else {
                     p5CanvasStore.lettuceFoodVector = null;
@@ -180,6 +178,7 @@ onMounted(() => {
                 if (largeestBreadCluster) {
                     oldBreadBoundingBox = newBreadBoundingBox;
                     newBreadBoundingBox = getBoundingBox(largeestBreadCluster);
+                    newBreadBoundingBoxTotal = p5.Vector.add(newBreadBoundingBoxTotal, newBreadBoundingBox.center);
                 }
                 else {
                     p5CanvasStore.breadFoodVector = null;
@@ -188,6 +187,7 @@ onMounted(() => {
                 if (largeestMeatCluster) {
                     oldMeatBoundingBox = newMeatBoundingBox;
                     newMeatBoundingBox = getBoundingBox(largeestMeatCluster);
+                    newMeatBoundingBoxTotal = p5.Vector.add(newMeatBoundingBoxTotal, newMeatBoundingBox.center);
                 }
                 else {
                     p5CanvasStore.meatFoodVector = null;
@@ -197,7 +197,8 @@ onMounted(() => {
                 if (frameCountLabel % (p5CanvasStore.throttleClusterSearch * p5CanvasStore.labelLerpSpeed) === 0) {
                     if (largestTomatoCluster) {
                         oldTomatoLabel = newTomatoLabel;
-                        newTomatoLabel = p.createVector(newTomatoBoundingBox.center.x, newTomatoBoundingBox.center.y);
+                        newTomatoLabel = p.createVector(newTomatoBoundingBoxTotal.x / p5CanvasStore.labelLerpSpeed, newTomatoBoundingBoxTotal.y / p5CanvasStore.labelLerpSpeed);
+                        newTomatoBoundingBoxTotal = p.createVector(0, 0);
                     }
                     else {
                         p5CanvasStore.tomatoLabelVector = null;
@@ -205,7 +206,8 @@ onMounted(() => {
 
                     if (largestLettuceCluster) {
                         oldLettuceLabel = newLettuceLabel;
-                        newLettuceLabel = p.createVector(newLettuceBoundingBox.center.x, newLettuceBoundingBox.center.y);
+                        newLettuceLabel = p.createVector(newLettuceBoundingBoxTotal.x / p5CanvasStore.labelLerpSpeed, newLettuceBoundingBoxTotal.y / p5CanvasStore.labelLerpSpeed);
+                        newLettuceBoundingBoxTotal = p.createVector(0, 0);
                     }
                     else {
                         p5CanvasStore.lettuceLabelVector = null;
@@ -213,7 +215,8 @@ onMounted(() => {
 
                     if (largeestBreadCluster) {
                         oldBreadLabel = newBreadLabel;
-                        newBreadLabel = p.createVector(newBreadBoundingBox.center.x, newBreadBoundingBox.center.y);
+                        newBreadLabel = p.createVector(newBreadBoundingBoxTotal.x / p5CanvasStore.labelLerpSpeed, newBreadBoundingBoxTotal.y / p5CanvasStore.labelLerpSpeed);
+                        newBreadBoundingBoxTotal = p.createVector(0, 0);
                     }
                     else {
                         p5CanvasStore.breadLabelVector = null;
@@ -221,7 +224,8 @@ onMounted(() => {
                     
                     if (largeestMeatCluster) {
                         oldMeatLabel = newMeatLabel;
-                        newMeatLabel = p.createVector(newMeatBoundingBox.center.x, newMeatBoundingBox.center.y);
+                        newMeatLabel = p.createVector(newMeatBoundingBoxTotal.x / p5CanvasStore.labelLerpSpeed, newMeatBoundingBoxTotal.y / p5CanvasStore.labelLerpSpeed);
+                        newMeatBoundingBoxTotal = p.createVector(0, 0);
                     }
                     else {
                         p5CanvasStore.meatLabelVector = null;
@@ -580,13 +584,30 @@ const toggleLoop = () => {
 
 .p5-canvas__food-label {
     position: absolute;
-    background-color: rgba(var(--yellow-20), 0.5);
+    background-color: rgba(var(--yellow-20-rgb), 0.5);
     padding: 4px 8px 6px 8px;
     backdrop-filter: blur(8px);
     white-space: nowrap;
     line-height: 1;
     color: #000;
     border: 1px solid #fff;
+}
+
+.p5-canvas__ingredient-list {
+    display: flex;
+}
+
+.p5-canvas__ingredient {
+    border: 1px solid var(--teal);
+    background-color: var(--yellow-20);
+    color: var(--teal);
+    font-size: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    margin: 0 2px;
 }
 </style>
 

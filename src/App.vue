@@ -82,7 +82,7 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  color: rgb(var(--teal));
+  color: var(--teal);
 
   &:hover,
   &.router-link-active {
@@ -92,6 +92,6 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
 
 .nav__anchor-icon {
   margin-bottom: 4px;
-  fill: rgb(var(--teal));
+  fill: var(--teal);
 }
 </style>
