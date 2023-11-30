@@ -564,6 +564,7 @@ const toggleLoop = () => {
     position: absolute;
     border: 4px solid #000;
     border-radius: 100%;
+    z-index: 0;
 
     &--tomato {
         border-color: red;
@@ -591,6 +592,7 @@ const toggleLoop = () => {
     line-height: 1;
     color: #000;
     border: 1px solid #fff;
+    z-index: 1;
 }
 
 .p5-canvas__ingredient-list {
