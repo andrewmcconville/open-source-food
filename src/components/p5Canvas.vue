@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <button @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
+        <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
 
         <nav class="p5-canvas__ingredient-list">
             <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__ingredient">
@@ -585,14 +585,31 @@ const toggleLoop = () => {
 
 .p5-canvas__food-label {
     position: absolute;
-    background-color: rgba(var(--yellow-20-rgb), 0.5);
-    padding: 4px 8px 6px 8px;
+    background-color: rgba(var(--yellow-20-rgb), 0.75);
     backdrop-filter: blur(8px);
+    padding: 6px 10px 8px 10px;
     white-space: nowrap;
     line-height: 1;
-    color: #000;
+    color: var(--teal);
     border: 1px solid #fff;
     z-index: 1;
+    border: 1px solid var(--teal);
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.p5-canvas__play-pause {
+    border: 1px solid var(--teal);
+    background-color: rgba(var(--yellow-20-rgb), 0.75);
+    backdrop-filter: blur(8px);
+    color: var(--teal);
+    font-size: 16px;
+    margin: -40px 0 40px 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .p5-canvas__ingredient-list {
@@ -603,13 +620,13 @@ const toggleLoop = () => {
     border: 1px solid var(--teal);
     background-color: var(--yellow-20);
     color: var(--teal);
-    font-size: 12px;
-    padding: 8px;
+    font-size: 16px;
+    padding: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 72px;
     margin: 0 2px;
+    border-radius: 4px;
 }
 </style>
 
@@ -619,6 +636,8 @@ const toggleLoop = () => {
     height: auto !important;
     max-width: 360px;
     margin: auto;
+    border-radius: 8px;
+    border: 1px solid #000;
 }
 
 #defaultCanvas0 {
