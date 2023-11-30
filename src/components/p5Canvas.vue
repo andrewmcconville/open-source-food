@@ -559,28 +559,30 @@ const toggleLoop = () => {
 }
 
 .p5-canvas__food-marker {
+    background-color: rgba(var(--yellow-20-rgb), 0.25);
+    backdrop-filter: blur(8px);
     width: 20px;
     height: 20px;
     position: absolute;
-    border: 4px solid #000;
+    border: 2px solid #fff;
     border-radius: 100%;
     z-index: 0;
 
-    &--tomato {
-        border-color: red;
-    }
+    // &--tomato {
+    //     border-color: red;
+    // }
 
-    &--lettuce {
-        border-color: green;
-    }
+    // &--lettuce {
+    //     border-color: green;
+    // }
 
-    &--bread {
-        border-color: yellow;
-    }
+    // &--bread {
+    //     border-color: yellow;
+    // }
 
-    &--meat {
-        border-color: brown;
-    }
+    // &--meat {
+    //     border-color: brown;
+    // }
 }
 
 .p5-canvas__food-label {
