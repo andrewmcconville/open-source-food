@@ -68,11 +68,15 @@ watch(() => route.params.event, () => {
     @media(max-width: 1080px) {
         display: flex;
         position: fixed;
-        top: 0;
+        top: var(--header-height);
         right: 0;
         bottom: 0;
-        left: 0;
+        left: 50%;
         z-index: 3;
+    }
+    @media(max-width: 720px) {
+        top: 0;
+        left: 0;
     }
 }
 
