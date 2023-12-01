@@ -47,13 +47,13 @@
 }
 
 .home-view__timeline {
-  @media(max-width: 640px) {
+  @media(max-width: 960px) {
     display: none;
   }
 }
 
 .home-view__event-details {
-  @media(max-width: 960px) {
+  @media(max-width: 1020px) {
     display: none;
   }
 }
