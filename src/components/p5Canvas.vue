@@ -85,8 +85,8 @@
         </div>
 
         <div class="p5Canvas__scroller">
+            <p class="p5-canvas__ingredient-list-heading">Current Ingredients</p>
             <template v-if="p5CanvasStore.activeIngredients.length > 0">
-            <p class="p5-canvas__ingredient-list-heading">Ingredients</p>
             <nav class="p5-canvas__ingredient-list">
                 <template v-for="ingredient in p5CanvasStore.activeIngredients" v-bind:key="ingredient">
                     <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
