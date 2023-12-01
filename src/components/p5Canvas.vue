@@ -21,7 +21,7 @@
                 </div>
             </template>
 
-            <template  v-if="p5CanvasStore.lettuceFoodVector">
+            <template v-if="p5CanvasStore.lettuceFoodVector">
                 <svg height="360" width="360" class="p5-canvas__line">
                     <line style="stroke: rgb(255,255,255); stroke-width: 2"
                         :x1="p5CanvasStore.lettuceFoodVector?.x"
@@ -85,20 +85,20 @@
         </div>
 
         <div class="p5Canvas__scroller">
-            <p>Ingredients</p>
+            <p>Detected Ingredients</p>
             <nav class="p5-canvas__ingredient-list">
-                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__ingredient">
-                    Tomato
-                </RouterLink>
-                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__ingredient">
-                    Lettuce
-                </RouterLink>
-                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__ingredient">
-                    Bread
-                </RouterLink>
-                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__ingredient">
-                    Hamburger
-                </RouterLink>
+                <template v-for="ingredient in p5CanvasStore.activeIngredientSet" v-bind:key="ingredient">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
+                        {{ ingredient }}
+                    </RouterLink>
+                </template>
+            </nav>
+            <nav class="p5-canvas__ingredient-list p5-canvas__ingredient-list--inactive">
+                <template v-for="ingredient in p5CanvasStore.inactiveIngredientSet" v-bind:key="ingredient">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
+                        {{ ingredient }}
+                    </RouterLink>
+                </template>
             </nav>
         </div>
     </aside>
@@ -134,6 +134,7 @@ onMounted(() => {
         let newTomatoBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newTomatoLabel: p5.Vector;
         let oldTomatoLabel: p5.Vector;
+        let tomatoHasInitialAppearance: boolean = false;
 
         let lettuceClusters = [];
         let largestLettuceCluster: Array<[number, number]>;
@@ -142,6 +143,7 @@ onMounted(() => {
         let newLettuceBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newLettuceLabel: p5.Vector;
         let oldLettuceLabel: p5.Vector;
+        let lettuceHasInitialAppearance: boolean = false;
 
         let breadClusters = [];
         let largeestBreadCluster: Array<[number, number]>;
@@ -150,6 +152,7 @@ onMounted(() => {
         let newBreadBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newBreadLabel: p5.Vector;
         let oldBreadLabel: p5.Vector;
+        let breadHasInitialAppearance: boolean = false;
 
         let meatClusters = [];
         let largeestMeatCluster: Array<[number, number]>;
@@ -158,6 +161,7 @@ onMounted(() => {
         let newMeatBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
         let newMeatLabel: p5.Vector;
         let oldMeatLabel: p5.Vector;
+        let meatHasInitialAppearance: boolean = false;
 
 
         p.setup = () => {
@@ -195,36 +199,88 @@ onMounted(() => {
                     oldTomatoBoundingBox = newTomatoBoundingBox;
                     newTomatoBoundingBox = getBoundingBox(largestTomatoCluster);
                     newTomatoBoundingBoxTotal = p5.Vector.add(newTomatoBoundingBoxTotal, newTomatoBoundingBox.center);
+                    tomatoHasInitialAppearance = true;
+
+                    p5CanvasStore.inactiveIngredientSet.delete('tomato');
+
+                    if (!p5CanvasStore.activeIngredientSet.has('tomato')) {
+                        p5CanvasStore.activeIngredientSet.add('tomato');
+                    }
                 }
                 else {
                     p5CanvasStore.tomatoFoodVector = null;
+
+                    p5CanvasStore.activeIngredientSet.delete('tomato');
+
+                    if (tomatoHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('tomato')) {
+                        p5CanvasStore.inactiveIngredientSet.add('tomato');
+                    }
                 }
 
                 if (largestLettuceCluster) {
                     oldLettuceBoundingBox = newLettuceBoundingBox;
                     newLettuceBoundingBox = getBoundingBox(largestLettuceCluster);
                     newLettuceBoundingBoxTotal = p5.Vector.add(newLettuceBoundingBoxTotal, newLettuceBoundingBox.center);
+                    lettuceHasInitialAppearance = true;
+
+                    p5CanvasStore.inactiveIngredientSet.delete('lettuce');
+
+                    if (!p5CanvasStore.activeIngredientSet.has('lettuce')) {
+                        p5CanvasStore.activeIngredientSet.add('lettuce');
+                    }
                 }
                 else {
                     p5CanvasStore.lettuceFoodVector = null;
+
+                    p5CanvasStore.activeIngredientSet.delete('lettuce');
+
+                    if (lettuceHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('lettuce')) {
+                        p5CanvasStore.inactiveIngredientSet.add('lettuce');
+                    }
                 }
 
                 if (largeestBreadCluster) {
                     oldBreadBoundingBox = newBreadBoundingBox;
                     newBreadBoundingBox = getBoundingBox(largeestBreadCluster);
                     newBreadBoundingBoxTotal = p5.Vector.add(newBreadBoundingBoxTotal, newBreadBoundingBox.center);
+                    breadHasInitialAppearance = true;
+
+                    p5CanvasStore.inactiveIngredientSet.delete('bread');
+
+                    if (!p5CanvasStore.activeIngredientSet.has('bread')) {
+                        p5CanvasStore.activeIngredientSet.add('bread');
+                    }
                 }
                 else {
                     p5CanvasStore.breadFoodVector = null;
+
+                    p5CanvasStore.activeIngredientSet.delete('bread');
+
+                    if (breadHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('bread')) {
+                        p5CanvasStore.inactiveIngredientSet.add('bread');
+                    }
                 }
 
                 if (largeestMeatCluster) {
                     oldMeatBoundingBox = newMeatBoundingBox;
                     newMeatBoundingBox = getBoundingBox(largeestMeatCluster);
                     newMeatBoundingBoxTotal = p5.Vector.add(newMeatBoundingBoxTotal, newMeatBoundingBox.center);
+                    meatHasInitialAppearance = true;
+
+                    p5CanvasStore.inactiveIngredientSet.delete('hamburger');
+
+                    if (!p5CanvasStore.activeIngredientSet.has('hamburger')) {
+                        p5CanvasStore.activeIngredientSet.add('hamburger');
+                    }
                 }
                 else {
                     p5CanvasStore.meatFoodVector = null;
+
+                    p5CanvasStore.activeIngredientSet.delete('hamburger');
+
+                    if (meatHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('hamburger')) {
+                        p5CanvasStore.inactiveIngredientSet.add('hamburger');
+                    }
                 }
                 
 
@@ -641,7 +697,7 @@ const toggleLoop = () => {
     border-top: 2px solid #fff;
     z-index: 1;
     font-size: 18px;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.333);
     font-weight: 900;
 
     &--tomato {        
@@ -696,16 +752,20 @@ const toggleLoop = () => {
     align-items: start;
 }
 
+.p5-canvas__ingredient-list--inactive {
+    opacity: 0.5;
+}
+
 .p5-canvas__ingredient {
-    border: 1px solid var(--teal);
-    background-color: var(--yellow-20);
-    color: var(--teal);
-    font-size: 16px;
-    padding: 12px;
+    background-color: var(--teal);
+    color: #fff;
+    padding: 8px 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 2px;
+    font-weight: 800;
+    text-transform: capitalize;
 }
 </style>
 

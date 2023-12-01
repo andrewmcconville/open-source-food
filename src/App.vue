@@ -78,6 +78,7 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   width: 72px;
   margin: 0 4px;
   font-size: 12px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -87,6 +88,7 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   &:hover,
   &.router-link-active {
     background-color: #fff;
+    font-weight: 800;
   }
 }
 

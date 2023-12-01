@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: start;
     width: 100%;
-    background-color: rgba(var(--yellow-10-rgb), 0.666);
+    background-color: rgba(var(--yellow-10-rgb), 0.333);
     backdrop-filter: blur(8px);
     position: absolute;
 }
