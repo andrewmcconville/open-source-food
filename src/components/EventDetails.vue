@@ -70,12 +70,13 @@ watch(() => route.params.event, () => {
         position: fixed;
         top: var(--header-height);
         right: 0;
-        bottom: 0;
+        bottom: var(--footer-height);
         left: 50%;
         z-index: 3;
     }
     @media(max-width: 720px) {
         top: 0;
+        bottom: 0;
         left: 0;
     }
 }
