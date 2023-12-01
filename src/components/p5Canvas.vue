@@ -84,20 +84,23 @@
 
         <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
 
-        <nav class="p5-canvas__ingredient-list">
-            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__ingredient">
-                Tomato
-            </RouterLink>
-            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__ingredient">
-                Lettuce
-            </RouterLink>
-            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__ingredient">
-                Bread
-            </RouterLink>
-            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__ingredient">
-                Hamburger
-            </RouterLink>
-        </nav>
+        <div class="p5Canvas__scroller">
+            <p>Ingredients</p>
+            <nav class="p5-canvas__ingredient-list">
+                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__ingredient">
+                    Tomato
+                </RouterLink>
+                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__ingredient">
+                    Lettuce
+                </RouterLink>
+                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__ingredient">
+                    Bread
+                </RouterLink>
+                <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__ingredient">
+                    Hamburger
+                </RouterLink>
+            </nav>
+        </div>
     </aside>
 </template>
   
@@ -655,6 +658,13 @@ const toggleLoop = () => {
     border-radius: 100%;
     z-index: 1;
     cursor: pointer;
+}
+
+.p5Canvas__scroller {    
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+    padding: 16px;
 }
 
 .p5-canvas__ingredient-list {
