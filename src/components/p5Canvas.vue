@@ -80,9 +80,9 @@
                     </RouterLink>
                 </div>
             </template>
-        </div>
 
-        <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
+            <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
+        </div>
 
         <div class="p5Canvas__scroller">
             <p>Ingredients</p>
@@ -652,12 +652,16 @@ const toggleLoop = () => {
     backdrop-filter: blur(8px);
     color: var(--teal);
     font-size: 16px;
-    margin: -40px 0 40px 0;
     width: 80px;
     height: 80px;
     border-radius: 100%;
     z-index: 1;
     cursor: pointer;
+    position: absolute;
+    bottom: -40px;
+    margin: auto;
+    left: 0;
+    right: 0;
 }
 
 .p5Canvas__scroller {    
@@ -691,6 +695,7 @@ const toggleLoop = () => {
 
 <style>
 #defaultCanvas0, video {
+    background-color: #000;
     width: 100% !important;
     height: auto !important;
     margin: auto;
