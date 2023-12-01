@@ -61,21 +61,21 @@
                 </div>
             </template>
 
-            <template v-if="p5CanvasStore.meatFoodVector">
+            <template v-if="p5CanvasStore.hamburgerFoodVector">
                 <svg height="360" width="360" class="p5-canvas__line">
                     <line style="stroke: rgb(255,255,255); stroke-width: 2"
-                        :x1="p5CanvasStore.meatFoodVector?.x"
-                        :y1="p5CanvasStore.meatFoodVector?.y"
-                        :x2="p5CanvasStore.meatLabelVector?.x"
-                        :y2="p5CanvasStore.meatLabelVector?.y + p5CanvasStore.labelOffset - 12" />
+                        :x1="p5CanvasStore.hamburgerFoodVector?.x"
+                        :y1="p5CanvasStore.hamburgerFoodVector?.y"
+                        :x2="p5CanvasStore.hamburgerLabelVector?.x"
+                        :y2="p5CanvasStore.hamburgerLabelVector?.y + p5CanvasStore.labelOffset - 12" />
                 </svg>
                 <div class="p5-canvas__center-marker p5-canvas__center-marker--food" 
-                    :style="{ transform: `translate(${p5CanvasStore.meatFoodVector?.x}px, ${p5CanvasStore.meatFoodVector?.y}px)` }">
-                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__food-marker p5-canvas__food-marker--meat" />
+                    :style="{ transform: `translate(${p5CanvasStore.hamburgerFoodVector?.x}px, ${p5CanvasStore.hamburgerFoodVector?.y}px)` }">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'hamburger' }}" class="p5-canvas__food-marker p5-canvas__food-marker--hamburger" />
                 </div>
                 <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
-                    :style="{ transform: `translate(${p5CanvasStore.meatLabelVector?.x}px, ${p5CanvasStore.meatLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
-                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'meat' }}" class="p5-canvas__food-label p5-canvas__food-label--meat">
+                    :style="{ transform: `translate(${p5CanvasStore.hamburgerLabelVector?.x}px, ${p5CanvasStore.hamburgerLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'hamburger' }}" class="p5-canvas__food-label p5-canvas__food-label--hamburger">
                         Hamburger
                     </RouterLink>
                 </div>
@@ -154,14 +154,14 @@ onMounted(() => {
         let oldBreadLabel: p5.Vector;
         let breadHasInitialAppearance: boolean = false;
 
-        let meatClusters = [];
-        let largeestMeatCluster: Array<[number, number]>;
-        let newMeatBoundingBox: P5BoundingBox;
-        let oldMeatBoundingBox: P5BoundingBox;
-        let newMeatBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
-        let newMeatLabel: p5.Vector;
-        let oldMeatLabel: p5.Vector;
-        let meatHasInitialAppearance: boolean = false;
+        let hamburgerClusters = [];
+        let largeestHamburgerCluster: Array<[number, number]>;
+        let newHamburgerBoundingBox: P5BoundingBox;
+        let oldHamburgerBoundingBox: P5BoundingBox;
+        let newHamburgerBoundingBoxTotal: p5.Vector = p.createVector(0, 0);
+        let newHamburgerLabel: p5.Vector;
+        let oldHamburgerLabel: p5.Vector;
+        let hamburgerHasInitialAppearance: boolean = false;
 
 
         p.setup = () => {
@@ -261,11 +261,11 @@ onMounted(() => {
                     }
                 }
 
-                if (largeestMeatCluster) {
-                    oldMeatBoundingBox = newMeatBoundingBox;
-                    newMeatBoundingBox = getBoundingBox(largeestMeatCluster);
-                    newMeatBoundingBoxTotal = p5.Vector.add(newMeatBoundingBoxTotal, newMeatBoundingBox.center);
-                    meatHasInitialAppearance = true;
+                if (largeestHamburgerCluster) {
+                    oldHamburgerBoundingBox = newHamburgerBoundingBox;
+                    newHamburgerBoundingBox = getBoundingBox(largeestHamburgerCluster);
+                    newHamburgerBoundingBoxTotal = p5.Vector.add(newHamburgerBoundingBoxTotal, newHamburgerBoundingBox.center);
+                    hamburgerHasInitialAppearance = true;
 
                     p5CanvasStore.inactiveIngredientSet.delete('hamburger');
 
@@ -274,11 +274,11 @@ onMounted(() => {
                     }
                 }
                 else {
-                    p5CanvasStore.meatFoodVector = null;
+                    p5CanvasStore.hamburgerFoodVector = null;
 
                     p5CanvasStore.activeIngredientSet.delete('hamburger');
 
-                    if (meatHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('hamburger')) {
+                    if (hamburgerHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('hamburger')) {
                         p5CanvasStore.inactiveIngredientSet.add('hamburger');
                     }
                 }
@@ -312,13 +312,13 @@ onMounted(() => {
                         p5CanvasStore.breadLabelVector = null;
                     }
                     
-                    if (largeestMeatCluster) {
-                        oldMeatLabel = newMeatLabel;
-                        newMeatLabel = p.createVector(newMeatBoundingBoxTotal.x / p5CanvasStore.labelLerpSpeed, newMeatBoundingBoxTotal.y / p5CanvasStore.labelLerpSpeed);
-                        newMeatBoundingBoxTotal = p.createVector(0, 0);
+                    if (largeestHamburgerCluster) {
+                        oldHamburgerLabel = newHamburgerLabel;
+                        newHamburgerLabel = p.createVector(newHamburgerBoundingBoxTotal.x / p5CanvasStore.labelLerpSpeed, newHamburgerBoundingBoxTotal.y / p5CanvasStore.labelLerpSpeed);
+                        newHamburgerBoundingBoxTotal = p.createVector(0, 0);
                     }
                     else {
-                        p5CanvasStore.meatLabelVector = null;
+                        p5CanvasStore.hamburgerLabelVector = null;
                     }
 
                     frameCountLabel = 0;
@@ -391,21 +391,21 @@ onMounted(() => {
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(255, 255, 0)) : null;
             }
 
-            if (largeestMeatCluster && oldMeatBoundingBox) {
+            if (largeestHamburgerCluster && oldHamburgerBoundingBox) {
                 let lerpBox: P5BoundingBox = {rect: [0, 0, 0, 0], center: p.createVector(0, 0)};
 
-                lerpBox.rect[0] = p.lerp(oldMeatBoundingBox.rect[0], newMeatBoundingBox.rect[0], lerpAmountFood);
-                lerpBox.rect[1] = p.lerp(oldMeatBoundingBox.rect[1], newMeatBoundingBox.rect[1], lerpAmountFood);
-                lerpBox.rect[2] = p.lerp(oldMeatBoundingBox.rect[2], newMeatBoundingBox.rect[2], lerpAmountFood);
-                lerpBox.rect[3] = p.lerp(oldMeatBoundingBox.rect[3], newMeatBoundingBox.rect[3], lerpAmountFood);
-                lerpBox.center = p5.Vector.lerp(oldMeatBoundingBox.center, newMeatBoundingBox.center, lerpAmountFood);
+                lerpBox.rect[0] = p.lerp(oldHamburgerBoundingBox.rect[0], newHamburgerBoundingBox.rect[0], lerpAmountFood);
+                lerpBox.rect[1] = p.lerp(oldHamburgerBoundingBox.rect[1], newHamburgerBoundingBox.rect[1], lerpAmountFood);
+                lerpBox.rect[2] = p.lerp(oldHamburgerBoundingBox.rect[2], newHamburgerBoundingBox.rect[2], lerpAmountFood);
+                lerpBox.rect[3] = p.lerp(oldHamburgerBoundingBox.rect[3], newHamburgerBoundingBox.rect[3], lerpAmountFood);
+                lerpBox.center = p5.Vector.lerp(oldHamburgerBoundingBox.center, newHamburgerBoundingBox.center, lerpAmountFood);
 
-                p5CanvasStore.meatFoodVector = new p5.Vector(lerpBox.center.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpBox.center.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
+                p5CanvasStore.hamburgerFoodVector = new p5.Vector(lerpBox.center.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpBox.center.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
                 
-                if (oldMeatLabel) {
+                if (oldHamburgerLabel) {
                     let lerpLabel: p5.Vector = p.createVector(0, 0);
-                    lerpLabel = p5.Vector.lerp(oldMeatLabel, newMeatLabel, lerpAmountLabel);
-                    p5CanvasStore.meatLabelVector = new p5.Vector(lerpLabel.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpLabel.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
+                    lerpLabel = p5.Vector.lerp(oldHamburgerLabel, newHamburgerLabel, lerpAmountLabel);
+                    p5CanvasStore.hamburgerLabelVector = new p5.Vector(lerpLabel.x * canvasDomRatio * p5CanvasStore.pixelScanRatio, lerpLabel.y * canvasDomRatio * p5CanvasStore.pixelScanRatio);
                 }
 
                 p5CanvasStore.showCanvasBoudingBoxes ? drawBoundingBox(lerpBox, p.color(120, 80, 60)) : null;
@@ -486,7 +486,7 @@ onMounted(() => {
             return withinHue && withinSaturation && withinBrightness;
         }
 
-        function isMeat(pixels, index): boolean {
+        function isHamburger(pixels, index): boolean {
             let red: number = pixels[index];
             let green: number = pixels[index + 1];
             let blue: number = pixels[index + 2];
@@ -510,8 +510,8 @@ onMounted(() => {
             breadClusters = findClusters(p.pixels, p.width, p.height, isBread);
             largeestBreadCluster = findLargestCluster(breadClusters);
 
-            meatClusters = findClusters(p.pixels, p.width, p.height, isMeat);
-            largeestMeatCluster = findLargestCluster(meatClusters);
+            hamburgerClusters = findClusters(p.pixels, p.width, p.height, isHamburger);
+            largeestHamburgerCluster = findLargestCluster(hamburgerClusters);
         }
 
         function findClusters(pixels, width, height, isColor) {
@@ -682,7 +682,7 @@ const toggleLoop = () => {
         background-color: rgba(200, 170, 110, 0.333);
     }
 
-    &--meat {
+    &--hamburger {
         background-color: rgba(130, 80, 70, 0.333);
     }
 }
@@ -712,14 +712,14 @@ const toggleLoop = () => {
         background-color: rgba(200, 170, 110, 0.333);
     }
 
-    &--meat {
+    &--hamburger {
         background-color: rgba(130, 80, 70, 0.333);
     }
 }
 
 .p5-canvas__play-pause {
     border: 2px solid var(--yellow-10);
-    background-color: rgba(var(--teal-rgb), 0.666);
+    background-color: rgba(var(--teal-rgb), 0.75);
     backdrop-filter: blur(8px);
     color: #fff;
     font-size: 16px;

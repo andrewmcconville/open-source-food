@@ -184,6 +184,53 @@
   },
   {
     "name": "lettuce",
-    "events": []
+    "events": [
+      {
+        "CTE": "harvesting",
+        "organization": "Harvest All, LLC",
+        "date": "2023-07-09T14:41:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "field": "A8"
+        },
+        "quantity": 10000,
+        "UOM": "lb"
+      }
+    ]
+  },
+  {
+    "name": "bread",
+    "events": [
+      {
+        "CTE": "harvesting",
+        "organization": "Harvest All, LLC",
+        "date": "2023-07-09T14:41:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "field": "A8"
+        },
+        "quantity": 10000,
+        "UOM": "lb"
+      }
+    ]
+  },
+  {
+    "name": "hamburger",
+    "events": [
+      {
+        "CTE": "harvesting",
+        "organization": "Harvest All, LLC",
+        "date": "2023-07-09T14:41:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "field": "A8"
+        },
+        "quantity": 10000,
+        "UOM": "lb"
+      }
+    ]
   }
 ]
