@@ -736,6 +736,7 @@ const toggleLoop = () => {
     color: #fff;
     font-size: 16px;
     font-weight: 900;
+    padding: 0;
     width: 80px;
     height: 80px;
     border-radius: 100%;
