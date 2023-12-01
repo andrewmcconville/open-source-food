@@ -3,11 +3,11 @@
         <div ref="sketchContainer" class="p5-canvas__sketch-container" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
             <template v-if="p5CanvasStore.tomatoFoodVector">
                 <svg height="360" width="360" class="p5-canvas__line">
-                    <line style="stroke: rgb(255,255,255); stroke-width: 1"
+                    <line style="stroke: rgb(255,255,255); stroke-width: 2"
                         :x1="p5CanvasStore.tomatoFoodVector?.x"
                         :y1="p5CanvasStore.tomatoFoodVector?.y"
                         :x2="p5CanvasStore.tomatoLabelVector?.x"
-                        :y2="p5CanvasStore.tomatoLabelVector?.y + p5CanvasStore.labelOffset" />
+                        :y2="p5CanvasStore.tomatoLabelVector?.y + p5CanvasStore.labelOffset - 12" />
                 </svg>
                 <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
                     :style="{ transform: `translate(${p5CanvasStore.tomatoFoodVector?.x}px, ${p5CanvasStore.tomatoFoodVector?.y}px)` }">
@@ -23,11 +23,11 @@
 
             <template  v-if="p5CanvasStore.lettuceFoodVector">
                 <svg height="360" width="360" class="p5-canvas__line">
-                    <line style="stroke: rgb(255,255,255); stroke-width: 1"
+                    <line style="stroke: rgb(255,255,255); stroke-width: 2"
                         :x1="p5CanvasStore.lettuceFoodVector?.x"
                         :y1="p5CanvasStore.lettuceFoodVector?.y"
                         :x2="p5CanvasStore.lettuceLabelVector?.x"
-                        :y2="p5CanvasStore.lettuceLabelVector?.y + p5CanvasStore.labelOffset" />
+                        :y2="p5CanvasStore.lettuceLabelVector?.y + p5CanvasStore.labelOffset - 12" />
                 </svg>
                 <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
                     :style="{ transform: `translate(${p5CanvasStore.lettuceFoodVector?.x}px, ${p5CanvasStore.lettuceFoodVector?.y}px)` }">
@@ -43,11 +43,11 @@
 
             <template v-if="p5CanvasStore.breadFoodVector">
                 <svg height="360" width="360" class="p5-canvas__line">
-                    <line style="stroke: rgb(255,255,255); stroke-width: 1"
+                    <line style="stroke: rgb(255,255,255); stroke-width: 2"
                         :x1="p5CanvasStore.breadFoodVector?.x"
                         :y1="p5CanvasStore.breadFoodVector?.y"
                         :x2="p5CanvasStore.breadLabelVector?.x"
-                        :y2="p5CanvasStore.breadLabelVector?.y + p5CanvasStore.labelOffset" />
+                        :y2="p5CanvasStore.breadLabelVector?.y + p5CanvasStore.labelOffset - 12" />
                 </svg>
                 <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
                     :style="{ transform: `translate(${p5CanvasStore.breadFoodVector?.x}px, ${p5CanvasStore.breadFoodVector?.y}px)` }">
@@ -63,11 +63,11 @@
 
             <template v-if="p5CanvasStore.meatFoodVector">
                 <svg height="360" width="360" class="p5-canvas__line">
-                    <line style="stroke: rgb(255,255,255); stroke-width: 1"
+                    <line style="stroke: rgb(255,255,255); stroke-width: 2"
                         :x1="p5CanvasStore.meatFoodVector?.x"
                         :y1="p5CanvasStore.meatFoodVector?.y"
                         :x2="p5CanvasStore.meatLabelVector?.x"
-                        :y2="p5CanvasStore.meatLabelVector?.y + p5CanvasStore.labelOffset" />
+                        :y2="p5CanvasStore.meatLabelVector?.y + p5CanvasStore.labelOffset - 12" />
                 </svg>
                 <div class="p5-canvas__center-marker p5-canvas__center-marker--food" 
                     :style="{ transform: `translate(${p5CanvasStore.meatFoodVector?.x}px, ${p5CanvasStore.meatFoodVector?.y}px)` }">
@@ -615,53 +615,69 @@ const toggleLoop = () => {
     z-index: 0;
 
     &--tomato {        
-        background-color: rgba(200, 100, 60, 0.2);
+        background-color: rgba(200, 100, 60, 0.333);
     }
 
     &--lettuce {
-        background-color: rgba(130, 190, 70, 0.2);
+        background-color: rgba(130, 190, 70, 0.333);
     }
 
     &--bread {
-        background-color: rgba(200, 170, 110, 0.2);
+        background-color: rgba(200, 170, 110, 0.333);
     }
 
     &--meat {
-        background-color: rgba(130, 80, 70, 0.2);
+        background-color: rgba(130, 80, 70, 0.333);
     }
 }
 
 .p5-canvas__food-label {
     position: absolute;
-    background-color: rgba(var(--yellow-20-rgb), 0.75);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
     padding: 6px 10px 8px 10px;
     white-space: nowrap;
     line-height: 1;
-    color: var(--teal);
-    border: 1px solid #fff;
+    color: #fff;
+    border-top: 2px solid #fff;
     z-index: 1;
-    border: 1px solid var(--teal);
-    font-size: 16px;
-    border-radius: 4px;
+    font-size: 18px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    font-weight: 900;
+
+    &--tomato {        
+        background-color: rgba(200, 100, 60, 0.333);
+    }
+
+    &--lettuce {
+        background-color: rgba(130, 190, 70, 0.333);
+    }
+
+    &--bread {
+        background-color: rgba(200, 170, 110, 0.333);
+    }
+
+    &--meat {
+        background-color: rgba(130, 80, 70, 0.333);
+    }
 }
 
 .p5-canvas__play-pause {
-    border: 1px solid var(--teal);
-    background-color: rgba(var(--yellow-20-rgb), 0.75);
+    border: 2px solid var(--yellow-10);
+    background-color: rgba(var(--teal-rgb), 0.666);
     backdrop-filter: blur(8px);
-    color: var(--teal);
+    color: #fff;
     font-size: 16px;
+    font-weight: 900;
     width: 80px;
     height: 80px;
     border-radius: 100%;
-    z-index: 1;
     cursor: pointer;
     position: absolute;
     bottom: -40px;
     margin: auto;
     left: 0;
     right: 0;
+    z-index: 4;
 }
 
 .p5Canvas__scroller {    

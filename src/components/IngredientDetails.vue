@@ -67,6 +67,7 @@ const { formattedNumber } = useFormattedNumber();
     justify-content: start;
     flex: 1;
     min-height: 0;
+    position: relative;
     
     @media(max-width: 640px) {
         display: none;
