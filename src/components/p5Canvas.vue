@@ -85,21 +85,33 @@
         </div>
 
         <div class="p5Canvas__scroller">
-            <p>Detected Ingredients</p>
+            <template v-if="p5CanvasStore.activeIngredients.length > 0">
+            <p class="p5-canvas__ingredient-list-heading">Ingredients</p>
             <nav class="p5-canvas__ingredient-list">
-                <template v-for="ingredient in p5CanvasStore.activeIngredientSet" v-bind:key="ingredient">
+                <template v-for="ingredient in p5CanvasStore.activeIngredients" v-bind:key="ingredient">
                     <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
                         {{ ingredient }}
                     </RouterLink>
                 </template>
             </nav>
-            <nav class="p5-canvas__ingredient-list p5-canvas__ingredient-list--inactive">
-                <template v-for="ingredient in p5CanvasStore.inactiveIngredientSet" v-bind:key="ingredient">
-                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
-                        {{ ingredient }}
-                    </RouterLink>
-                </template>
-            </nav>
+            </template>
+            <p v-else>
+                Point your camera at some food to get started.
+            </p>
+
+            <p class="p5-canvas__ingredient-list-heading">Recent Ingredients</p>
+            <template v-if="p5CanvasStore.inactiveIngredients.length > 0">
+                <nav class="p5-canvas__ingredient-list p5-canvas__ingredient-list--inactive">
+                    <template v-for="ingredient in p5CanvasStore.inactiveIngredients" v-bind:key="ingredient">
+                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
+                            {{ ingredient }}
+                        </RouterLink>
+                    </template>
+                </nav>
+            </template>
+            <p v-else>
+                No recent ingredients, yet.
+            </p>
         </div>
     </aside>
 </template>
@@ -201,19 +213,19 @@ onMounted(() => {
                     newTomatoBoundingBoxTotal = p5.Vector.add(newTomatoBoundingBoxTotal, newTomatoBoundingBox.center);
                     tomatoHasInitialAppearance = true;
 
-                    p5CanvasStore.inactiveIngredientSet.delete('tomato');
+                    p5CanvasStore.inactiveIngredients = p5CanvasStore.inactiveIngredients.filter((ingredient) => ingredient !== 'tomato');
 
-                    if (!p5CanvasStore.activeIngredientSet.has('tomato')) {
-                        p5CanvasStore.activeIngredientSet.add('tomato');
+                    if (p5CanvasStore.activeIngredients.indexOf('tomato') === -1) {
+                        p5CanvasStore.activeIngredients.push('tomato');
                     }
                 }
                 else {
                     p5CanvasStore.tomatoFoodVector = null;
 
-                    p5CanvasStore.activeIngredientSet.delete('tomato');
+                    p5CanvasStore.activeIngredients = p5CanvasStore.activeIngredients.filter((ingredient) => ingredient !== 'tomato');
 
-                    if (tomatoHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('tomato')) {
-                        p5CanvasStore.inactiveIngredientSet.add('tomato');
+                    if (p5CanvasStore.inactiveIngredients.indexOf('tomato') === -1 && tomatoHasInitialAppearance) {
+                        p5CanvasStore.inactiveIngredients.unshift('tomato');
                     }
                 }
 
@@ -223,19 +235,19 @@ onMounted(() => {
                     newLettuceBoundingBoxTotal = p5.Vector.add(newLettuceBoundingBoxTotal, newLettuceBoundingBox.center);
                     lettuceHasInitialAppearance = true;
 
-                    p5CanvasStore.inactiveIngredientSet.delete('lettuce');
+                    p5CanvasStore.inactiveIngredients = p5CanvasStore.inactiveIngredients.filter((ingredient) => ingredient !== 'lettuce');
 
-                    if (!p5CanvasStore.activeIngredientSet.has('lettuce')) {
-                        p5CanvasStore.activeIngredientSet.add('lettuce');
+                    if (p5CanvasStore.activeIngredients.indexOf('lettuce') === -1) {
+                        p5CanvasStore.activeIngredients.push('lettuce');
                     }
                 }
                 else {
                     p5CanvasStore.lettuceFoodVector = null;
 
-                    p5CanvasStore.activeIngredientSet.delete('lettuce');
+                    p5CanvasStore.activeIngredients = p5CanvasStore.activeIngredients.filter((ingredient) => ingredient !== 'lettuce');
 
-                    if (lettuceHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('lettuce')) {
-                        p5CanvasStore.inactiveIngredientSet.add('lettuce');
+                    if (p5CanvasStore.inactiveIngredients.indexOf('lettuce') === -1 && lettuceHasInitialAppearance) {
+                        p5CanvasStore.inactiveIngredients.unshift('lettuce');
                     }
                 }
 
@@ -245,19 +257,19 @@ onMounted(() => {
                     newBreadBoundingBoxTotal = p5.Vector.add(newBreadBoundingBoxTotal, newBreadBoundingBox.center);
                     breadHasInitialAppearance = true;
 
-                    p5CanvasStore.inactiveIngredientSet.delete('bread');
+                    p5CanvasStore.inactiveIngredients = p5CanvasStore.inactiveIngredients.filter((ingredient) => ingredient !== 'bread');
 
-                    if (!p5CanvasStore.activeIngredientSet.has('bread')) {
-                        p5CanvasStore.activeIngredientSet.add('bread');
+                    if (p5CanvasStore.activeIngredients.indexOf('bread') === -1) {
+                        p5CanvasStore.activeIngredients.push('bread');
                     }
                 }
                 else {
                     p5CanvasStore.breadFoodVector = null;
 
-                    p5CanvasStore.activeIngredientSet.delete('bread');
+                    p5CanvasStore.activeIngredients = p5CanvasStore.activeIngredients.filter((ingredient) => ingredient !== 'bread');
 
-                    if (breadHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('bread')) {
-                        p5CanvasStore.inactiveIngredientSet.add('bread');
+                    if (p5CanvasStore.inactiveIngredients.indexOf('bread') === -1 && breadHasInitialAppearance) {
+                        p5CanvasStore.inactiveIngredients.unshift('bread');
                     }
                 }
 
@@ -267,19 +279,19 @@ onMounted(() => {
                     newHamburgerBoundingBoxTotal = p5.Vector.add(newHamburgerBoundingBoxTotal, newHamburgerBoundingBox.center);
                     hamburgerHasInitialAppearance = true;
 
-                    p5CanvasStore.inactiveIngredientSet.delete('hamburger');
+                    p5CanvasStore.inactiveIngredients = p5CanvasStore.inactiveIngredients.filter((ingredient) => ingredient !== 'hamburger');
 
-                    if (!p5CanvasStore.activeIngredientSet.has('hamburger')) {
-                        p5CanvasStore.activeIngredientSet.add('hamburger');
+                    if (p5CanvasStore.activeIngredients.indexOf('hamburger') === -1) {
+                        p5CanvasStore.activeIngredients.push('hamburger');
                     }
                 }
                 else {
                     p5CanvasStore.hamburgerFoodVector = null;
 
-                    p5CanvasStore.activeIngredientSet.delete('hamburger');
+                    p5CanvasStore.activeIngredients = p5CanvasStore.activeIngredients.filter((ingredient) => ingredient !== 'hamburger');
 
-                    if (hamburgerHasInitialAppearance && !p5CanvasStore.inactiveIngredientSet.has('hamburger')) {
-                        p5CanvasStore.inactiveIngredientSet.add('hamburger');
+                    if (p5CanvasStore.inactiveIngredients.indexOf('hamburger') === -1 && hamburgerHasInitialAppearance) {
+                        p5CanvasStore.inactiveIngredients.unshift('hamburger');
                     }
                 }
                 
@@ -741,6 +753,12 @@ const toggleLoop = () => {
     overflow-y: auto;
     width: 100%;
     padding: 16px;
+}
+
+.p5-canvas__ingredient-list-heading {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 48px 0 8px 0;
 }
 
 .p5-canvas__ingredient-list {

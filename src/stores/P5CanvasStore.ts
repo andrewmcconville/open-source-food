@@ -37,8 +37,8 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     labelLerpSpeed: labelLerpSpeedDefault as number,
     labelOffsetDefault: labelOffsetDefault as number,
     labelOffset: labelOffsetDefault as number,
-    activeIngredientSet: new Set<string>(),
-    inactiveIngredientSet: new Set<string>(),
+    activeIngredients: Array<string>(),
+    inactiveIngredients: Array<string>(),
   }),
   getters: {
     
