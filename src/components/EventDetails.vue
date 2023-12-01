@@ -65,7 +65,7 @@ watch(() => route.params.event, () => {
 }
 
 .event-details--active {
-    @media(max-width: 1020px) {
+    @media(max-width: 1025px) {
         display: flex;
         position: fixed;
         top: 0;

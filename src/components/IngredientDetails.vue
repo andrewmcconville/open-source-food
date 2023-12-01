@@ -69,13 +69,13 @@ const { formattedNumber } = useFormattedNumber();
     min-height: 0;
     position: relative;
     
-    @media(max-width: 960px) {
+    @media(max-width: 1024px) {
         display: none;
     }
 }
 
 .ingredient-details--active {
-    @media(max-width: 960px) {
+    @media(max-width: 1024px) {
         display: flex;
         position: fixed;
         top: 0;
