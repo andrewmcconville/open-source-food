@@ -7,7 +7,7 @@
           <p>showCanvasBoudingBoxes</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.showCanvasBoudingBoxes }}</span>
-            <span v-once @click="p5CanvasStore.setShowCanvasBoudingBoxes(p5CanvasStore.showCanvasBoudingBoxesDefault)">Default: {{ p5CanvasStore.showCanvasBoudingBoxesDefault.toString() }}</span>
+            <span v-once @click="p5CanvasStore.showCanvasBoudingBoxes = p5CanvasStore.showCanvasBoudingBoxesDefault">Default: {{ p5CanvasStore.showCanvasBoudingBoxesDefault.toString() }}</span>
           </p>
           <input type="checkbox" v-model.number="p5CanvasStore.showCanvasBoudingBoxes" />
           <p class="settings-view__help-text">       
@@ -22,7 +22,7 @@
           <p>canvasSize</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.canvasSize }}px</span>
-            <span v-once @click="p5CanvasStore.setCanvasSize(p5CanvasStore.canvasSizeDefault)">Default: {{ p5CanvasStore.canvasSizeDefault }}</span>
+            <span v-once @click="p5CanvasStore.canvasSize = p5CanvasStore.canvasSizeDefault">Default: {{ p5CanvasStore.canvasSizeDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="240" max="720" step="120" v-model.number="p5CanvasStore.canvasSize" />
           <p class="settings-view__help-text">
@@ -37,7 +37,7 @@
           <p>pixelScanRatio</p>
           <p class="settings-view__help-text">
             <span>Every <template v-if="pixelScanRatio < 1">{{ pixelScanRatioDisplay }}</template> row and column</span>
-            <span v-once @click="p5CanvasStore.setPixelScanRatio(p5CanvasStore.pixelScanRatioDefault)">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>
+            <span v-once @click="p5CanvasStore.pixelScanRatio = p5CanvasStore.pixelScanRatioDefault">Default: {{ p5CanvasStore.pixelScanRatioDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="0.1" max="1" step="0.05" v-model.number="pixelScanRatio" />
           <p class="settings-view__help-text">
@@ -52,7 +52,7 @@
           <p>frameRateTarget</p>
           <p class="settings-view__help-text">
             <span>{{ p5CanvasStore.frameRateTarget }}fps</span>
-            <span v-once @click="p5CanvasStore.setFrameRateTarget(p5CanvasStore.frameRateTargetDefault)">Default: {{ p5CanvasStore.frameRateTargetDefault }}</span>
+            <span v-once @click="p5CanvasStore.frameRateTarget = p5CanvasStore.frameRateTargetDefault">Default: {{ p5CanvasStore.frameRateTargetDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="2" max="120" step="2" v-model.number="p5CanvasStore.frameRateTarget" />
           <p class="settings-view__help-text">
@@ -66,7 +66,7 @@
           <p>throttleClusterSearch</p>
           <p class="settings-view__help-text">
             <span>Every <template v-if="throttleClusterSearch < 1">{{ throttleClusterSearchDisplay }}</template> frame.</span>
-            <span v-once @click="p5CanvasStore.setThrottleClusterSearch(p5CanvasStore.throttleClusterSearchDefault)">Default: {{ p5CanvasStore.throttleClusterSearchDefault }}</span>
+            <span v-once @click="p5CanvasStore.throttleClusterSearch = p5CanvasStore.throttleClusterSearchDefault">Default: {{ p5CanvasStore.throttleClusterSearchDefault }}</span>
           </p>
           <input class="settings-view__slider" type="range" min="0.1" max="1" step="0.1" v-model.number="throttleClusterSearch" />
           <p class="settings-view__help-text">
@@ -77,7 +77,7 @@
         </div>
 
         <div class="settings-view__group">
-          <button @click="p5CanvasStore.setrestoreDefaults">Restore defaults</button>
+          <button @click="p5CanvasStore.setRestoreDefaults">Restore defaults</button>
         </div>
       </div>
     </article>
@@ -94,13 +94,13 @@ const { ordinalNumber } = useOrdinalNumber();
 
 const pixelScanRatio = computed({
   get: (): number => +((1 - ((p5CanvasStore.pixelScanRatio - 1) * (1 - 0.1) / (20 - 1))).toFixed(2)),
-  set: (value: number) => p5CanvasStore.setPixelScanRatio(20 - Math.round((value - 0.1) * (20 - 1) / (1 - 0.1))),
+  set: (value: number) => p5CanvasStore.pixelScanRatio = 20 - Math.round((value - 0.1) * (20 - 1) / (1 - 0.1)),
 });
 const pixelScanRatioDisplay = computed(() => ordinalNumber(20 - Math.round((pixelScanRatio.value - 0.1) * (20 - 1) / (1 - 0.1))));
 
 const throttleClusterSearch = computed({
   get: (): number => +((1 - ((p5CanvasStore.throttleClusterSearch - 1) * (1 - 0.1) / (10 - 1))).toFixed(2)),
-  set: (value: number) => p5CanvasStore.setThrottleClusterSearch(10 - Math.round((value - 0.1) * (10 - 1) / (1 - 0.1))),
+  set: (value: number) => p5CanvasStore.throttleClusterSearch = 10 - Math.round((value - 0.1) * (10 - 1) / (1 - 0.1)),
 });
 const throttleClusterSearchDisplay = computed(() => ordinalNumber(10 - Math.round((throttleClusterSearch.value - 0.1) * (10 - 1) / (1 - 0.1))));
 

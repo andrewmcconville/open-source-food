@@ -8,6 +8,7 @@ const canvasSizeDefault: number = 480;
 const showCanvasBoudingBoxesDefault: boolean = false;
 const minClusterSizeDefault: number = 4;
 const labelLerpSpeedDefault: number = 8;
+const labelOffsetDefault: number = 40;
 
 export const useP5CanvasStore = defineStore('P5CanvasStore', {
   state: () => ({
@@ -34,39 +35,20 @@ export const useP5CanvasStore = defineStore('P5CanvasStore', {
     minClusterSize: minClusterSizeDefault as number,
     labelLerpSpeedDefault: labelLerpSpeedDefault as number,
     labelLerpSpeed: labelLerpSpeedDefault as number,
+    labelOffsetDefault: labelOffsetDefault as number,
+    labelOffset: labelOffsetDefault as number,
   }),
   getters: {
     
   },
   actions: {
-    setrestoreDefaults() {
-      this.setThrottleClusterSearch(throttleClusterSearchDefault);
-      this.setFrameRateTarget(frameRateTargetDefault);
-      this.setPixelScanRatio(pixelScanRatioDefault);
-      this.setCanvasSize(canvasSizeDefault);
-      this.setShowCanvasBoudingBoxes(showCanvasBoudingBoxesDefault);
-      this.setMinClusterSize(minClusterSizeDefault);
-    },
-    setIsLooping(isLooping: boolean) {
-      this.isLooping = isLooping;
-    },
-    setThrottleClusterSearch(throttleClusterSearch: number) {
-      this.throttleClusterSearch = throttleClusterSearch;
-    },
-    setFrameRateTarget(frameRateTarget: number) {
-      this.frameRateTarget = frameRateTarget;
-    },
-    setPixelScanRatio(pixelScanRatio: number) {
-      this.pixelScanRatio = pixelScanRatio;
-    },
-    setCanvasSize(canvasSize: number) {
-      this.canvasSize = canvasSize;
-    },
-    setShowCanvasBoudingBoxes(showCanvasBoudingBoxes: boolean) {
-      this.showCanvasBoudingBoxes = showCanvasBoudingBoxes;
-    },
-    setMinClusterSize(minClusterSize: number) {
-      this.minClusterSize = minClusterSize;
+    setRestoreDefaults() {
+      this.throttleClusterSearch = throttleClusterSearchDefault;
+      this.frameRateTarget = frameRateTargetDefault;
+      this.pixelScanRatio = pixelScanRatioDefault;
+      this.canvasSize = canvasSizeDefault;
+      this.showCanvasBoudingBoxes = showCanvasBoudingBoxesDefault;
+      this.minClusterSize = minClusterSizeDefault;
     },
   },
 });
