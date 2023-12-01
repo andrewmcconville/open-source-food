@@ -31,7 +31,7 @@
     justify-content: center;
     min-height: 0;
     flex-grow: 1;
-    max-width: 1080px;
+    max-width: var(--app-max-width-large);
     height: calc(100dvh - (var(--header-height) + var(--footer-height)));
     overflow: hidden;
 }
@@ -47,13 +47,13 @@
 }
 
 .home-view__timeline {
-  @media(max-width: 1024px) {
+  @media(max-width: 720px) {
     display: none;
   }
 }
 
 .home-view__event-details {
-  @media(max-width: 1025px) {
+  @media(max-width: 1080px) {
     display: none;
   }
 }
