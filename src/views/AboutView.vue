@@ -98,6 +98,29 @@
                     </li>
                 </ol>
                 </li>
+                <li>
+                    <h2>References</h2>
+                    <ol>
+                        <li>
+                            <h2>Tomato Logistics</h2>
+                            <p>
+                                <a href="https://edis.ifas.ufl.edu/publication/VH079" target="_blank">https://edis.ifas.ufl.edu/publication/VH079</a>
+                            </p>
+                        </li>
+                        <li>
+                            <h2>Tomato Good Agricultural Practices (T-GAP)</h2>
+                            <p>
+                                <a href="https://www.fdacs.gov/Agriculture-Industry/Fruit-and-Vegetables/Tomato-Good-Agricultural-Practices-T-GAP" target="_blank">https://www.fdacs.gov/Agriculture-Industry/Fruit-and-Vegetables/Tomato-Good-Agricultural-Practices-T-GAP</a>
+                            </p>
+                        </li>
+                        <li>
+                            <h2>Food Traceability</h2>
+                            <p>
+                                <a href="https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-food-traceability" target="_blank">https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-food-traceability</a>
+                            </p>
+                        </li>
+                    </ol>
+                </li>
             </ol>
         </div>
     </article>

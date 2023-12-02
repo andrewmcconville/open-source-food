@@ -7,18 +7,6 @@
     "name": "tomato",
     "events": [
       {
-        "CTE": "growing",
-        "organization": "Waukesha Farms",
-        "date": "2023-04-07T04:13:00",
-        "location": {
-          "city": "Waukesha",
-          "state": "WI",
-          "field": "A8"
-        },
-        "quantity": 10000,
-        "UOM": "lb"
-      },
-      {
         "CTE": "harvesting",
         "organization": "Harvest All, LLC",
         "date": "2023-07-09T14:41:00",
@@ -27,8 +15,9 @@
           "state": "WI",
           "field": "A8"
         },
-        "quantity": 10000,
-        "UOM": "lb"
+        "quantity": 1,
+        "UOM": "gondola",
+        "weight": 18000
       },
       {
         "CTE": "cooling",
@@ -39,90 +28,126 @@
           "state": "WI",
           "building": "105"
         },
-        "quantity": 10000,
-        "UOM": "lb"
+        "quantity": 1,
+        "UOM": "gondola",
+        "weight": 18000
+      },
+      {
+        "CTE": "grading",
+        "organization": "Deep Freeze Wisconsin, Inc.",
+        "date": "2023-07-10T15:41:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "building": "105"
+        },
+        "quantity": 18,
+        "UOM": "bin",
+        "weight": 1000,
+        "FYI": "https://www.ams.usda.gov/grades-standards/tomato-grades-and-standards"
+      },
+      {
+        "CTE": "ripening",
+        "organization": "Deep Freeze Wisconsin, Inc.",
+        "date": "2023-07-11T15:41:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "building": "105"
+        },
+        "quantity": 18,
+        "UOM": "bin",
+        "weight": 1000
       },
       {
         "CTE": "initial packing",
         "organization": "Pack It Up, LLC",
-        "date": "2023-07-11T15:41:00",
+        "date": "2023-07-15T15:41:00",
         "location": {
           "city": "Waukesha",
           "state": "WI",
           "building": "W754 S279"
         },
-        "quantityBefore": 10000,
-        "UOMBefore": "lb",
-        "quantity": 100,
-        "UOM": "bin",
+        "quantityBefore": 18,
+        "UOMBefore": "bin",
+        "weightBefore": 1000,
+        "quantity": 9,
+        "UOM": "pallet",
+        "weight": 2000,
         "TLC": "A8-876HB93D5"
       },
       {
         "CTE": "shipping",
         "organization": "Speedy Delivery, Inc.",
-        "date": "2023-07-13T07:33:00",
+        "date": "2023-07-19T07:33:00",
         "location": {
           "city": "Waukesha",
           "state": "WI",
           "building": "W754 S279"
         },
-        "quantity": 10,
-        "UOM": "bin",
+        "quantity": 9,
+        "UOM": "pallet",
+        "weight": 2000,
         "TLC": "A8-876HB93D5"
       },
       {
         "CTE": "receiving",
         "organization": "Sorting Services Unlimited",
-        "date": "2023-07-13T08:18:00",
+        "date": "2023-07-19T08:18:00",
         "location": {
           "city": "Waukesha",
           "state": "WI",
           "building": "10"
         },
-        "quantity": 10,
-        "UOM": "bin",
+        "quantity": 9,
+        "UOM": "pallet",
+        "weight": 2000,
         "TLC": "A8-876HB93D5"
       },
       {
         "CTE": "repackaging",
         "organization": "Sorting Services Unlimited",
-        "date": "2023-07-14T09:08:00",
+        "date": "2023-07-20T09:08:00",
         "location": {
           "city": "Waukesha",
           "state": "WI",
           "building": "11"
         },
-        "quantityBefore": 10,
-        "UOMBefore": "bin",
+        "quantityBefore": 9,
+        "UOMBefore": "pallet",
+        "weightBefore": 2000,
         "TLCBefore": "A8-876HB93D5",
-        "quantity": 200,
-        "UOM": "box",
+        "quantity": 720,
+        "UOM": "carton",
+        "weight": 25,
         "TLC": "S1-006JI83A0"
       },
       {
         "CTE": "shipping",
         "organization":" Sorting Services Unlimited",
-        "date": "2023-07-19T08:46:00",
+        "date": "2023-07-20T08:46:00",
         "location": {
           "city": "Waukesha",
           "state": "WI",
           "building": "12"
         },
-        "quantity": 20,
-        "UOM": "box",
+        "quantity": 80,
+        "UOM": "carton",
+        "weight": 25,
         "TLC": "S1-006JI83A0"
       },
       {
         "CTE": "receiving",
         "organization": "Bag it up, LLC",
-        "date": "2023-07-19T10:31:00",
+        "date": "2023-07-20T10:31:00",
         "location": {
           "city": "Waukesha",
           "state": "WI",
           "building": "C1"
         },
-        "quantity": 20,
-        "UOM": "box",
+        "quantity": 80,
+        "UOM": "carton",
+        "weight": 25,
         "TLC": "S1-006JI83A0"
       },
       {
@@ -134,11 +159,55 @@
           "state": "WI",
           "building": "C1"
         },
-        "quantityBefore": 20,
-        "UOMBefore": "box",
+        "quantityBefore": 80,
+        "UOMBefore": "carton",
+        "weightBefore": 25,
         "TLCBefore": "S1-006JI83A0",
         "quantity": 400,
-        "UOM": "carton",
+        "UOM": "bag",
+        "weight": 5,
+        "TLC": "B8-117KP71F8"
+      },
+      {
+        "CTE": "shipping",
+        "organization": "Bag it up, LLC",
+        "date": "2023-07-24T17:38:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "building": "C1"
+        },
+        "quantity": 100,
+        "UOM": "bag",
+        "weight": 5,
+        "TLC": "B8-117KP71F8"
+      },
+      {
+        "CTE": "receiving",
+        "organization": "Big Belly Burgers",
+        "date": "2023-07-24T18:23:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "building": "1"
+        },
+        "quantity": 100,
+        "UOM": "bag",
+        "weight": 5,
+        "TLC": "B8-117KP71F8"
+      },
+      {
+        "CTE": "storage",
+        "organization": "Big Belly Burgers",
+        "date": "2023-07-24T18:23:00",
+        "location": {
+          "city": "Waukesha",
+          "state": "WI",
+          "building": "1"
+        },
+        "quantity": 100,
+        "UOM": "bag",
+        "weight": 5,
         "TLC": "B8-117KP71F8"
       },
       {
@@ -150,8 +219,9 @@
           "state": "WI",
           "building": "C1"
         },
-        "quantity": 10,
-        "UOM": "carton",
+        "quantity": 8,
+        "UOM": "bag",
+        "weight": 5,
         "TLC": "B8-117KP71F8"
       },
       {
@@ -163,8 +233,9 @@
           "state": "WI",
           "building": "1"
         },
-        "quantity": 10,
-        "UOM": "carton",
+        "quantity": 8,
+        "UOM": "bag",
+        "weight": 5,
         "TLC": "B8-117KP71F8"
       },
       {

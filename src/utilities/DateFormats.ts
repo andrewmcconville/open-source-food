@@ -24,7 +24,7 @@ export function useDayCount() {
     const dateObj2 = new Date(date2);
     const diffInTime = Math.abs(dateObj2.getTime() - dateObj1.getTime());
     const diffInDays = Math.ceil(diffInTime / (1000 * 60 * 60 * 24));
-    return diffInDays;
+    return diffInDays + 1;
   };
 
   return { dayCount };

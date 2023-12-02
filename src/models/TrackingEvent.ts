@@ -14,4 +14,5 @@ export interface TrackingEvent {
   quantity: number;
   UOM: string;
   TLC?: string;
+  FYI?: string;
 }
