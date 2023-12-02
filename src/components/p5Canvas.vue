@@ -212,6 +212,7 @@ onMounted(() => {
                     newTomatoBoundingBox = getBoundingBox(largestTomatoCluster);
                     newTomatoBoundingBoxTotal = p5.Vector.add(newTomatoBoundingBoxTotal, newTomatoBoundingBox.center);
                     tomatoHasInitialAppearance = true;
+                    navigator.vibrate(200);
 
                     p5CanvasStore.inactiveIngredients = p5CanvasStore.inactiveIngredients.filter((ingredient) => ingredient !== 'tomato');
 
