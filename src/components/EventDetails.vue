@@ -85,6 +85,6 @@ watch(() => route.params.event, () => {
     flex-grow: 1;
     overflow-y: auto;
     width: 100%;
-    padding: 66px 16px 16px 16px;
+    padding: 82px 32px;
 }
 </style>

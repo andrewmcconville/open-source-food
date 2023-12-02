@@ -9,20 +9,26 @@
             <h1 class="view-header__heading">Timeline</h1>
         </header>
         <div class="ingredient-details__scroller">
-            <template v-if="store.getActiveIngredient">
-                <h1 class="ingredient-details__heading">{{ store.getActiveIngredient.name }}</h1>
-                <div class="ingredient-details__labels">
-                    <p class="ingredient-details__day-label">Day</p>
-                    <p class="ingredient-details__event-label">Event</p>
-                </div>
+            <template v-if="activeIngredient">
+                <header class="ingredient-details__header">
+                    <h1 class="ingredient-details__heading">{{ activeIngredient.name }}</h1>
+                    <p>Harvested on {{ formattedDate(activeIngredient.events[0].date) }}</p>
+                    <p>About {{ friendlyDate(activeIngredient.events[0].date) }}</p>
+                    <p>It has {{ activeIngredient.events.length }} tracking events</p>
+                </header>
+
                 <ul class="ingredient-details__list">
-                    <li v-for="(event, index) in store.getActiveIngredient.events" :key="index">
-                        <RouterLink :to="{ name: 'EventDetails', params: { event: index }}" class="ingredient-details__event">
-                            <div class="ingredient-details__day">
-                                <p class="ingredient-details__day-count">{{ dayCount(store.getActiveIngredient.events[0].date, event.date) }}</p>
+                    <li v-for="(event, index) in activeIngredient.events" :key="index" class="ingredient-details__list-item">
+                        <RouterLink :to="{ name: 'EventDetails', params: { id: activeIngredient.name, event: index }}" class="ingredient-details__event">
+                            <div class="ingredient-details__labels">
+                                <p class="ingredient-details__day-label">Day</p>
+                                <p class="ingredient-details__event-label">Event</p>
                             </div>
-                            <div class="ingredient-details__data">
+                            <header class="ingredient-details__event-header">
+                                <p class="ingredient-details__day-count">{{ dayCount(activeIngredient.events[0].date, event.date) }}</p>
                                 <p class="ingredient-details__CTE">{{ event.CTE }}</p>
+                            </header>
+                            <div class="ingredient-details__data">
                                 <p class="ingredient-details__quantity">
                                     <template v-if="event.quantityBefore">
                                         <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
@@ -47,14 +53,23 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { useDayCount } from '../utilities/DateFormats'
+import { watch } from 'vue';
+import { useRoute, RouterLink } from 'vue-router'
+import { useDayCount, useFormattedDate, useFriendlyDate } from '../utilities/DateFormats'
 import { useFormattedNumber } from '../utilities/NumberFormats'
 import { useAppStore } from '../stores/AppStore'
 
+const route = useRoute();
 const store = useAppStore();
 const { dayCount } = useDayCount();
 const { formattedNumber } = useFormattedNumber();
+const { formattedDate } = useFormattedDate();
+const { friendlyDate } = useFriendlyDate();
+let activeIngredient = store.getActiveIngredient;
+
+watch(()  => route.params.id, () => {
+    activeIngredient = store.getActiveIngredient;
+});
 </script>
 
 
@@ -90,7 +105,11 @@ const { formattedNumber } = useFormattedNumber();
     flex-grow: 1;
     overflow-y: auto;
     width: 100%;
-    padding: 66px 16px 16px 16px;
+    padding: 82px 32px;
+}
+
+.ingredient-details__header {
+    margin-bottom: 64px;
 }
 
 .ingredient-details__list {
@@ -98,28 +117,27 @@ const { formattedNumber } = useFormattedNumber();
     width: 100%;
 }
 
-.ingredient-details__event {
-    display: flex;
-    align-items: start;
-    justify-content: start;
-    width: 100%;
+.ingredient-details__list-item {
     margin-bottom: 24px;
-    text-decoration: none;
+}
+
+.ingredient-details__event {
     color: #666;
+    padding: 8px 0;
+    display: block;
 }
 
 .ingredient-details__labels {
     display: flex;
     align-items: start;
     justify-content: start;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
 }
 
 .ingredient-details__day-label {
     font-size: 12px;
-    width: 48px;
+    width: 54px;
     text-align: center;
-    margin-right: 12px;
 }
 
 .ingredient-details__event-label {
@@ -127,33 +145,41 @@ const { formattedNumber } = useFormattedNumber();
     margin-left: 12px;
 }
 
-.ingredient-details__day {
-    width: 48px;
-    text-align: center;
-    margin-right: 12px;
-    margin-top: 4px;
-    flex-shrink: 0;
+.ingredient-details__event-header {
+    display: flex;
+    margin-bottom: 4px;
 }
 
 .ingredient-details__day-count {
-    font-size: 24px;
-    font-weight: 200;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    background-color: var(--yellow-20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    flex-shrink: 0;
+    font-size: 20px;
+    font-weight: 800;
     line-height: 1;
-    margin-top: 8px;
-}
-
-.ingredient-details__data {
-    flex-grow: 1;
-    padding: 12px;
 }
 
 .ingredient-details__CTE {
+    background-color: var(--teal);
+    color: #fff;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
     text-transform: capitalize;
-    font-size: 24px;
-    font-weight: 200;
-    line-height: 1;
-    margin-bottom: 8px;
 }
+
+.ingredient-details__data {
+    padding-left: 70px;
+    line-height: 1.5;
+}
+
 
 .ingredient-details__quantity {
     display: flex;

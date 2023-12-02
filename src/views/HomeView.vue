@@ -6,17 +6,13 @@
     </RouterView>
 
     <RouterView name="timeline" v-slot="{ Component }">
-      <KeepAlive>
         <Component :is="Component" v-if="Component" class="ingredient-details--active" />
         <aside v-else class="home-view__column home-view__timeline">Timeline</aside>
-      </KeepAlive>
     </RouterView>
 
     <RouterView name="details" v-slot="{ Component }">
-      <KeepAlive>
         <Component :is="Component" v-if="Component" class="event-details--active" />
         <aside v-else class="home-view__column home-view__event-details">Details</aside>
-      </KeepAlive>
     </RouterView>
   </article>
 </template>
