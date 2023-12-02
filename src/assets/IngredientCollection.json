@@ -8,11 +8,13 @@
     "events": [
       {
         "CTE": "harvesting",
-        "organization": "Harvest All, LLC",
+        "organization": "Southerns Best LLC Tomatoes",
         "date": "2023-07-09T14:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
+          "street": "3174 County Rd 830",
+          "city": "Felda",
+          "state": "FL",
+          "zip": "33930",
           "field": "A8"
         },
         "quantity": 1,
@@ -21,11 +23,13 @@
       },
       {
         "CTE": "cooling",
-        "organization": "Deep Freeze Wisconsin, Inc.",
+        "organization": "Unique Cold Storage",
         "date": "2023-07-09T15:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
+          "street": "1440 SW 6th Court",
+          "city": "Pompano Beach",
+          "state": "FL",
+          "zip": "33069",
           "building": "105"
         },
         "quantity": 1,
@@ -34,12 +38,14 @@
       },
       {
         "CTE": "grading",
-        "organization": "Deep Freeze Wisconsin, Inc.",
+        "organization": "Unique Cold Storage",
         "date": "2023-07-10T15:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
-          "building": "105"
+          "street": "1440 SW 6th Court",
+          "city": "Pompano Beach",
+          "state": "FL",
+          "zip": "33069",
+          "building": "107"
         },
         "quantity": 18,
         "UOM": "bin",
@@ -48,12 +54,14 @@
       },
       {
         "CTE": "ripening",
-        "organization": "Deep Freeze Wisconsin, Inc.",
+        "organization": "Quincy Tomato Corporation",
         "date": "2023-07-11T15:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
-          "building": "105"
+          "street": "20 N Graves St",
+          "city": "Quincy",
+          "state": "FL",
+          "zip": "32351",
+          "building": "A3"
         },
         "quantity": 18,
         "UOM": "bin",
@@ -61,12 +69,14 @@
       },
       {
         "CTE": "initial packing",
-        "organization": "Pack It Up, LLC",
+        "organization": "Gadsden Tomato Co",
         "date": "2023-07-15T15:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
-          "building": "W754 S279"
+          "street": "218 N Graves St",
+          "city": "Quincy",
+          "state": "FL",
+          "zip": "32351",
+          "building": "1"
         },
         "quantityBefore": 18,
         "UOMBefore": "bin",
@@ -78,11 +88,13 @@
       },
       {
         "CTE": "shipping",
-        "organization": "Speedy Delivery, Inc.",
+        "organization": "Central Florida Freezer",
         "date": "2023-07-19T07:33:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
+          "street": "1801 Bradford Ave",
+          "city": "Leesburg",
+          "state": "FL",
+          "zip": "34748",
           "building": "W754 S279"
         },
         "quantity": 9,
@@ -92,11 +104,13 @@
       },
       {
         "CTE": "receiving",
-        "organization": "Sorting Services Unlimited",
+        "organization": "Monte Package Company LLC",
         "date": "2023-07-19T08:18:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
+          "street": "4300 Steward Road",
+          "city": "Lakeland",
+          "state": "FL",
+          "zip": "33815",
           "building": "10"
         },
         "quantity": 9,
@@ -106,11 +120,13 @@
       },
       {
         "CTE": "repackaging",
-        "organization": "Sorting Services Unlimited",
+        "organization": "Monte Package Company LLC",
         "date": "2023-07-20T09:08:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
+          "street": "4300 Steward Road",
+          "city": "Lakeland",
+          "state": "FL",
+          "zip": "33815",
           "building": "11"
         },
         "quantityBefore": 9,

@@ -3,8 +3,10 @@ export interface TrackingEvent {
   organization: string;
   date: string;
   location: {
+    street: string;
     city: string;
     state: string;
+    zip: string;
     field?: string;
     building?: string;
   };
