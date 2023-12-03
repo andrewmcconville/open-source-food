@@ -30,19 +30,6 @@
                         v-if="trackingEvent.quantity > 1">s</template></p>
                 <p>{{ formattedNumber(trackingEvent.weight) }} lbs. each</p>
 
-                <template v-if="trackingEvent.TLC">
-                    <template v-if="trackingEvent.TLCBefore">
-                        <p class="panel-view__scroller-label">From lot</p>
-                        <p>{{ trackingEvent.TLCBefore }}</p>
-                        <p class="panel-view__scroller-label">To lot</p>
-                        <p>{{ trackingEvent.TLC }}</p>
-                    </template>
-                    <template v-else>
-                        <p class="panel-view__scroller-label">Lot code</p>
-                        <p>{{ trackingEvent.TLC }}</p>
-                    </template>
-                </template>
-
                 <p class="panel-view__scroller-label">Event Location</p>
                 <p>{{ trackingEvent.location.name }}</p>
                 <p>{{ trackingEvent.location.street }}</p>
@@ -56,8 +43,20 @@
                 <p class="panel-view__scroller-label">Performed By</p>
                 <p>{{ trackingEvent.organization.name }}</p>
                 <p>{{ trackingEvent.organization.street }}</p>
-                <p>{{ trackingEvent.organization.city }}, {{ trackingEvent.organization.state }} {{
-                    trackingEvent.organization.zip }}</p>
+                <p>{{ trackingEvent.organization.city }}, {{ trackingEvent.organization.state }} {{ trackingEvent.organization.zip }}</p>
+
+                <template v-if="trackingEvent.TLC">
+                    <template v-if="trackingEvent.TLCBefore">
+                        <p class="panel-view__scroller-label">From lot</p>
+                        <p>{{ trackingEvent.TLCBefore }}</p>
+                        <p class="panel-view__scroller-label">To lot</p>
+                        <p>{{ trackingEvent.TLC }}</p>
+                    </template>
+                    <template v-else>
+                        <p class="panel-view__scroller-label">Lot code</p>
+                        <p>{{ trackingEvent.TLC }}</p>
+                    </template>
+                </template>
             </template>
             <template v-else>
                 <p>Unknown tracking event</p>
