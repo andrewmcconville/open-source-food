@@ -19,6 +19,16 @@ export const useAppStore = defineStore('AppStore', {
         return
       }
     },
+    getActiveIngredientEventCount(): number {
+      const indredient: Ingredient | undefined = this.getActiveIngredient;
+      const events: TrackingEvent[] | undefined = indredient ? indredient.events : undefined;
+      
+      if (events) {
+        return events.length;
+      } else {
+        return 0;
+      }
+    },
     getActiveIngredientTrackingEvent(): TrackingEvent | undefined {
       const indredient: Ingredient | undefined = this.getActiveIngredient;
       const events: TrackingEvent[] | undefined = indredient ? indredient.events : undefined;
@@ -28,6 +38,9 @@ export const useAppStore = defineStore('AppStore', {
       } else {
         return
       }
+    },
+    getActiveIngredientTrackingEventIndex(): number {
+      return this.activeIngredientEventIndex + 1;
     },
   },
   actions: {

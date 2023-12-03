@@ -1,17 +1,17 @@
 <template>
-    <aside class="ingredient-details">
-        <header class="view-header__header">
-            <RouterLink to="/" class="view-header__back-anchor">
-                <svg width="26" height="26" class="view-header__anchor-icon">
+    <aside class="ingredient-details panel-view">
+        <header class="panel-view__header">
+            <RouterLink to="/" class="panel-view__back-anchor">
+                <svg width="26" height="26" class="panel-view__anchor-icon">
                     <use xlink:href="@/assets/solar-icon-set/arrow-left-linear.svg#icon"></use>
                 </svg>
             </RouterLink>
-            <h1 class="view-header__heading">Timeline</h1>
+            <h1 class="panel-view__heading">Timeline</h1>
         </header>
-        <div class="ingredient-details__scroller">
+        <section class="panel-view__scroller">
             <template v-if="activeIngredient">
-                <header class="ingredient-details__header">
-                    <h1 class="ingredient-details__heading">{{ activeIngredient.name }}</h1>
+                <header class="panel-view__scroller-header">
+                    <h1 class="panel-view__scroller-heading">{{ activeIngredient.name }}</h1>
                     <p>Harvested on {{ formattedDate(activeIngredient.events[0].date) }}</p>
                     <p>About {{ friendlyDate(activeIngredient.events[0].date) }}</p>
                     <p>It has {{ activeIngredient.events.length }} tracking events</p>
@@ -31,11 +31,12 @@
                             <div class="ingredient-details__data">
                                 <p class="ingredient-details__quantity">
                                     <template v-if="event.quantityBefore">
-                                        <span>{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
-                                        <span class="ingredient-details__to">to</span>
+                                        <span class="ingredient-details__before">{{ formattedNumber(event.quantityBefore) }} {{ event.UOMBefore }}<template v-if="event.quantity > 1">s</template></span>
+                                        <span class="ingredient-details__to">into</span>
                                     </template>
-                                    <span>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></span>
                                 </p>
+                                <p>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></p>
+                                <p>{{ formattedNumber(event.weight) }} lbs. ea.</p>
                                 <p class="ingredient-details__location">
                                     {{ event.location.city }},
                                     {{ event.location.state }}
@@ -48,7 +49,7 @@
             <template v-else>
                 <p>Unknown ingredient</p>
             </template>
-        </div>
+        </section>
     </aside>
 </template>
 
@@ -74,16 +75,7 @@ watch(()  => route.params.id, () => {
 
 
 <style scoped lang="scss">
-.ingredient-details {
-    background: var(--yellow-10);
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    flex: 1;
-    min-height: 0;
-    position: relative;
-    
+.ingredient-details {    
     @media(max-width: 720px) {
         display: none;
     }
@@ -99,17 +91,6 @@ watch(()  => route.params.id, () => {
         left: 0;
         z-index: 2;
     }
-}
-
-.ingredient-details__scroller {
-    flex-grow: 1;
-    overflow-y: auto;
-    width: 100%;
-    padding: 82px 32px;
-}
-
-.ingredient-details__header {
-    margin-bottom: 64px;
 }
 
 .ingredient-details__list {
@@ -185,6 +166,10 @@ watch(()  => route.params.id, () => {
     display: flex;
     align-items: center;
     justify-content: start;
+}
+
+.ingredient-details__before {
+    font-weight: 200;
 }
 
 .ingredient-details__to {

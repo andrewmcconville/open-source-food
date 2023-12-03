@@ -1,6 +1,6 @@
 <template>
-    <aside class="p5-canvas">
-        <div ref="sketchContainer" class="p5-canvas__sketch-container" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
+    <aside class="p5-canvas panel-view">
+        <section ref="sketchContainer" class="p5-canvas__sketch-container" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
             <template v-if="p5CanvasStore.tomatoFoodVector">
                 <svg height="360" width="360" class="p5-canvas__line">
                     <line style="stroke: rgb(255,255,255); stroke-width: 2"
@@ -82,9 +82,9 @@
             </template>
 
             <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
-        </div>
+        </section>
 
-        <div class="p5Canvas__scroller">
+        <section class="panel-view__scroller">
             <p class="p5-canvas__ingredient-list-heading">Current Ingredients</p>
             <template v-if="p5CanvasStore.activeIngredients.length > 0">
             <nav class="p5-canvas__ingredient-list">
@@ -112,7 +112,7 @@
             <p v-else>
                 No recent ingredients, yet.
             </p>
-        </div>
+        </section>
     </aside>
 </template>
   
@@ -629,13 +629,7 @@ const toggleLoop = () => {
 
 <style scoped lang="scss">
 .p5-canvas {
-    background: var(--view-background);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    flex: 1;
-    min-height: 0;
+
 }
 
 .p5-canvas__sketch-container {
@@ -747,13 +741,6 @@ const toggleLoop = () => {
     left: 0;
     right: 0;
     z-index: 4;
-}
-
-.p5Canvas__scroller {    
-    flex-grow: 1;
-    overflow-y: auto;
-    width: 100%;
-    padding: 16px;
 }
 
 .p5-canvas__ingredient-list-heading {

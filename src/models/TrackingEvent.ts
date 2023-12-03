@@ -14,6 +14,7 @@ export interface TrackingEvent {
   UOMBefore?: string;
   TLCBefore?: string;
   quantity: number;
+  weight: number;
   UOM: string;
   TLC?: string;
   FYI?: string;
