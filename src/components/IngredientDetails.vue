@@ -58,7 +58,7 @@
 import { watch, computed, ref } from 'vue';
 import type { Ref } from 'vue';
 import { useRoute, RouterLink } from 'vue-router'
-import { useDayCount, useFormattedDate, useFriendlyDate } from '../utilities/DateFormats'
+import { useDayCount, useFormattedDate } from '../utilities/DateFormats'
 import { useFormattedNumber } from '../utilities/NumberFormats'
 import { useAppStore } from '../stores/AppStore'
 import type { Ingredient } from '../models/Ingredient'
@@ -68,7 +68,6 @@ const store = useAppStore();
 const { dayCount } = useDayCount();
 const { formattedNumber } = useFormattedNumber();
 const { formattedDate } = useFormattedDate();
-const { friendlyDate } = useFriendlyDate();
 let activeIngredient: Ref<Ingredient | undefined> = ref(store.getActiveIngredient);
 
 watch(()  => route.params.id, () => {
