@@ -12,11 +12,12 @@
             <template v-if="activeIngredient">
                 <header class="panel-view__scroller-header">
                     <h1 class="panel-view__scroller-heading">{{ activeIngredient.name }}</h1>
-                    <p>{{ activeIngredient.events[0].CTE }} date: {{ formattedDate(activeIngredient.events[0].date) }}</p>
-                    <p>About {{ friendlyDate(activeIngredient.events[0].date) }}</p>
-                    <p>It has {{ activeIngredient.events.length }} tracking events</p>
+                    <p class="panel-view__scroller-label">Harvested on</p>
+                    <p>{{ formattedDate(activeIngredient.events[0].date) }} about {{ friendlyDate(activeIngredient.events[0].date) }}</p>
+                    <p>{{ activeIngredient.events.length }} tracking events</p>
                 </header>
 
+                <p class="panel-view__scroller-label">Event Timeline</p>
                 <ul class="ingredient-details__list">
                     <li v-for="(event, index) in activeIngredient.events" :key="index" class="ingredient-details__list-item">
                         <RouterLink :to="{ name: 'EventDetails', params: { id: activeIngredient.name, event: index }}" class="ingredient-details__event">
@@ -158,7 +159,6 @@ watch(()  => route.params.id, () => {
 
 .ingredient-details__data {
     padding-left: 68px;
-    line-height: 1.5;
 }
 
 

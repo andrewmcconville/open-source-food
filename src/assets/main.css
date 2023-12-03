@@ -55,12 +55,12 @@
 
 .panel-view__scroller-header {
   margin-bottom: 64px;
-  padding-top: 96px;
+  padding-top: 64px;
 }
 
 .panel-view__scroller-heading {
   font-size: 40px;
-  font-weight: 200;
+  font-weight: 800;
   margin: 0 0 32px 0;
   text-transform: capitalize;
 }
