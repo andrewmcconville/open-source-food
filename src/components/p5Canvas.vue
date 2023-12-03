@@ -733,7 +733,6 @@ const toggleLoop = () => {
     background-color: rgba(var(--teal-rgb), 0.75);
     backdrop-filter: blur(8px);
     color: #fff;
-    font-size: 16px;
     font-weight: 900;
     padding: 0;
     width: 80px;
