@@ -1,4 +1,4 @@
-.panel-view {  
+.panel-view {
   background: var(--yellow-10);
   display: flex;
   flex-direction: column;
@@ -11,23 +11,24 @@
 }
 
 .panel-view__header {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    background-color: rgba(var(--yellow-10-rgb), 0.333);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 8px 0 rgba(var(--yellow-40-rgb), 0.333);
-    position: absolute;
-    left: 0;
-    right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background-color: rgba(var(--yellow-20-rgb), 0.333);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px 0 rgba(var(--yellow-40-rgb), 0.25);
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid var(--yellow-10);
 }
 
 .panel-view__heading {
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1;
-    flex-grow: 1;
-    margin: 6px 0px 8px 0;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  flex-grow: 1;
+  margin: 6px 0px 8px 0;
 }
 
 .panel-view__back-anchor {
@@ -45,7 +46,7 @@
   fill: var(--teal);
 }
 
-.panel-view__scroller {  
+.panel-view__scroller {
   flex-grow: 1;
   overflow-y: auto;
   width: 100%;
