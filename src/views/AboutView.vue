@@ -48,7 +48,7 @@
                         </li>
                         <li>
                             <h2>p5</h2>
-                            <p>For video processing</p>
+                            <p>For camera capture and pixel scanning</p>
                             <p>
                                 <a href="https://p5js.org/" target="_blank">https://p5js.org/</a>
                             </p>
