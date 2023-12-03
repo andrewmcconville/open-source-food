@@ -12,15 +12,16 @@
             <template v-if="trackingEvent">
                 <header class="panel-view__scroller-header">
                     <h1 class="panel-view__scroller-heading">{{ trackingEvent.CTE }}</h1>
-                    <p>Took place on {{ formattedDate(trackingEvent.date) }}</p>
-                    <p>About {{ friendlyDate(trackingEvent.date) }}</p>
+                    <p class="panel-view__scroller-label">Took place on</p>
+                    <p>{{ formattedDate(trackingEvent.date) }} about {{ friendlyDate(trackingEvent.date) }}</p>
                     <p>This is event {{ store.getActiveIngredientTrackingEventIndex }} of {{ store.getActiveIngredientEventCount }}</p>
                 </header>
+
                 <p class="panel-view__scroller-label">What</p>
                 <p>{{ trackingEvent.quantity }} {{ trackingEvent.UOM }}<template v-if="trackingEvent.quantity > 1">s</template></p>
                 <p>{{ formattedNumber(trackingEvent.weight) }} lbs. each</p>
 
-                <p class="panel-view__scroller-label">Location</p>
+                <p class="panel-view__scroller-label">Event Location</p>
                 <p>{{ trackingEvent.location.name }}</p>
                 <p>{{ trackingEvent.location.street }}</p>
                 <p>{{ trackingEvent.location.city }}, {{ trackingEvent.location.state }} {{ trackingEvent.location.zip }}</p>
@@ -39,7 +40,9 @@
                     </template>
                 </template>
 
-                <p class="panel-view__scroller-label">By</p>
+                <img class="event-details__img" src="/map-1.jpg" />
+
+                <p class="panel-view__scroller-label">Performed By</p>
                 <p>{{ trackingEvent.organization.name }}</p>
                 <p>{{ trackingEvent.organization.street }}</p>
                 <p>{{ trackingEvent.organization.city }}, {{ trackingEvent.organization.state }} {{ trackingEvent.organization.zip }}</p>
@@ -88,5 +91,10 @@ watch(() => route.params.event, () => {
         bottom: 0;
         left: 0;
     }
+}
+
+.event-details__img {
+    max-width: calc(100% + 64px);
+    margin: 8px -32px 0 -32px;
 }
 </style>
