@@ -30,8 +30,8 @@
       },
       {
         "CTE": "cooling",
-        "organization": "Unique Cold Storage",
         "date": "2023-11-11T15:41:00",
+        "organization": "Unique Cold Storage",
         "location": {
           "street": "1440 SW 6th Court",
           "city": "Pompano Beach",
@@ -45,8 +45,8 @@
       },
       {
         "CTE": "grading",
-        "organization": "Unique Cold Storage",
         "date": "2023-11-12T15:41:00",
+        "organization": "Unique Cold Storage",
         "location": {
           "street": "1440 SW 6th Court",
           "city": "Pompano Beach",
@@ -61,8 +61,8 @@
       },
       {
         "CTE": "ripening",
-        "organization": "Quincy Tomato Corporation",
         "date": "2023-11-13T15:41:00",
+        "organization": "Quincy Tomato Corporation",
         "location": {
           "street": "20 N Graves St",
           "city": "Quincy",
@@ -76,14 +76,21 @@
       },
       {
         "CTE": "initial packing",
-        "organization": "Gadsden Tomato Co",
         "date": "2023-11-17T15:41:00",
         "location": {
+          "name": "Gadsden Tomato Co",
           "street": "218 N Graves St",
           "city": "Quincy",
           "state": "FL",
           "zip": "32351",
           "building": "1"
+        },
+        "organization": {
+          "name": "Gadsden Tomato Co",
+          "street": "20 N Graves St",
+          "city": "Quincy",
+          "state": "FL",
+          "zip": "32351"
         },
         "quantityBefore": 18,
         "UOMBefore": "bin",
@@ -95,8 +102,8 @@
       },
       {
         "CTE": "shipping",
-        "organization": "Central Florida Freezer",
         "date": "2023-11-21T07:33:00",
+        "organization": "Central Florida Freezer",
         "location": {
           "street": "1801 Bradford Ave",
           "city": "Leesburg",
@@ -111,8 +118,8 @@
       },
       {
         "CTE": "receiving",
-        "organization": "Monte Package Company LLC",
         "date": "2023-11-21T08:18:00",
+        "organization": "Monte Package Company LLC",
         "location": {
           "street": "4300 Steward Road",
           "city": "Lakeland",
@@ -127,8 +134,8 @@
       },
       {
         "CTE": "repackaging",
-        "organization": "Monte Package Company LLC",
         "date": "2023-11-22T09:08:00",
+        "organization": "Monte Package Company LLC",
         "location": {
           "street": "4300 Steward Road",
           "city": "Lakeland",
@@ -147,8 +154,8 @@
       },
       {
         "CTE": "shipping",
-        "organization":" Sorting Services Unlimited",
         "date": "2023-11-22T08:46:00",
+        "organization":" Sorting Services Unlimited",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -161,8 +168,8 @@
       },
       {
         "CTE": "receiving",
-        "organization": "Bag it up, LLC",
         "date": "2023-11-22T10:31:00",
+        "organization": "Bag it up, LLC",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -175,8 +182,8 @@
       },
       {
         "CTE": "repackaging",
-        "organization": "Bag it up, LLC",
         "date": "2023-11-24T11:21:00",
+        "organization": "Bag it up, LLC",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -193,8 +200,8 @@
       },
       {
         "CTE": "shipping",
-        "organization": "Bag it up, LLC",
         "date": "2023-11-26T17:38:00",
+        "organization": "Bag it up, LLC",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -207,8 +214,8 @@
       },
       {
         "CTE": "receiving",
-        "organization": "Big Belly Burgers",
         "date": "2023-11-26T18:23:00",
+        "organization": "Big Belly Burgers",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -221,8 +228,8 @@
       },
       {
         "CTE": "storage",
-        "organization": "Big Belly Burgers",
         "date": "2023-11-26T18:23:00",
+        "organization": "Big Belly Burgers",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -235,8 +242,8 @@
       },
       {
         "CTE": "shipping",
-        "organization": "Bag it up, LLC",
         "date": "2023-11-30T17:38:00",
+        "organization": "Bag it up, LLC",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -249,8 +256,8 @@
       },
       {
         "CTE": "receiving",
-        "organization": "Big Belly Burgers",
         "date": "2023-11-30T18:23:00",
+        "organization": "Big Belly Burgers",
         "location": {
           "city": "Waukesha",
           "state": "WI",
@@ -263,8 +270,8 @@
       },
       {
         "CTE": "sale",
-        "organization": "Big Belly Burgers",
         "date": "2023-12-05T18:23:00",
+        "organization": "Big Belly Burgers",
         "location": {
           "city": "Waukesha",
           "state": "WI",
