@@ -12,7 +12,7 @@
             <template v-if="activeIngredient">
                 <header class="panel-view__scroller-header">
                     <h1 class="panel-view__scroller-heading">{{ activeIngredient.name }}</h1>
-                    <p>Harvested on {{ formattedDate(activeIngredient.events[0].date) }}</p>
+                    <p>{{ activeIngredient.events[0].CTE }} date: {{ formattedDate(activeIngredient.events[0].date) }}</p>
                     <p>About {{ friendlyDate(activeIngredient.events[0].date) }}</p>
                     <p>It has {{ activeIngredient.events.length }} tracking events</p>
                 </header>
@@ -36,7 +36,7 @@
                                     </template>
                                 </p>
                                 <p>{{ formattedNumber(event.quantity) }} {{ event.UOM }}<template v-if="event.quantity > 1">s</template></p>
-                                <p>{{ formattedNumber(event.weight) }} lbs. ea.</p>
+                                <p>{{ formattedNumber(event.weight) }} lbs. each</p>
                                 <p class="ingredient-details__location">
                                     {{ event.location.city }},
                                     {{ event.location.state }}
@@ -117,13 +117,13 @@ watch(()  => route.params.id, () => {
 
 .ingredient-details__day-label {
     font-size: 12px;
-    width: 54px;
+    width: 52px;
     text-align: center;
 }
 
 .ingredient-details__event-label {
     font-size: 12px;
-    margin-left: 12px;
+    margin-left: 16px;
 }
 
 .ingredient-details__event-header {
@@ -157,7 +157,7 @@ watch(()  => route.params.id, () => {
 }
 
 .ingredient-details__data {
-    padding-left: 70px;
+    padding-left: 68px;
     line-height: 1.5;
 }
 
@@ -166,10 +166,6 @@ watch(()  => route.params.id, () => {
     display: flex;
     align-items: center;
     justify-content: start;
-}
-
-.ingredient-details__before {
-    font-weight: 200;
 }
 
 .ingredient-details__to {

@@ -8,14 +8,21 @@
     "events": [
       {
         "CTE": "harvesting",
-        "organization": "Southerns Best LLC Tomatoes",
         "date": "2023-07-09T14:41:00",
         "location": {
+          "name": "Southerns Best LLC Tomatoes",
           "street": "3174 County Rd 830",
           "city": "Felda",
           "state": "FL",
           "zip": "33930",
           "field": "A8"
+        },
+        "organization": {
+          "name": "Pro Pickers of Florida, Inc.",
+          "street": "123 Main St",
+          "city": "Felda",
+          "state": "FL",
+          "zip": "33930"
         },
         "quantity": 1,
         "UOM": "gondola",

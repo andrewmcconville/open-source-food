@@ -50,17 +50,23 @@
   flex-grow: 1;
   overflow-y: auto;
   width: 100%;
-  padding: 32px;
+  padding: 32px 32px 128px 32px;
 }
 
 .panel-view__scroller-header {
   margin-bottom: 64px;
   padding-top: 96px;
+  text-transform: capitalize;
 }
 
 .panel-view__scroller-heading {
   font-size: 36px;
   font-weight: 200;
-  text-transform: capitalize;
   margin: 0 0 32px 0;
+}
+
+.panel-view__scroller-label {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 48px 0 8px 0;
 }

@@ -84,7 +84,7 @@ watch(() => route.params.event, (paramValue: string | Array<string>) => {
   flex-direction: column;
   justify-content: center;
   color: var(--teal);
-  border-top: 2px solid #fff;
+  border-top: 2px solid transparent;
   padding-bottom: 2px;
 
   &:hover {

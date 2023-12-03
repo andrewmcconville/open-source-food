@@ -11,25 +11,33 @@
         <section class="panel-view__scroller">
             <template v-if="trackingEvent">
                 <header class="panel-view__scroller-header">
-                    <h1 class="panel-view__scroller-heading">{{ trackingEvent?.CTE }}</h1>
-                    <p>Took place on {{ formattedDate(trackingEvent?.date) }}</p>
-                    <p>About {{ friendlyDate(trackingEvent?.date) }}</p>
+                    <h1 class="panel-view__scroller-heading">{{ trackingEvent.CTE }}</h1>
+                    <p>Took place on {{ formattedDate(trackingEvent.date) }}</p>
+                    <p>About {{ friendlyDate(trackingEvent.date) }}</p>
                     <p>This is event {{ store.getActiveIngredientTrackingEventIndex }} of {{ store.getActiveIngredientEventCount }}</p>
                 </header>
+                <p class="panel-view__scroller-label">Location</p>
+                <p>{{ trackingEvent.location.name }}</p>
+                <p>{{ trackingEvent.location.street }}</p>
+                <p>{{ trackingEvent.location.city }}, {{ trackingEvent.location.state }} {{ trackingEvent.location.zip }}</p>
+                <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
+                <template v-else>Building {{ trackingEvent.location.building }}</template>
                 <template v-if="trackingEvent.TLC">
                     <template v-if="trackingEvent.TLCBefore">
-                        <p>From lot: {{ trackingEvent.TLCBefore }}</p>
-                        <p>To lot: {{ trackingEvent.TLC }}</p>
+                        <p class="panel-view__scroller-label">From lot</p>
+                        <p>{{ trackingEvent.TLCBefore }}</p>
+                        <p class="panel-view__scroller-label">To lot</p>
+                        <p>{{ trackingEvent.TLC }}</p>
                     </template>
                     <template v-else>
-                        <p>Lot: {{ trackingEvent.TLC }}</p>
+                        <p class="panel-view__scroller-label">Lot code</p>
+                        <p>{{ trackingEvent.TLC }}</p>
                     </template>
                 </template>
-                <p>By: {{ trackingEvent.organization }}</p>
-                <p>At:
-                    <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
-                    <template v-else>Building {{ trackingEvent.location.building }}</template>
-                </p>
+                <p class="panel-view__scroller-label">By</p>
+                <p>{{ trackingEvent.organization.name }}</p>
+                <p>{{ trackingEvent.organization.street }}</p>
+                <p>{{ trackingEvent.organization.city }}, {{ trackingEvent.organization.state }} {{ trackingEvent.organization.zip }}</p>
             </template>
             <template v-else>
                 <p>Unknown tracking event</p>

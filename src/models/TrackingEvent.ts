@@ -1,14 +1,21 @@
 export interface TrackingEvent {
   CTE: string | null;
-  organization: string;
   date: string;
   location: {
+    name: string;
     street: string;
     city: string;
     state: string;
     zip: string;
     field?: string;
     building?: string;
+  };
+  organization: {
+    name: string;
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
   };
   quantityBefore?: number;
   UOMBefore?: string;

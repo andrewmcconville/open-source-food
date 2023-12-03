@@ -28,7 +28,7 @@
     min-height: 0;
     flex-grow: 1;
     max-width: var(--app-max-width-large);
-    height: calc(100dvh - (var(--header-height) + var(--footer-height)));
+    height: calc(100dvh - var(--header-height));
     overflow: hidden;
 }
 
