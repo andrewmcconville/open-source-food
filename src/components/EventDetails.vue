@@ -16,6 +16,10 @@
                     <p>About {{ friendlyDate(trackingEvent.date) }}</p>
                     <p>This is event {{ store.getActiveIngredientTrackingEventIndex }} of {{ store.getActiveIngredientEventCount }}</p>
                 </header>
+                <p class="panel-view__scroller-label">What</p>
+                <p>{{ trackingEvent.quantity }} {{ trackingEvent.UOM }}<template v-if="trackingEvent.quantity > 1">s</template></p>
+                <p>{{ formattedNumber(trackingEvent.weight) }} lbs. each</p>
+
                 <p class="panel-view__scroller-label">Location</p>
                 <p>{{ trackingEvent.location.name }}</p>
                 <p>{{ trackingEvent.location.street }}</p>
@@ -34,6 +38,7 @@
                         <p>{{ trackingEvent.TLC }}</p>
                     </template>
                 </template>
+
                 <p class="panel-view__scroller-label">By</p>
                 <p>{{ trackingEvent.organization.name }}</p>
                 <p>{{ trackingEvent.organization.street }}</p>
@@ -50,6 +55,7 @@
 import { watch } from 'vue';
 import { useRoute, RouterLink } from 'vue-router'
 import { useFormattedDate, useFriendlyDate } from '../utilities/DateFormats'
+import { useFormattedNumber } from '../utilities/NumberFormats'
 import { useAppStore } from '../stores/AppStore'
 import type { TrackingEvent } from '../models/TrackingEvent'
 
@@ -57,6 +63,7 @@ const route = useRoute();
 const store = useAppStore();
 const { formattedDate } = useFormattedDate();
 const { friendlyDate } = useFriendlyDate();
+const { formattedNumber } = useFormattedNumber();
 let trackingEvent: TrackingEvent | undefined = store.getActiveIngredientTrackingEvent;
 
 watch(() => route.params.event, () => {
