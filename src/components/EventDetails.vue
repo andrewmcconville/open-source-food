@@ -12,21 +12,24 @@
             <template v-if="trackingEvent">
                 <header class="panel-view__scroller-header">
                     <h1 class="panel-view__scroller-heading">{{ trackingEvent.CTE }}</h1>
-                    <p class="panel-view__scroller-label">Took place on</p>
-                    <p>{{ formattedDate(trackingEvent.date) }} about {{ friendlyDate(trackingEvent.date) }}</p>
-                    <p>This is event {{ store.getActiveIngredientTrackingEventIndex }} of {{ store.getActiveIngredientEventCount }}</p>
+                    <p class="panel-view__scroller-label">Took place</p>
+                    <p>
+                        <template v-if="daysAgoComputed >= 1">
+                            {{ daysAgoComputed }} days ago on {{ formattedDate(trackingEvent.date) }}
+                        </template>
+                        <template v-else>
+                            Today, {{ formattedDate(trackingEvent.date) }}
+                        </template>
+                    </p>
+                    <p>{{ ordinalNumber(store.getActiveIngredientTrackingEventIndex) }} of {{
+                        store.getActiveIngredientEventCount }} events</p>
                 </header>
 
-                <p class="panel-view__scroller-label">What</p>
-                <p>{{ trackingEvent.quantity }} {{ trackingEvent.UOM }}<template v-if="trackingEvent.quantity > 1">s</template></p>
+                <p class="panel-view__scroller-label">How Much</p>
+                <p>{{ trackingEvent.quantity }} {{ trackingEvent.UOM }}<template
+                        v-if="trackingEvent.quantity > 1">s</template></p>
                 <p>{{ formattedNumber(trackingEvent.weight) }} lbs. each</p>
 
-                <p class="panel-view__scroller-label">Event Location</p>
-                <p>{{ trackingEvent.location.name }}</p>
-                <p>{{ trackingEvent.location.street }}</p>
-                <p>{{ trackingEvent.location.city }}, {{ trackingEvent.location.state }} {{ trackingEvent.location.zip }}</p>
-                <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
-                <template v-else>Building {{ trackingEvent.location.building }}</template>
                 <template v-if="trackingEvent.TLC">
                     <template v-if="trackingEvent.TLCBefore">
                         <p class="panel-view__scroller-label">From lot</p>
@@ -40,12 +43,21 @@
                     </template>
                 </template>
 
+                <p class="panel-view__scroller-label">Event Location</p>
+                <p>{{ trackingEvent.location.name }}</p>
+                <p>{{ trackingEvent.location.street }}</p>
+                <p>{{ trackingEvent.location.city }}, {{ trackingEvent.location.state }} {{ trackingEvent.location.zip }}
+                </p>
+                <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
+                <template v-else>Building {{ trackingEvent.location.building }}</template>
+
                 <img class="event-details__img" src="/map-1.jpg" />
 
                 <p class="panel-view__scroller-label">Performed By</p>
                 <p>{{ trackingEvent.organization.name }}</p>
                 <p>{{ trackingEvent.organization.street }}</p>
-                <p>{{ trackingEvent.organization.city }}, {{ trackingEvent.organization.state }} {{ trackingEvent.organization.zip }}</p>
+                <p>{{ trackingEvent.organization.city }}, {{ trackingEvent.organization.state }} {{
+                    trackingEvent.organization.zip }}</p>
             </template>
             <template v-else>
                 <p>Unknown tracking event</p>
@@ -55,27 +67,41 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue';
+import { watch, computed, ref } from 'vue';
+import type { Ref } from 'vue';
 import { useRoute, RouterLink } from 'vue-router'
-import { useFormattedDate, useFriendlyDate } from '../utilities/DateFormats'
-import { useFormattedNumber } from '../utilities/NumberFormats'
+import { useFormattedDate, useDaysAgo } from '../utilities/DateFormats'
+import { useFormattedNumber, useOrdinalNumber } from '../utilities/NumberFormats'
 import { useAppStore } from '../stores/AppStore'
 import type { TrackingEvent } from '../models/TrackingEvent'
 
 const route = useRoute();
 const store = useAppStore();
 const { formattedDate } = useFormattedDate();
-const { friendlyDate } = useFriendlyDate();
+const { daysAgo } = useDaysAgo();
 const { formattedNumber } = useFormattedNumber();
-let trackingEvent: TrackingEvent | undefined = store.getActiveIngredientTrackingEvent;
+const { ordinalNumber } = useOrdinalNumber();
+let trackingEvent: Ref<TrackingEvent | undefined> = ref(store.getActiveIngredientTrackingEvent);
 
 watch(() => route.params.event, () => {
-    trackingEvent = store.getActiveIngredientTrackingEvent;
+    trackingEvent.value = store.getActiveIngredientTrackingEvent;
+});
+
+const daysAgoComputed = computed((): number => {
+    if (!store.getActiveIngredient?.events[store.getActiveIngredient?.events.length - 1] || !trackingEvent.value) {
+        return 0;
+    }
+
+    const count: number = daysAgo(store.getActiveIngredient.events[store.getActiveIngredient.events.length - 1].date, trackingEvent.value.date);
+    if (count > 0) {
+        return count;
+    }
+
+    return 0;
 });
 </script>
 
 <style scoped lang="scss">
-
 .event-details--active {
     @media(max-width: 1080px) {
         display: flex;
@@ -86,6 +112,7 @@ watch(() => route.params.event, () => {
         left: 50%;
         z-index: 3;
     }
+
     @media(max-width: 720px) {
         top: 0;
         bottom: 0;
@@ -96,5 +123,4 @@ watch(() => route.params.event, () => {
 .event-details__img {
     max-width: calc(100% + 64px);
     margin: 8px -32px 0 -32px;
-}
-</style>
+}</style>

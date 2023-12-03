@@ -12,8 +12,8 @@
             <template v-if="activeIngredient">
                 <header class="panel-view__scroller-header">
                     <h1 class="panel-view__scroller-heading">{{ activeIngredient.name }}</h1>
-                    <p class="panel-view__scroller-label">Harvested on</p>
-                    <p>{{ formattedDate(activeIngredient.events[0].date) }} about {{ friendlyDate(activeIngredient.events[0].date) }}</p>
+                    <p class="panel-view__scroller-label">{{ activeIngredient.events[0].CTE }}</p>
+                    <p>{{ daysAgoComputed }} days ago on {{ formattedDate(activeIngredient.events[0].date) }}</p>
                     <p>{{ activeIngredient.events.length }} tracking events</p>
                 </header>
 
@@ -55,11 +55,13 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue';
+import { watch, computed, ref } from 'vue';
+import type { Ref } from 'vue';
 import { useRoute, RouterLink } from 'vue-router'
 import { useDayCount, useFormattedDate, useFriendlyDate } from '../utilities/DateFormats'
 import { useFormattedNumber } from '../utilities/NumberFormats'
 import { useAppStore } from '../stores/AppStore'
+import type { Ingredient } from '../models/Ingredient'
 
 const route = useRoute();
 const store = useAppStore();
@@ -67,10 +69,18 @@ const { dayCount } = useDayCount();
 const { formattedNumber } = useFormattedNumber();
 const { formattedDate } = useFormattedDate();
 const { friendlyDate } = useFriendlyDate();
-let activeIngredient = store.getActiveIngredient;
+let activeIngredient: Ref<Ingredient | undefined> = ref(store.getActiveIngredient);
 
 watch(()  => route.params.id, () => {
-    activeIngredient = store.getActiveIngredient;
+    activeIngredient.value = store.getActiveIngredient;
+});
+
+const daysAgoComputed = computed((): number => {
+    if (!activeIngredient.value || !activeIngredient.value.events[activeIngredient.value.events.length - 1]) {
+        return 0;
+    } else {
+        return dayCount(activeIngredient.value.events[activeIngredient.value.events.length - 1].date, activeIngredient.value.events[0].date) - 1;
+    }
 });
 </script>
 
