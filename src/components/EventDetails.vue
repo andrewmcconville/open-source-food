@@ -57,8 +57,6 @@ watch(() => route.params.event, () => {
 </script>
 
 <style scoped lang="scss">
-.event-details {
-}
 
 .event-details--active {
     @media(max-width: 1080px) {
