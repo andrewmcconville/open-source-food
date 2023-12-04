@@ -114,7 +114,7 @@ const daysAgoComputed = computed((): number => {
 
     @media(max-width: 720px) {
         top: 0;
-        bottom: 0;
+        bottom: var(--footer-height);
         left: 0;
     }
 }
