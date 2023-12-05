@@ -17,7 +17,10 @@
                     <p>{{ activeIngredient.events.length }} tracking events</p>
                 </header>
 
-                <p class="panel-view__label">Event Timeline</p>
+                <p class="panel-view__label">
+                    Event Timeline
+                    <span class="panel-view__label-helper">(click to learn more)</span>
+                </p>
                 <ul class="ingredient-details__list">
                     <li v-for="(event, index) in activeIngredient.events" :key="index" class="ingredient-details__list-item">
                         <RouterLink :to="{ name: 'EventDetails', params: { id: activeIngredient.name, event: index }}" class="ingredient-details__event">

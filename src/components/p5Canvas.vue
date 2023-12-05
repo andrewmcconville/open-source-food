@@ -93,7 +93,10 @@
         </section>
 
         <section class="panel-view__scroller">
-            <p class="panel-view__label">Current Ingredients</p>
+            <p class="panel-view__label">
+                Current Ingredients
+                <span class="panel-view__label-helper">(click to learn more)</span>
+            </p>
             <template v-if="p5CanvasStore.activeIngredients.length > 0">
             <nav class="p5-canvas__ingredient-list">
                 <template v-for="ingredient in p5CanvasStore.activeIngredients" v-bind:key="ingredient">

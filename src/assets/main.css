@@ -74,3 +74,8 @@
   margin: 48px 0 4px 0;
   text-transform: capitalize;
 }
+
+.panel-view__label-helper {
+  font-weight: 400;
+  text-transform: none;
+}
