@@ -518,7 +518,7 @@ onMounted(() => {
 
             let withinHue = (h > 0 && 30 > h) || (h > 350 && 360 > h);
             let withinSaturation = s > 20 && 65 > s;
-            let withinBrightness = b > 0 && 60 > b;
+            let withinBrightness = b > 0 && 50 > b;
 
             return withinHue && withinSaturation && withinBrightness;
         }
