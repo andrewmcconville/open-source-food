@@ -36,49 +36,51 @@
         "CTE": "cooling",
         "date": "2023-11-11T15:41:00",
         "location": {
-          "name": "Unique Cold Storage",
-          "street": "1440 SW 6th Court",
-          "city": "Pompano Beach",
+          "name": "South Florida Produce",
+          "street": "837 15th St",
+          "city": "Immokalee",
           "state": "FL",
-          "zip": "33069",
+          "zip": "34142",
           "building": "105"
         },
         "serviceProvider": {
-          "name": "Unique Cold Storage",
-          "street": "1440 SW 6th Court",
-          "city": "Pompano Beach",
+          "name": "South Florida Produce",
+          "street": "837 15th St",
+          "city": "Immokalee",
           "state": "FL",
-          "zip": "33069"
+          "zip": "34142"
         },
         "quantity": 1,
         "UOM": "gondola",
         "weight": 18000,
-        "notes": "Stored at 68°F."
+        "notes": "Stored at 68°F.",
+        "map": 2
       },
       {
         "CTE": "grading",
         "date": "2023-11-12T15:41:00",
         "location": {
-          "name": "Unique Cold Storage",
-          "street": "1440 SW 6th Court",
-          "city": "Pompano Beach",
+          "name": "South Florida Produce",
+          "street": "837 15th St",
+          "city": "Immokalee",
           "state": "FL",
-          "zip": "33069",
+          "zip": "34142",
           "building": "107"
         },
         "serviceProvider": {
-          "name": "Unique Cold Storage",
-          "street": "1440 SW 6th Court",
-          "city": "Pompano Beach",
+          "name": "South Florida Produce",
+          "street": "837 15th St",
+          "city": "Immokalee",
           "state": "FL",
-          "zip": "33069"
+          "zip": "34142"
         },
         "quantity": 18,
         "UOM": "bin",
         "weight": 1000,
         "notes": "Graded as U.S. No. 1.",
         "link": "https://www.ams.usda.gov/grades-standards/tomato-grades-and-standards",
-        "linkDomain": "ams.usda.gov"
+        "linkDomain": "ams.usda.gov",
+        "map": 2
       },
       {
         "CTE": "ripening",
@@ -101,7 +103,8 @@
         "quantity": 18,
         "UOM": "bin",
         "weight": 1000,
-        "notes": "Ethylene ripened at 71°F."
+        "notes": "Ethylene ripened at 71°F.",
+        "map": 3
       },
       {
         "CTE": "initial packing",
@@ -127,71 +130,74 @@
         "quantity": 9,
         "UOM": "pallet",
         "weight": 2000,
-        "TLC": "A8-876HB93D5"
+        "TLC": "A8-876HB93D5",
+        "map": 4
       },
       {
         "CTE": "shipping",
         "date": "2023-11-21T07:33:00",
         "location": {
-          "name": "Central Florida Freezer",
-          "street": "1801 Bradford Ave",
-          "city": "Leesburg",
+          "name": "Gadsden Tomato Co",
+          "street": "218 N Graves St",
+          "city": "Quincy",
           "state": "FL",
-          "zip": "34748",
-          "building": "W754 S279"
+          "zip": "32351",
+          "building": "1"
         },
         "serviceProvider": {
-          "name": "Central Florida Freezer",
-          "street": "1801 Bradford Ave",
-          "city": "Leesburg",
+          "name": "Cold Shippers, LLC",
+          "street": "20 N Graves St",
+          "city": "Quincy",
           "state": "FL",
-          "zip": "34748"
+          "zip": "32351"
         },
         "quantity": 9,
         "UOM": "pallet",
         "weight": 2000,
-        "TLC": "A8-876HB93D5"
+        "TLC": "A8-876HB93D5",
+        "map": 4
       },
       {
         "CTE": "receiving",
         "date": "2023-11-21T08:18:00",
         "location": {
-          "name": "Monte Package Company LLC",
-          "street": "4300 Steward Road",
-          "city": "Lakeland",
-          "state": "FL",
-          "zip": "33815",
-          "building": "10"
+          "name": "Cape Warehouse Inc",
+          "street": "2417 Good Hope St",
+          "city": "Cape Girardeau",
+          "state": "MO",
+          "zip": "63703",
+          "building": "12"
         },
         "serviceProvider": {
-          "name": "Monte Package Company LLC",
-          "street": "4300 Steward Road",
-          "city": "Lakeland",
-          "state": "FL",
-          "zip": "33815"
+          "name": "Cape Warehouse Inc",
+          "street": "2417 Good Hope St",
+          "city": "Cape Girardeau",
+          "state": "MO",
+          "zip": "63703"
         },
         "quantity": 9,
         "UOM": "pallet",
         "weight": 2000,
-        "TLC": "A8-876HB93D5"
+        "TLC": "A8-876HB93D5",
+        "map": 5
       },
       {
         "CTE": "repackaging",
         "date": "2023-11-22T09:08:00",
         "location": {
-          "name": "Monte Package Company LLC",
-          "street": "4300 Steward Road",
-          "city": "Lakeland",
-          "state": "FL",
-          "zip": "33815",
+          "name": "Cape Warehouse Inc",
+          "street": "2417 Good Hope St",
+          "city": "Cape Girardeau",
+          "state": "MO",
+          "zip": "63703",
           "building": "11"
         },
         "serviceProvider": {
-          "name": "Monte Package Company LLC",
-          "street": "4300 Steward Road",
-          "city": "Lakeland",
-          "state": "FL",
-          "zip": "33815"
+          "name": "Cape Warehouse Inc",
+          "street": "2417 Good Hope St",
+          "city": "Cape Girardeau",
+          "state": "MO",
+          "zip": "63703"
         },
         "quantityBefore": 9,
         "UOMBefore": "pallet",
@@ -200,71 +206,74 @@
         "quantity": 720,
         "UOM": "carton",
         "weight": 25,
-        "TLC": "S1-006JI83A0"
+        "TLC": "S1-006JI83A0",
+        "map": 5
       },
       {
         "CTE": "shipping",
         "date": "2023-11-22T08:46:00",
         "location": {
-          "name": "Sorting Services Unlimited",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186",
+          "name": "Cape Warehouse Inc",
+          "street": "2417 Good Hope St",
+          "city": "Cape Girardeau",
+          "state": "MO",
+          "zip": "63703",
           "building": "12"
         },
         "serviceProvider": {
-          "name": "Sorting Services Unlimited",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186"
+          "name": "Cold Haul",
+          "street": "4488 South North St",
+          "city": "Cape Girardeau",
+          "state": "MO",
+          "zip": "63703"
         },
         "quantity": 80,
         "UOM": "carton",
         "weight": 25,
-        "TLC": "S1-006JI83A0"
+        "TLC": "S1-006JI83A0",
+        "map": 5
       },
       {
         "CTE": "receiving",
         "date": "2023-11-22T10:31:00",
         "location": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186",
-          "building": "C1"
+          "name": "United States Cold Storage",
+          "street": "800 E Kankakee River Dr",
+          "city": "Wilmington",
+          "state": "IL",
+          "zip": "60481",
+          "building": "B2"
         },
         "serviceProvider": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186"
+          "name": "United States Cold Storage",
+          "street": "800 E Kankakee River Dr",
+          "city": "Wilmington",
+          "state": "IL",
+          "zip": "60481"
         },
         "quantity": 80,
         "UOM": "carton",
         "weight": 25,
-        "TLC": "S1-006JI83A0"
+        "TLC": "S1-006JI83A0",
+        "map": 6
       },
       {
         "CTE": "repackaging",
         "date": "2023-11-24T11:21:00",
         "location": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186",
+          "name": "United States Cold Storage",
+          "street": "800 E Kankakee River Dr",
+          "city": "Wilmington",
+          "state": "IL",
+          "zip": "60481",
           "building": "C1"
         },
         "serviceProvider": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186"
+          "name": "United States Cold Storage",
+          "street": "800 E Kankakee River Dr",
+          "city": "Wilmington",
+          "state": "IL",
+          "zip": "60481"
         },
         "quantityBefore": 80,
         "UOMBefore": "carton",
@@ -273,144 +282,150 @@
         "quantity": 400,
         "UOM": "bag",
         "weight": 5,
-        "TLC": "B8-117KP71F8"
+        "TLC": "B8-117KP71F8",
+        "map": 6
       },
       {
         "CTE": "shipping",
         "date": "2023-11-26T17:38:00",
         "location": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186",
-          "building": "C1"
+          "name": "United States Cold Storage",
+          "street": "800 E Kankakee River Dr",
+          "city": "Wilmington",
+          "state": "IL",
+          "zip": "60481",
+          "building": "B3"
         },
         "serviceProvider": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
-          "state": "WI",
-          "zip": "53186"
+          "name": "United States Cold Storage",
+          "street": "800 E Kankakee River Dr",
+          "city": "Wilmington",
+          "state": "IL",
+          "zip": "60481"
         },
         "quantity": 100,
         "UOM": "bag",
         "weight": 5,
-        "TLC": "B8-117KP71F8"
+        "TLC": "B8-117KP71F8",
+        "map": 6
       },
       {
         "CTE": "receiving",
         "date": "2023-11-26T18:23:00",
         "location": {
-          "name": "Big Belly Burgers",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Keller Warehousing & Co-Packing",
+          "street": "8801 88th Ave Suite A",
+          "city": "Pleasant Prairie",
           "state": "WI",
-          "zip": "53186",
+          "zip": "53158",
           "building": "1"
         },
         "serviceProvider": {
-          "name": "Big Belly Burgers",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Keller Warehousing & Co-Packing",
+          "street": "8801 88th Ave Suite A",
+          "city": "Pleasant Prairie",
           "state": "WI",
-          "zip": "53186"
+          "zip": "53158"
         },
         "quantity": 100,
         "UOM": "bag",
         "weight": 5,
-        "TLC": "B8-117KP71F8"
+        "TLC": "B8-117KP71F8",
+        "map": 7
       },
       {
         "CTE": "storage",
         "date": "2023-11-26T18:23:00",
         "location": {
-          "name": "Big Belly Burgers",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Keller Warehousing & Co-Packing",
+          "street": "8801 88th Ave Suite A",
+          "city": "Pleasant Prairie",
           "state": "WI",
-          "zip": "53186",
+          "zip": "53158",
           "building": "1"
         },
         "serviceProvider": {
-          "name": "Big Belly Burgers",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Keller Warehousing & Co-Packing",
+          "street": "8801 88th Ave Suite A",
+          "city": "Pleasant Prairie",
           "state": "WI",
-          "zip": "53186"
+          "zip": "53158"
         },
         "quantity": 100,
         "UOM": "bag",
         "weight": 5,
-        "TLC": "B8-117KP71F8"
+        "TLC": "B8-117KP71F8",
+        "map": 7
       },
       {
         "CTE": "shipping",
         "date": "2023-11-30T17:38:00",
         "location": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Keller Warehousing & Co-Packing",
+          "street": "8801 88th Ave Suite A",
+          "city": "Pleasant Prairie",
           "state": "WI",
-          "zip": "53186",
-          "building": "C1"
+          "zip": "53158",
+          "building": "1"
         },
         "serviceProvider": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Keller Warehousing & Co-Packing",
+          "street": "8801 88th Ave Suite A",
+          "city": "Pleasant Prairie",
           "state": "WI",
-          "zip": "53186"
+          "zip": "53158"
         },
         "quantity": 8,
         "UOM": "bag",
         "weight": 5,
-        "TLC": "B8-117KP71F8"
+        "TLC": "B8-117KP71F8",
+        "map": 7
       },
       {
         "CTE": "receiving",
         "date": "2023-11-30T18:23:00",
         "location": {
-          "name": "Big Belly Burgers",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Beans & Barley",
+          "street": "1901 E North Ave",
+          "city": "Milwaukee",
           "state": "WI",
-          "zip": "53186",
-          "building": "1"
+          "zip": "53202"
         },
         "serviceProvider": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Beans & Barley",
+          "street": "1901 E North Ave",
+          "city": "Milwaukee",
           "state": "WI",
-          "zip": "53186"
+          "zip": "53202"
         },
         "quantity": 8,
         "UOM": "bag",
         "weight": 5,
-        "TLC": "B8-117KP71F8"
+        "TLC": "B8-117KP71F8",
+        "map": 8
       },
       {
         "CTE": "sale",
         "date": "2023-12-05T18:23:00",
         "location": {
-          "name": "Big Belly Burgers",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Beans & Barley",
+          "street": "1901 E North Ave",
+          "city": "Milwaukee",
           "state": "WI",
-          "zip": "53186",
-          "building": "1"
+          "zip": "53202"
         },
         "serviceProvider": {
-          "name": "Bag it up, LLC",
-          "street": "4300 Steward Road",
-          "city": "Waukesha",
+          "name": "Beans & Barley",
+          "street": "1901 E North Ave",
+          "city": "Milwaukee",
           "state": "WI",
-          "zip": "53186"
+          "zip": "53202"
         },
         "quantity": 0.25,
         "UOM": "item",
-        "TLC": "B8-117KP71F8"
+        "weight": 0.125,
+        "TLC": "B8-117KP71F8",
+        "map": 8
       }
     ]
   },
