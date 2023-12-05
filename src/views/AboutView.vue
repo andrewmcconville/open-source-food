@@ -99,7 +99,7 @@
                 </ol>
                 </li>
                 <li>
-                    <h2>References</h2>
+                    <h2>Resources</h2>
                     <ol>
                         <li>
                             <h2>Tomato Logistics</h2>
