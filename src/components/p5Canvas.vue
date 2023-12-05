@@ -1,7 +1,7 @@
 <template>
     <aside class="p5-canvas panel-view">
         <section class="p5-canvas__panel-view panel-view__scroller">
-            <div ref="sketchContainer" class="p5-canvas__sketch-container" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
+            <div ref="sketchContainer" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
                 <template v-if="p5CanvasStore.tomatoFoodVector">
                     <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
                         :style="{ transform: `translate(${p5CanvasStore.tomatoFoodVector?.x}px, ${p5CanvasStore.tomatoFoodVector?.y}px)` }">
@@ -89,11 +89,11 @@
                         </div>
                     </template>
                 </template>
-
-                <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
             </div>
 
             <div  class="p5-canvas__ingredient-container">
+                <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
+
                 <p class="panel-view__label">
                     Current Ingredients
                     <span class="panel-view__label-helper">(click to learn more)</span>
@@ -650,12 +650,6 @@ const toggleLoop = () => {
     padding: 0 0 192px 0;
 }
 
-.p5-canvas__sketch-container {
-    position: relative;
-    width: 100%;
-    max-width: 100dvw;
-}
-
 .p5-canvas__line {
     position: absolute;
     top: 0;
@@ -740,6 +734,11 @@ const toggleLoop = () => {
     }
 }
 
+.p5-canvas__ingredient-container {
+    padding: 32px;
+    position: relative;
+}
+
 .p5-canvas__play-pause {
     border: 2px solid var(--yellow-10);
     background-color: rgba(var(--teal-rgb), 0.75);
@@ -752,15 +751,11 @@ const toggleLoop = () => {
     border-radius: 100%;
     cursor: pointer;
     position: absolute;
-    bottom: -40px;
+    top: -40px;
     margin: auto;
     left: 0;
     right: 0;
     z-index: 4;
-}
-
-.p5-canvas__ingredient-container {
-    padding: 32px;
 }
 
 .p5-canvas__ingredient-list {
