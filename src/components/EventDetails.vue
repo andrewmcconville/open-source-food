@@ -12,7 +12,7 @@
             <template v-if="trackingEvent">
                 <header class="panel-view__scroller-header">
                     <h1 class="panel-view__scroller-heading">{{ trackingEvent.CTE }}</h1>
-                    <p class="panel-view__scroller-label">Took place</p>
+                    <p class="panel-view__label">Took place</p>
                     <p>
                         <template v-if="daysAgoComputed >= 1">
                             {{ daysAgoComputed }} days ago on {{ formattedDate(trackingEvent.date) }}
@@ -25,35 +25,48 @@
                         store.getActiveIngredientEventCount }} events</p>
                 </header>
 
-                <p class="panel-view__scroller-label">How Much</p>
+                <p class="panel-view__label">How Much</p>
                 <p>{{ trackingEvent.quantity }} {{ trackingEvent.UOM }}<template
                         v-if="trackingEvent.quantity > 1">s</template></p>
                 <p>{{ formattedNumber(trackingEvent.weight) }} lbs. each</p>
 
-                <p class="panel-view__scroller-label">Event Location</p>
+                <div v-if="trackingEvent.notes || trackingEvent.link">
+                    <p class="panel-view__label">Notes</p>
+                    <p v-if="trackingEvent.notes">{{ trackingEvent.notes }}</p>
+                    <p v-if="trackingEvent.link">
+                        <a :href="trackingEvent.link" target="_blank" rel="noopener noreferrer">
+                            Learn more at {{ trackingEvent.linkDomain }}
+                            <svg width="16" height="16" class="anchor-link-icon">
+                                <use xlink:href="@/assets/solar-icon-set/square-top-down.svg#icon"></use>
+                            </svg>
+                        </a>
+                    </p>
+                </div>
+
+                <p class="panel-view__label">Event Location</p>
                 <p>{{ trackingEvent.location.name }}</p>
                 <p>{{ trackingEvent.location.street }}</p>
                 <p>{{ trackingEvent.location.city }}, {{ trackingEvent.location.state }} {{ trackingEvent.location.zip }}
                 </p>
                 <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
-                <template v-else>Building {{ trackingEvent.location.building }}</template>
+                <template v-if="trackingEvent.location.building">Building {{ trackingEvent.location.building }}</template>
 
-                <img class="event-details__img" src="/map-1.jpg" />
+                <img class="event-details__img" :src="`/map-${trackingEvent.map}.jpg`" v-if="trackingEvent.map"/>
 
-                <p class="panel-view__scroller-label">Performed By</p>
-                <p>{{ trackingEvent.organization.name }}</p>
-                <p>{{ trackingEvent.organization.street }}</p>
-                <p>{{ trackingEvent.organization.city }}, {{ trackingEvent.organization.state }} {{ trackingEvent.organization.zip }}</p>
+                <p class="panel-view__label">Performed By</p>
+                <p>{{ trackingEvent.serviceProvider.name }}</p>
+                <p>{{ trackingEvent.serviceProvider.street }}</p>
+                <p>{{ trackingEvent.serviceProvider.city }}, {{ trackingEvent.serviceProvider.state }} {{ trackingEvent.serviceProvider.zip }}</p>
 
                 <template v-if="trackingEvent.TLC">
                     <template v-if="trackingEvent.TLCBefore">
-                        <p class="panel-view__scroller-label">From lot</p>
+                        <p class="panel-view__label">From lot</p>
                         <p>{{ trackingEvent.TLCBefore }}</p>
-                        <p class="panel-view__scroller-label">To lot</p>
+                        <p class="panel-view__label">To lot</p>
                         <p>{{ trackingEvent.TLC }}</p>
                     </template>
                     <template v-else>
-                        <p class="panel-view__scroller-label">Lot code</p>
+                        <p class="panel-view__label">Lot code</p>
                         <p>{{ trackingEvent.TLC }}</p>
                     </template>
                 </template>

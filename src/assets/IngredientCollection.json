@@ -17,62 +17,91 @@
           "zip": "33930",
           "field": "A8"
         },
-        "organization": {
+        "serviceProvider": {
           "name": "Pro Pickers of Florida, Inc.",
-          "street": "123 Main St",
+          "street": "2838 County Rd 47",
           "city": "Felda",
           "state": "FL",
           "zip": "33930"
         },
         "quantity": 1,
         "UOM": "gondola",
-        "weight": 18000
+        "weight": 18000,
+        "notes": "Green-harvested at M3 stage.",
+        "link": "https://www.ams.usda.gov/grades-standards/tomato-grades-and-standards",
+        "linkDomain": "ams.usda.gov",
+        "map": 1
       },
       {
         "CTE": "cooling",
         "date": "2023-11-11T15:41:00",
-        "organization": "Unique Cold Storage",
         "location": {
+          "name": "Unique Cold Storage",
           "street": "1440 SW 6th Court",
           "city": "Pompano Beach",
           "state": "FL",
           "zip": "33069",
           "building": "105"
         },
+        "serviceProvider": {
+          "name": "Unique Cold Storage",
+          "street": "1440 SW 6th Court",
+          "city": "Pompano Beach",
+          "state": "FL",
+          "zip": "33069"
+        },
         "quantity": 1,
         "UOM": "gondola",
-        "weight": 18000
+        "weight": 18000,
+        "notes": "Stored at 68°F."
       },
       {
         "CTE": "grading",
         "date": "2023-11-12T15:41:00",
-        "organization": "Unique Cold Storage",
         "location": {
+          "name": "Unique Cold Storage",
           "street": "1440 SW 6th Court",
           "city": "Pompano Beach",
           "state": "FL",
           "zip": "33069",
           "building": "107"
         },
+        "serviceProvider": {
+          "name": "Unique Cold Storage",
+          "street": "1440 SW 6th Court",
+          "city": "Pompano Beach",
+          "state": "FL",
+          "zip": "33069"
+        },
         "quantity": 18,
         "UOM": "bin",
         "weight": 1000,
-        "FYI": "https://www.ams.usda.gov/grades-standards/tomato-grades-and-standards"
+        "notes": "Graded as U.S. No. 1.",
+        "link": "https://www.ams.usda.gov/grades-standards/tomato-grades-and-standards",
+        "linkDomain": "ams.usda.gov"
       },
       {
         "CTE": "ripening",
         "date": "2023-11-13T15:41:00",
-        "organization": "Quincy Tomato Corporation",
         "location": {
+          "name": "Quincy Tomato Corporation",
           "street": "20 N Graves St",
           "city": "Quincy",
           "state": "FL",
           "zip": "32351",
           "building": "A3"
         },
+        "serviceProvider": {
+          "name": "Quincy Tomato Corporation",
+          "street": "20 N Graves St",
+          "city": "Quincy",
+          "state": "FL",
+          "zip": "32351"
+        },
         "quantity": 18,
         "UOM": "bin",
-        "weight": 1000
+        "weight": 1000,
+        "notes": "Ethylene ripened at 71°F."
       },
       {
         "CTE": "initial packing",
@@ -85,7 +114,7 @@
           "zip": "32351",
           "building": "1"
         },
-        "organization": {
+        "serviceProvider": {
           "name": "Gadsden Tomato Co",
           "street": "20 N Graves St",
           "city": "Quincy",
@@ -103,13 +132,20 @@
       {
         "CTE": "shipping",
         "date": "2023-11-21T07:33:00",
-        "organization": "Central Florida Freezer",
         "location": {
+          "name": "Central Florida Freezer",
           "street": "1801 Bradford Ave",
           "city": "Leesburg",
           "state": "FL",
           "zip": "34748",
           "building": "W754 S279"
+        },
+        "serviceProvider": {
+          "name": "Central Florida Freezer",
+          "street": "1801 Bradford Ave",
+          "city": "Leesburg",
+          "state": "FL",
+          "zip": "34748"
         },
         "quantity": 9,
         "UOM": "pallet",
@@ -119,13 +155,20 @@
       {
         "CTE": "receiving",
         "date": "2023-11-21T08:18:00",
-        "organization": "Monte Package Company LLC",
         "location": {
+          "name": "Monte Package Company LLC",
           "street": "4300 Steward Road",
           "city": "Lakeland",
           "state": "FL",
           "zip": "33815",
           "building": "10"
+        },
+        "serviceProvider": {
+          "name": "Monte Package Company LLC",
+          "street": "4300 Steward Road",
+          "city": "Lakeland",
+          "state": "FL",
+          "zip": "33815"
         },
         "quantity": 9,
         "UOM": "pallet",
@@ -135,13 +178,20 @@
       {
         "CTE": "repackaging",
         "date": "2023-11-22T09:08:00",
-        "organization": "Monte Package Company LLC",
         "location": {
+          "name": "Monte Package Company LLC",
           "street": "4300 Steward Road",
           "city": "Lakeland",
           "state": "FL",
           "zip": "33815",
           "building": "11"
+        },
+        "serviceProvider": {
+          "name": "Monte Package Company LLC",
+          "street": "4300 Steward Road",
+          "city": "Lakeland",
+          "state": "FL",
+          "zip": "33815"
         },
         "quantityBefore": 9,
         "UOMBefore": "pallet",
@@ -155,11 +205,20 @@
       {
         "CTE": "shipping",
         "date": "2023-11-22T08:46:00",
-        "organization":" Sorting Services Unlimited",
         "location": {
+          "name": "Sorting Services Unlimited",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "12"
+        },
+        "serviceProvider": {
+          "name": "Sorting Services Unlimited",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 80,
         "UOM": "carton",
@@ -169,11 +228,20 @@
       {
         "CTE": "receiving",
         "date": "2023-11-22T10:31:00",
-        "organization": "Bag it up, LLC",
         "location": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "C1"
+        },
+        "serviceProvider": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 80,
         "UOM": "carton",
@@ -183,11 +251,20 @@
       {
         "CTE": "repackaging",
         "date": "2023-11-24T11:21:00",
-        "organization": "Bag it up, LLC",
         "location": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "C1"
+        },
+        "serviceProvider": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantityBefore": 80,
         "UOMBefore": "carton",
@@ -201,11 +278,20 @@
       {
         "CTE": "shipping",
         "date": "2023-11-26T17:38:00",
-        "organization": "Bag it up, LLC",
         "location": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "C1"
+        },
+        "serviceProvider": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 100,
         "UOM": "bag",
@@ -215,11 +301,20 @@
       {
         "CTE": "receiving",
         "date": "2023-11-26T18:23:00",
-        "organization": "Big Belly Burgers",
         "location": {
+          "name": "Big Belly Burgers",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "1"
+        },
+        "serviceProvider": {
+          "name": "Big Belly Burgers",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 100,
         "UOM": "bag",
@@ -229,11 +324,20 @@
       {
         "CTE": "storage",
         "date": "2023-11-26T18:23:00",
-        "organization": "Big Belly Burgers",
         "location": {
+          "name": "Big Belly Burgers",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "1"
+        },
+        "serviceProvider": {
+          "name": "Big Belly Burgers",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 100,
         "UOM": "bag",
@@ -243,11 +347,20 @@
       {
         "CTE": "shipping",
         "date": "2023-11-30T17:38:00",
-        "organization": "Bag it up, LLC",
         "location": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "C1"
+        },
+        "serviceProvider": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 8,
         "UOM": "bag",
@@ -257,11 +370,20 @@
       {
         "CTE": "receiving",
         "date": "2023-11-30T18:23:00",
-        "organization": "Big Belly Burgers",
         "location": {
+          "name": "Big Belly Burgers",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "1"
+        },
+        "serviceProvider": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 8,
         "UOM": "bag",
@@ -271,11 +393,20 @@
       {
         "CTE": "sale",
         "date": "2023-12-05T18:23:00",
-        "organization": "Big Belly Burgers",
         "location": {
+          "name": "Big Belly Burgers",
+          "street": "4300 Steward Road",
           "city": "Waukesha",
           "state": "WI",
+          "zip": "53186",
           "building": "1"
+        },
+        "serviceProvider": {
+          "name": "Bag it up, LLC",
+          "street": "4300 Steward Road",
+          "city": "Waukesha",
+          "state": "WI",
+          "zip": "53186"
         },
         "quantity": 0.25,
         "UOM": "item",
@@ -287,16 +418,25 @@
     "name": "lettuce",
     "events": [
       {
-        "CTE": "harvesting",
-        "organization": "Harvest All, LLC",
-        "date": "2023-07-09T14:41:00",
+        "CTE": "Under Construction :)",
+        "date": "2023-11-11T14:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
-          "field": "A8"
+          "name": "Location",
+          "street": "Address",
+          "city": "City",
+          "state": "ST",
+          "zip": "00000"
         },
-        "quantity": 10000,
-        "UOM": "lb"
+        "serviceProvider": {
+          "name": "Business",
+          "street": "Address",
+          "city": "City",
+          "state": "ST",
+          "zip": "00000"
+        },
+        "quantity": 0,
+        "UOM": "Things",
+        "weight": 0
       }
     ]
   },
@@ -304,16 +444,25 @@
     "name": "bread",
     "events": [
       {
-        "CTE": "harvesting",
-        "organization": "Harvest All, LLC",
-        "date": "2023-07-09T14:41:00",
+        "CTE": "Under Construction :)",
+        "date": "2023-11-11T14:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
-          "field": "A8"
+          "name": "Location",
+          "street": "Address",
+          "city": "City",
+          "state": "ST",
+          "zip": "00000"
         },
-        "quantity": 10000,
-        "UOM": "lb"
+        "serviceProvider": {
+          "name": "Business",
+          "street": "Address",
+          "city": "City",
+          "state": "ST",
+          "zip": "00000"
+        },
+        "quantity": 0,
+        "UOM": "Things",
+        "weight": 0
       }
     ]
   },
@@ -321,16 +470,25 @@
     "name": "hamburger",
     "events": [
       {
-        "CTE": "harvesting",
-        "organization": "Harvest All, LLC",
-        "date": "2023-07-09T14:41:00",
+        "CTE": "Under Construction :)",
+        "date": "2023-11-11T14:41:00",
         "location": {
-          "city": "Waukesha",
-          "state": "WI",
-          "field": "A8"
+          "name": "Location",
+          "street": "Address",
+          "city": "City",
+          "state": "ST",
+          "zip": "00000"
         },
-        "quantity": 10000,
-        "UOM": "lb"
+        "serviceProvider": {
+          "name": "Business",
+          "street": "Address",
+          "city": "City",
+          "state": "ST",
+          "zip": "00000"
+        },
+        "quantity": 0,
+        "UOM": "Things",
+        "weight": 0
       }
     ]
   }

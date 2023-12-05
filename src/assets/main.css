@@ -64,9 +64,10 @@
   font-weight: 800;
   margin: 0 0 32px 0;
   text-transform: capitalize;
+  line-height: 1;
 }
 
-.panel-view__scroller-label {
+.panel-view__label {
   color: var(--font-color);
   font-size: 16px;
   font-weight: 700;

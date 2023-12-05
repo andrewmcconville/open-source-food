@@ -10,7 +10,7 @@ export interface TrackingEvent {
     field?: string;
     building?: string;
   };
-  organization: {
+  serviceProvider: {
     name: string;
     street: string;
     city: string;
@@ -21,8 +21,12 @@ export interface TrackingEvent {
   UOMBefore?: string;
   TLCBefore?: string;
   quantity: number;
-  weight: number;
   UOM: string;
+  weight: number;
   TLC?: string;
   FYI?: string;
+  notes?: string;
+  link?: string;
+  linkDomain?: string;
+  map?: number;
 }

@@ -93,7 +93,7 @@
         </section>
 
         <section class="panel-view__scroller">
-            <p class="panel-view__scroller-label">Current Ingredients</p>
+            <p class="panel-view__label">Current Ingredients</p>
             <template v-if="p5CanvasStore.activeIngredients.length > 0">
             <nav class="p5-canvas__ingredient-list">
                 <template v-for="ingredient in p5CanvasStore.activeIngredients" v-bind:key="ingredient">
@@ -107,7 +107,7 @@
                 Point your camera at some food to get started.
             </p>
 
-            <p class="panel-view__scroller-label">Recent Ingredients</p>
+            <p class="panel-view__label">Recent Ingredients</p>
             <template v-if="p5CanvasStore.inactiveIngredients.length > 0">
                 <nav class="p5-canvas__ingredient-list p5-canvas__ingredient-list--inactive">
                     <template v-for="ingredient in p5CanvasStore.inactiveIngredients" v-bind:key="ingredient">
