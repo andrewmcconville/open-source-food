@@ -51,7 +51,7 @@
                 <template v-if="trackingEvent.location.field">Field {{ trackingEvent.location.field }}</template>
                 <template v-if="trackingEvent.location.building">Building {{ trackingEvent.location.building }}</template>
 
-                <img class="event-details__img" :src="`/map-${trackingEvent.map}.jpg`" v-if="trackingEvent.map"/>
+                <img class="event-details__img" :src="`map-${trackingEvent.map}.jpg`" v-if="trackingEvent.map"/>
 
                 <p class="panel-view__label">Performed By</p>
                 <p>{{ trackingEvent.serviceProvider.name }}</p>
