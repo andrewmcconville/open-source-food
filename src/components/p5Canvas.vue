@@ -1,130 +1,128 @@
 <template>
     <aside class="p5-canvas panel-view">
-        <section class="p5-canvas__panel-view panel-view__scroller">
-            <div ref="sketchContainer" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
-                <template v-if="p5CanvasStore.tomatoFoodVector">
-                    <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
-                        :style="{ transform: `translate(${p5CanvasStore.tomatoFoodVector?.x}px, ${p5CanvasStore.tomatoFoodVector?.y}px)` }">
-                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__food-marker p5-canvas__food-marker--tomato" />
+        <section ref="sketchContainer" class="p5-canvas__sketch-container" :class="{'p5-canvas__sketch-container--hide-canvas': !p5CanvasStore.showCanvasBoudingBoxes}">
+            <template v-if="p5CanvasStore.tomatoFoodVector">
+                <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
+                    :style="{ transform: `translate(${p5CanvasStore.tomatoFoodVector?.x}px, ${p5CanvasStore.tomatoFoodVector?.y}px)` }">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__food-marker p5-canvas__food-marker--tomato" />
+                </div>
+                <template v-if="p5CanvasStore.tomatoLabelVector">
+                    <svg height="360" width="360" class="p5-canvas__line">
+                        <line style="stroke: rgb(255,255,255); stroke-width: 2"
+                            :x1="p5CanvasStore.tomatoFoodVector?.x"
+                            :y1="p5CanvasStore.tomatoFoodVector?.y"
+                            :x2="p5CanvasStore.tomatoLabelVector?.x"
+                            :y2="p5CanvasStore.tomatoLabelVector?.y + p5CanvasStore.labelOffset - 12" />
+                    </svg>
+                    <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
+                        :style="{ transform: `translate(${p5CanvasStore.tomatoLabelVector?.x}px, ${p5CanvasStore.tomatoLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
+                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__food-label p5-canvas__food-label--tomato">
+                            Tomato
+                        </RouterLink>
                     </div>
-                    <template v-if="p5CanvasStore.tomatoLabelVector">
-                        <svg height="360" width="360" class="p5-canvas__line">
-                            <line style="stroke: rgb(255,255,255); stroke-width: 2"
-                                :x1="p5CanvasStore.tomatoFoodVector?.x"
-                                :y1="p5CanvasStore.tomatoFoodVector?.y"
-                                :x2="p5CanvasStore.tomatoLabelVector?.x"
-                                :y2="p5CanvasStore.tomatoLabelVector?.y + p5CanvasStore.labelOffset - 12" />
-                        </svg>
-                        <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
-                            :style="{ transform: `translate(${p5CanvasStore.tomatoLabelVector?.x}px, ${p5CanvasStore.tomatoLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
-                            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'tomato' }}" class="p5-canvas__food-label p5-canvas__food-label--tomato">
-                                Tomato
-                            </RouterLink>
-                        </div>
-                    </template>
                 </template>
+            </template>
 
-                <template v-if="p5CanvasStore.lettuceFoodVector">
-                    <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
-                        :style="{ transform: `translate(${p5CanvasStore.lettuceFoodVector?.x}px, ${p5CanvasStore.lettuceFoodVector?.y}px)` }">
-                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__food-marker p5-canvas__food-marker--lettuce" />
+            <template v-if="p5CanvasStore.lettuceFoodVector">
+                <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
+                    :style="{ transform: `translate(${p5CanvasStore.lettuceFoodVector?.x}px, ${p5CanvasStore.lettuceFoodVector?.y}px)` }">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__food-marker p5-canvas__food-marker--lettuce" />
+                </div>
+                <template v-if="p5CanvasStore.lettuceLabelVector">
+                    <svg height="360" width="360" class="p5-canvas__line">
+                        <line style="stroke: rgb(255,255,255); stroke-width: 2"
+                            :x1="p5CanvasStore.lettuceFoodVector?.x"
+                            :y1="p5CanvasStore.lettuceFoodVector?.y"
+                            :x2="p5CanvasStore.lettuceLabelVector?.x"
+                            :y2="p5CanvasStore.lettuceLabelVector?.y + p5CanvasStore.labelOffset - 12" />
+                    </svg>
+                    <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
+                        :style="{ transform: `translate(${p5CanvasStore.lettuceLabelVector?.x}px, ${p5CanvasStore.lettuceLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
+                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__food-label p5-canvas__food-label--lettuce">
+                            Lettuce
+                        </RouterLink>
                     </div>
-                    <template v-if="p5CanvasStore.lettuceLabelVector">
-                        <svg height="360" width="360" class="p5-canvas__line">
-                            <line style="stroke: rgb(255,255,255); stroke-width: 2"
-                                :x1="p5CanvasStore.lettuceFoodVector?.x"
-                                :y1="p5CanvasStore.lettuceFoodVector?.y"
-                                :x2="p5CanvasStore.lettuceLabelVector?.x"
-                                :y2="p5CanvasStore.lettuceLabelVector?.y + p5CanvasStore.labelOffset - 12" />
-                        </svg>
-                        <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
-                            :style="{ transform: `translate(${p5CanvasStore.lettuceLabelVector?.x}px, ${p5CanvasStore.lettuceLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
-                            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'lettuce' }}" class="p5-canvas__food-label p5-canvas__food-label--lettuce">
-                                Lettuce
-                            </RouterLink>
-                        </div>
-                    </template>
                 </template>
+            </template>
 
-                <template v-if="p5CanvasStore.breadFoodVector">
-                    <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
-                        :style="{ transform: `translate(${p5CanvasStore.breadFoodVector?.x}px, ${p5CanvasStore.breadFoodVector?.y}px)` }">
-                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__food-marker p5-canvas__food-marker--bread" />
+            <template v-if="p5CanvasStore.breadFoodVector">
+                <div class="p5-canvas__center-marker p5-canvas__center-marker--food"
+                    :style="{ transform: `translate(${p5CanvasStore.breadFoodVector?.x}px, ${p5CanvasStore.breadFoodVector?.y}px)` }">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__food-marker p5-canvas__food-marker--bread" />
+                </div>
+                <template v-if="p5CanvasStore.breadLabelVector">
+                    <svg height="360" width="360" class="p5-canvas__line">
+                        <line style="stroke: rgb(255,255,255); stroke-width: 2"
+                            :x1="p5CanvasStore.breadFoodVector?.x"
+                            :y1="p5CanvasStore.breadFoodVector?.y"
+                            :x2="p5CanvasStore.breadLabelVector?.x"
+                            :y2="p5CanvasStore.breadLabelVector?.y + p5CanvasStore.labelOffset - 12" />
+                    </svg>
+                    <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
+                        :style="{ transform: `translate(${p5CanvasStore.breadLabelVector?.x}px, ${p5CanvasStore.breadLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
+                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__food-label p5-canvas__food-label--bread">
+                            Bread
+                        </RouterLink>
                     </div>
-                    <template v-if="p5CanvasStore.breadLabelVector">
-                        <svg height="360" width="360" class="p5-canvas__line">
-                            <line style="stroke: rgb(255,255,255); stroke-width: 2"
-                                :x1="p5CanvasStore.breadFoodVector?.x"
-                                :y1="p5CanvasStore.breadFoodVector?.y"
-                                :x2="p5CanvasStore.breadLabelVector?.x"
-                                :y2="p5CanvasStore.breadLabelVector?.y + p5CanvasStore.labelOffset - 12" />
-                        </svg>
-                        <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
-                            :style="{ transform: `translate(${p5CanvasStore.breadLabelVector?.x}px, ${p5CanvasStore.breadLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
-                            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'bread' }}" class="p5-canvas__food-label p5-canvas__food-label--bread">
-                                Bread
-                            </RouterLink>
-                        </div>
-                    </template>
                 </template>
+            </template>
 
-                <template v-if="p5CanvasStore.hamburgerFoodVector">
-                    <div class="p5-canvas__center-marker p5-canvas__center-marker--food" 
-                        :style="{ transform: `translate(${p5CanvasStore.hamburgerFoodVector?.x}px, ${p5CanvasStore.hamburgerFoodVector?.y}px)` }">
-                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'hamburger' }}" class="p5-canvas__food-marker p5-canvas__food-marker--hamburger" />
+            <template v-if="p5CanvasStore.hamburgerFoodVector">
+                <div class="p5-canvas__center-marker p5-canvas__center-marker--food" 
+                    :style="{ transform: `translate(${p5CanvasStore.hamburgerFoodVector?.x}px, ${p5CanvasStore.hamburgerFoodVector?.y}px)` }">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'hamburger' }}" class="p5-canvas__food-marker p5-canvas__food-marker--hamburger" />
+                </div>
+                <template v-if="p5CanvasStore.hamburgerLabelVector">
+                    <svg height="360" width="360" class="p5-canvas__line">
+                        <line style="stroke: rgb(255,255,255); stroke-width: 2"
+                            :x1="p5CanvasStore.hamburgerFoodVector?.x"
+                            :y1="p5CanvasStore.hamburgerFoodVector?.y"
+                            :x2="p5CanvasStore.hamburgerLabelVector?.x"
+                            :y2="p5CanvasStore.hamburgerLabelVector?.y + p5CanvasStore.labelOffset - 12" />
+                    </svg>
+                    <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
+                        :style="{ transform: `translate(${p5CanvasStore.hamburgerLabelVector?.x}px, ${p5CanvasStore.hamburgerLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
+                        <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'hamburger' }}" class="p5-canvas__food-label p5-canvas__food-label--hamburger">
+                            Hamburger
+                        </RouterLink>
                     </div>
-                    <template v-if="p5CanvasStore.hamburgerLabelVector">
-                        <svg height="360" width="360" class="p5-canvas__line">
-                            <line style="stroke: rgb(255,255,255); stroke-width: 2"
-                                :x1="p5CanvasStore.hamburgerFoodVector?.x"
-                                :y1="p5CanvasStore.hamburgerFoodVector?.y"
-                                :x2="p5CanvasStore.hamburgerLabelVector?.x"
-                                :y2="p5CanvasStore.hamburgerLabelVector?.y + p5CanvasStore.labelOffset - 12" />
-                        </svg>
-                        <div class="p5-canvas__center-marker p5-canvas__center-marker--label"
-                            :style="{ transform: `translate(${p5CanvasStore.hamburgerLabelVector?.x}px, ${p5CanvasStore.hamburgerLabelVector?.y + p5CanvasStore.labelOffset}px)` }">
-                            <RouterLink :to="{ name: 'IngredientDetails', params: { id: 'hamburger' }}" class="p5-canvas__food-label p5-canvas__food-label--hamburger">
-                                Hamburger
-                            </RouterLink>
-                        </div>
-                    </template>
                 </template>
-            </div>
+            </template>
 
-            <div  class="p5-canvas__ingredient-container">
-                <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
+            <button class="p5-canvas__play-pause" @click="toggleLoop">{{ p5CanvasStore.isLooping ? 'Pause' : 'Play' }}</button>
+        </section>
 
-                <p class="panel-view__label">
-                    Current Ingredients
-                    <span class="panel-view__label-helper">(click to learn more)</span>
-                </p>
-                <template v-if="p5CanvasStore.activeIngredients.length > 0">
-                <nav class="p5-canvas__ingredient-list">
-                    <template v-for="ingredient in p5CanvasStore.activeIngredients" v-bind:key="ingredient">
+        <section class="panel-view__scroller">
+            <p class="panel-view__label">
+                Current Ingredients
+                <span class="panel-view__label-helper">(click to learn more)</span>
+            </p>
+            <template v-if="p5CanvasStore.activeIngredients.length > 0">
+            <nav class="p5-canvas__ingredient-list">
+                <template v-for="ingredient in p5CanvasStore.activeIngredients" v-bind:key="ingredient">
+                    <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
+                        {{ ingredient }}
+                    </RouterLink>
+                </template>
+            </nav>
+            </template>
+            <p v-else>
+                Point your camera at some food to get started.
+            </p>
+
+            <p class="panel-view__label">Recent Ingredients</p>
+            <template v-if="p5CanvasStore.inactiveIngredients.length > 0">
+                <nav class="p5-canvas__ingredient-list p5-canvas__ingredient-list--inactive">
+                    <template v-for="ingredient in p5CanvasStore.inactiveIngredients" v-bind:key="ingredient">
                         <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
                             {{ ingredient }}
                         </RouterLink>
                     </template>
                 </nav>
-                </template>
-                <p v-else>
-                    Point your camera at some food to get started.
-                </p>
-
-                <p class="panel-view__label">Recent Ingredients</p>
-                <template v-if="p5CanvasStore.inactiveIngredients.length > 0">
-                    <nav class="p5-canvas__ingredient-list p5-canvas__ingredient-list--inactive">
-                        <template v-for="ingredient in p5CanvasStore.inactiveIngredients" v-bind:key="ingredient">
-                            <RouterLink :to="{ name: 'IngredientDetails', params: { id: ingredient }}" class="p5-canvas__ingredient">
-                                {{ ingredient }}
-                            </RouterLink>
-                        </template>
-                    </nav>
-                </template>
-                <p v-else>
-                    No recent ingredients, yet.
-                </p>
-            </div>
+            </template>
+            <p v-else>
+                No recent ingredients, yet.
+            </p>
         </section>
     </aside>
 </template>
@@ -642,12 +640,11 @@ const toggleLoop = () => {
 
 <style scoped lang="scss">
 
-.p5-canvas {
+.p5-canvas__sketch-container {
+    position: relative;
+    width: 100%;
+    max-width: 100dvw;
     z-index: 0;
-}
-
-.p5-canvas__panel-view {
-    padding: 0 0 192px 0;
 }
 
 .p5-canvas__line {
@@ -734,11 +731,6 @@ const toggleLoop = () => {
     }
 }
 
-.p5-canvas__ingredient-container {
-    padding: 32px;
-    position: relative;
-}
-
 .p5-canvas__play-pause {
     border: 2px solid var(--yellow-10);
     background-color: rgba(var(--teal-rgb), 0.75);
@@ -751,7 +743,7 @@ const toggleLoop = () => {
     border-radius: 100%;
     cursor: pointer;
     position: absolute;
-    top: -40px;
+    bottom: -40px;
     margin: auto;
     left: 0;
     right: 0;
