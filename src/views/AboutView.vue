@@ -56,13 +56,13 @@
                     </ol>
                 </li>
                 <li>
-                    <h2>Usibility Testing</h2>
+                    <h2>Usability Testing</h2>
                     <ol class="about-view__list">
                     <li>
                         <h2>Qualitative</h2>
                         <ol class="about-view__list">
                             <li>
-                                <h2>Huristic Evaluation</h2>
+                                <h2>Heuristic Evaluation</h2>
                                 <p>Useful to conduct with a group designers</p>
                                 <p>
                                     <a href="https://www.nngroup.com/articles/ten-usability-heuristics/" target="_blank">https://www.nngroup.com/articles/ten-usability-heuristics/</a>
