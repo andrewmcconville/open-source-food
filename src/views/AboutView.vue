@@ -59,6 +59,12 @@
                     <h2>Usability Testing</h2>
                     <ol class="about-view__list">
                     <li>
+                        <h2>Results</h2>
+                        <p>
+                            <a href="https://docs.google.com/spreadsheets/d/1OoVMJE6Caale5SeYaszlw41j0i5gh_xq7TYQjXGeUZc/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1OoVMJE6Caale5SeYaszlw41j0i5gh_xq7TYQjXGeUZc/edit?usp=sharing</a>
+                        </p>
+                    </li>
+                    <li>
                         <h2>Qualitative</h2>
                         <ol class="about-view__list">
                             <li>
