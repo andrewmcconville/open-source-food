@@ -4,7 +4,7 @@
     "dir": "ltr",
     "lang": "en-US",
     "default_locale": "en",
-    "description": "An interface to track food ingretients from farm to fork.",
+    "description": "An Augmented Reality User Experience to Visualize Food Origins and Logistics.",
     "author": "Andrew McConville",
 
     "start_url": "/",
